@@ -13,7 +13,7 @@ class FarmAndConquer {
 public:
     void start();
 private:
-    Engine engine = Engine(GAME_NAME);
+    Engine engine_{GAME_NAME};
 };
 
 

@@ -7,7 +7,7 @@
 #include "farm_and_conquer.hpp"
 
 int main() {
-    auto game = FarmAndConquer();
+    FarmAndConquer game;
     game.start();
     return 0;
 }

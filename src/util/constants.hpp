@@ -10,6 +10,8 @@
 
 extern const char* GAME_NAME;
 extern const float FPS_MILLIS;
+extern const int DISP_H;
+extern const int DISP_W;
 
 
 

@@ -8,23 +8,30 @@
 
 #include <string>
 #include <allegro5/allegro.h>
+#include <memory>
+#include "display.hpp"
 
 class Engine {
 public:
-    explicit Engine(const std::string& name);
+    explicit Engine(const std::string &name);
 
     ~Engine();
 
     void start();
 
 private:
-    ALLEGRO_TIMER* timer{};
-    ALLEGRO_EVENT_QUEUE* queue{};
-    long start_time = 0;
+    std::unique_ptr<Display> display_;
+    ALLEGRO_TIMER* timer_{};
+    ALLEGRO_EVENT_QUEUE* queue_{};
+    long start_time_ = 0;
+    bool redraw_ = false;
+    bool running_ = false;
 
-    void game_loop();
+    void process_event(ALLEGRO_EVENT &event);
 
     int update_elapsed();
+
+    void game_loop();
 };
 
 
