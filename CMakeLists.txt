@@ -4,7 +4,15 @@ project(FarmAndConquer)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(FarmAndConquer
-        src/main.cpp)
+        src/main.cpp
+        src/farm_and_conquer.hpp
+        src/engine/engine.hpp
+        src/engine/engine.cpp
+        src/util/util.cpp
+        src/util/util.hpp
+        src/util/constants.hpp
+        src/farm_and_conquer.cpp
+        src/util/constants.cpp)
 
 add_custom_target(
         CopyAssets ALL

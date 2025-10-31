@@ -4,8 +4,10 @@
 
 
 #include <iostream>
+#include "farm_and_conquer.hpp"
 
 int main() {
-    std::cout << "Hello world!";
+    auto game = FarmAndConquer();
+    game.start();
     return 0;
 }
