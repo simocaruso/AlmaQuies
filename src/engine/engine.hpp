@@ -12,6 +12,7 @@
 #include "display.hpp"
 #include "entt/entt.hpp"
 #include "systems/rendering_system.hpp"
+#include "entity_loader.hpp"
 
 
 class Engine {
@@ -28,6 +29,7 @@ private:
     std::unique_ptr<RenderingSystem> rendering_system_;
     std::unique_ptr<ResourceManager> resource_manager_;
     std::unique_ptr<FileManager> file_manager_;
+    std::unique_ptr<EntityLoader> entity_loader_;
     ALLEGRO_TIMER* timer_{};
     ALLEGRO_EVENT_QUEUE* queue_{};
     long start_time_ = 0;

@@ -23,7 +23,9 @@ add_executable(FarmAndConquer
         src/engine/managers/resource_manager.cpp
         src/engine/managers/resource_manager.hpp
         src/engine/managers/file_manager.cpp
-        src/engine/managers/file_manager.hpp)
+        src/engine/managers/file_manager.hpp
+        src/engine/entity_loader.cpp
+        src/engine/entity_loader.hpp)
 
 add_custom_target(
         CopyAssets ALL

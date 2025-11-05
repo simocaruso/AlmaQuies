@@ -23,6 +23,7 @@ void Engine::init_components() {
     resource_manager_ = std::make_unique<ResourceManager>(file_manager_.get());
     display_ = std::make_unique<Display>(DISP_W, DISP_H);
     rendering_system_ = std::make_unique<RenderingSystem>(registry_.get(), display_.get(), resource_manager_.get());
+    entity_loader_ = std::make_unique<EntityLoader>(registry_.get(), file_manager_.get(), resource_manager_.get());
     timer_ = al_create_timer(FPS_MILLIS / 1000);
     queue_ = al_create_event_queue();
     al_register_event_source(queue_, al_get_timer_event_source(timer_));
