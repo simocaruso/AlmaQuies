@@ -17,12 +17,20 @@ Engine::~Engine() {
     al_destroy_timer(timer_);
 };
 
-void Engine::start() {
+void Engine::init_components() {
+    registry_ = std::make_unique<entt::registry>();
+    file_manager_ = std::make_unique<FileManager>();
+    resource_manager_ = std::make_unique<ResourceManager>(file_manager_.get());
     display_ = std::make_unique<Display>(DISP_W, DISP_H);
+    rendering_system_ = std::make_unique<RenderingSystem>(registry_.get(), display_.get(), resource_manager_.get());
     timer_ = al_create_timer(FPS_MILLIS / 1000);
     queue_ = al_create_event_queue();
     al_register_event_source(queue_, al_get_timer_event_source(timer_));
     al_register_event_source(queue_, al_get_display_event_source(display_->get_display()));
+}
+
+void Engine::start() {
+    init_components();
     running_ = true;
     start_time_ = (long)(al_get_time() * 1000);
     game_loop();

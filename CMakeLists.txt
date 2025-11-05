@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.26)
 project(FarmAndConquer)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(FarmAndConquer
@@ -17,7 +17,13 @@ add_executable(FarmAndConquer
         src/engine/systems/system.cpp
         src/engine/systems/system.hpp
         src/engine/display.cpp
-        src/engine/display.hpp)
+        src/engine/display.hpp
+        src/engine/systems/rendering_system.cpp
+        src/engine/systems/rendering_system.hpp
+        src/engine/managers/resource_manager.cpp
+        src/engine/managers/resource_manager.hpp
+        src/engine/managers/file_manager.cpp
+        src/engine/managers/file_manager.hpp)
 
 add_custom_target(
         CopyAssets ALL
