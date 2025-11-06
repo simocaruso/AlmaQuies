@@ -18,14 +18,23 @@ add_executable(FarmAndConquer
         src/engine/systems/system.hpp
         src/engine/display.cpp
         src/engine/display.hpp
-        src/engine/systems/rendering_system.cpp
-        src/engine/systems/rendering_system.hpp
         src/engine/managers/resource_manager.cpp
         src/engine/managers/resource_manager.hpp
         src/engine/managers/file_manager.cpp
         src/engine/managers/file_manager.hpp
         src/engine/entity_loader.cpp
-        src/engine/entity_loader.hpp)
+        src/engine/entity_loader.hpp
+        src/util/vec_2.hpp
+        src/engine/systems/rendering_system/render_target.hpp
+        src/engine/systems/rendering_system/renderer.cpp
+        src/engine/systems/rendering_system/renderer.hpp
+        src/engine/systems/rendering_system/rendering_system.cpp
+        src/engine/systems/rendering_system/rendering_system.hpp
+        src/engine/systems/rendering_system/display_target.cpp
+        src/engine/systems/rendering_system/display_target.hpp
+        src/engine/systems/rendering_system/bitmap_target.cpp
+        src/engine/systems/rendering_system/bitmap_target.hpp
+)
 
 add_custom_target(
         CopyAssets ALL

@@ -9,3 +9,6 @@ const float FPS_MILLIS = 1000 / 60.0f;
 
 const int DISP_H = 720;
 const int DISP_W = 1280;
+
+const int BUFF_H = 720;
+const int BUFF_W = 1280;

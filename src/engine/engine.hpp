@@ -11,7 +11,7 @@
 #include <memory>
 #include "display.hpp"
 #include "entt/entt.hpp"
-#include "systems/rendering_system.hpp"
+#include "systems/rendering_system/rendering_system.hpp"
 #include "entity_loader.hpp"
 
 
@@ -25,6 +25,7 @@ public:
 
 private:
     std::unique_ptr<Display> display_;
+    std::unique_ptr<Renderer> renderer_;
     std::unique_ptr<entt::registry> registry_;
     std::unique_ptr<RenderingSystem> rendering_system_;
     std::unique_ptr<ResourceManager> resource_manager_;
