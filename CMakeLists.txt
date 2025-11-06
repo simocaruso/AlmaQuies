@@ -34,6 +34,10 @@ add_executable(FarmAndConquer
         src/engine/systems/rendering_system/display_target.hpp
         src/engine/systems/rendering_system/bitmap_target.cpp
         src/engine/systems/rendering_system/bitmap_target.hpp
+        src/engine/components/transform_component.hpp
+        src/engine/components/render_component.hpp
+        src/engine/world.cpp
+        src/engine/world.hpp
 )
 
 add_custom_target(

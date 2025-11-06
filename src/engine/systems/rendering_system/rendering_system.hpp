@@ -17,7 +17,7 @@ public:
 
     RenderingSystem(entt::registry* registry, Renderer* renderer, Display* display);
 
-    void update(int elapsed) override;
+    void update(int elapsed) override {};
 
     void render();
 

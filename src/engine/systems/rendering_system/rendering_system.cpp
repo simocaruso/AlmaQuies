@@ -5,22 +5,24 @@
 #include "rendering_system.hpp"
 #include "renderer.hpp"
 #include "display_target.hpp"
+#include "../../components/transform_component.hpp"
+#include "../../components/render_component.hpp"
 
-RenderingSystem::RenderingSystem(entt::registry* registry, Renderer* renderer,
-                                 Display* display)
+RenderingSystem::RenderingSystem(entt::registry* registry, Renderer* renderer, Display* display)
         : System(registry), display_(display), renderer_(renderer) {
     render_buffer = al_create_bitmap(BUFF_W, BUFF_H);
-}
-
-void RenderingSystem::update(int elapsed) {
-
 }
 
 void RenderingSystem::render() {
     BitmapTarget bitmap_target(render_buffer);
     renderer_->begin(bitmap_target);
     renderer_->clear_to_color(.5f, .5f, .5f);
-    // TODO: render entities
+    auto view = registry_->view<TransformComponent, RenderComponent>();
+    for (auto entity: view) {
+        auto &transform = view.get<TransformComponent>(entity);
+        auto &render = view.get<RenderComponent>(entity);
+        renderer_->draw_bitmap(render.sprite_id, transform.position);
+    }
     renderer_->end(bitmap_target);
 
     DisplayTarget display_target(display_);

@@ -27,3 +27,7 @@ void Renderer::draw_scaled_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_po
                           0, 0, (float) al_get_bitmap_width(bitmap), (float) al_get_bitmap_height(bitmap),
                           drawing_position.x, drawing_position.y, destination_width, destination_height, 0);
 }
+
+void Renderer::draw_bitmap(const std::string &sprite_id, const Vec2 &drawing_position) {
+    al_draw_bitmap(resource_manager_->get_resource(sprite_id), drawing_position.x, drawing_position.y, 0);
+}

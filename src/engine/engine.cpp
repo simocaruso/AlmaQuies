@@ -18,13 +18,11 @@ Engine::~Engine() {
 };
 
 void Engine::init_components() {
-    registry_ = std::make_unique<entt::registry>();
     file_manager_ = std::make_unique<FileManager>();
     resource_manager_ = std::make_unique<ResourceManager>(file_manager_.get());
     display_ = std::make_unique<Display>(DISP_W, DISP_H);
     renderer_ = std::make_unique<Renderer>(resource_manager_.get());
-    rendering_system_ = std::make_unique<RenderingSystem>(registry_.get(), renderer_.get(), display_.get());
-    entity_loader_ = std::make_unique<EntityLoader>(registry_.get(), file_manager_.get(), resource_manager_.get());
+    world_ = std::make_unique<World>(display_.get(), renderer_.get(), resource_manager_.get(), file_manager_.get());
     timer_ = al_create_timer(FPS_MILLIS / 1000);
     queue_ = al_create_event_queue();
     al_register_event_source(queue_, al_get_timer_event_source(timer_));
@@ -65,7 +63,7 @@ void Engine::game_loop() {
         process_event(event);
 
         if (redraw_ && al_is_event_queue_empty(queue_)) {
-            rendering_system_->render();
+            world_->render();
             redraw_ = false;
         }
 
