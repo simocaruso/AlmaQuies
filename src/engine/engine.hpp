@@ -14,6 +14,7 @@
 #include "systems/rendering_system/rendering_system.hpp"
 #include "entity_loader.hpp"
 #include "world.hpp"
+#include "managers/input_manager.hpp"
 
 
 class Engine {
@@ -29,6 +30,7 @@ private:
     std::unique_ptr<Renderer> renderer_;
     std::unique_ptr<ResourceManager> resource_manager_;
     std::unique_ptr<FileManager> file_manager_;
+    std::unique_ptr<InputManager> input_manager_;
     std::unique_ptr<World> world_;
     ALLEGRO_TIMER* timer_{};
     ALLEGRO_EVENT_QUEUE* queue_{};
@@ -38,7 +40,7 @@ private:
 
     bool running_ = false;
 
-    void process_event(ALLEGRO_EVENT &event);
+    void process_event(ALLEGRO_EVENT &event, int elapsed);
 
     int update_elapsed();
 

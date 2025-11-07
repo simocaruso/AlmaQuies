@@ -40,6 +40,12 @@ add_executable(FarmAndConquer
         src/engine/world.hpp
         src/engine/managers/input_manager.cpp
         src/engine/managers/input_manager.hpp
+        src/engine/systems/input_system.cpp
+        src/engine/systems/input_system.hpp
+        src/engine/systems/events/move_command_event.hpp
+        src/engine/components/player_tag.hpp
+        src/engine/systems/movement_system.cpp
+        src/engine/systems/movement_system.hpp
 )
 
 add_custom_target(
