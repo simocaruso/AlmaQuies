@@ -38,6 +38,8 @@ add_executable(FarmAndConquer
         src/engine/components/render_component.hpp
         src/engine/world.cpp
         src/engine/world.hpp
+        src/engine/managers/input_manager.cpp
+        src/engine/managers/input_manager.hpp
 )
 
 add_custom_target(
