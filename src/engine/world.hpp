@@ -32,7 +32,7 @@ private:
     std::unique_ptr<InputSystem> input_system_;
     std::unique_ptr<EntityLoader> entity_loader_;
     std::unique_ptr<entt::dispatcher> dispatcher_;
-    std::unique_ptr<MovementSystem> movement_system;
+    std::unique_ptr<MovementSystem> movement_system_;
 };
 
 

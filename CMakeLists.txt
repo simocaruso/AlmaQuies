@@ -46,6 +46,7 @@ add_executable(FarmAndConquer
         src/engine/components/player_tag.hpp
         src/engine/systems/movement_system.cpp
         src/engine/systems/movement_system.hpp
+        src/engine/components/velocity_component.hpp
 )
 
 add_custom_target(

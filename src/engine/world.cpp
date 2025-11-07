@@ -14,7 +14,7 @@ World::World(Display *display, Renderer *renderer, ResourceManager *resource_man
     registry_ = std::make_unique<entt::registry>();
     rendering_system_ = std::make_unique<RenderingSystem>(registry_.get(), renderer_, display_);
     dispatcher_ = std::make_unique<entt::dispatcher>();
-    movement_system = std::make_unique<MovementSystem>(registry_.get(), *dispatcher_);
+    movement_system_ = std::make_unique<MovementSystem>(registry_.get(), *dispatcher_);
     input_system_ = std::make_unique<InputSystem>(registry_.get(), input_manager_, dispatcher_.get());
     entity_loader_ = std::make_unique<EntityLoader>(registry_.get(), file_manager_, resource_manager_);
     entity_loader_->load_entity("blue", Vec2(100, 100));
@@ -23,6 +23,7 @@ World::World(Display *display, Renderer *renderer, ResourceManager *resource_man
 void World::update(int elapsed) {
     dispatcher_->update();
     input_system_->update(elapsed);
+    movement_system_->update(elapsed);
 }
 
 void World::render() {
