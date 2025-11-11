@@ -23,7 +23,7 @@ public:
     void draw_scaled_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_position, const float &destination_width,
                             const float &destination_height);
 
-    void draw_bitmap(const std::string &sprite_id, const Vec2 &drawing_position);
+    void draw_bitmap(const std::string &sprite_id, const Vec2 &drawing_position, const Vec2 &drawing_offset);
 
 private:
 

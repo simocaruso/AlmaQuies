@@ -9,6 +9,7 @@
 
 struct RenderComponent {
     std::string sprite_id;
+    Vec2 offset;
 };
 
 #endif //FARMANDCONQUER_RENDER_COMPONENT_HPP

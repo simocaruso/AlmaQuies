@@ -1,6 +1,19 @@
 {
   "blue": {
-    "PlayerTag": {}
+    "playerTag": {},
+    "render": {
+      "offset": {
+        "x": 8,
+        "y": 24
+      }
+    }
   },
-  "tree": {}
+  "tree": {
+    "render": {
+      "offset": {
+        "x": 24,
+        "y": 64
+      }
+    }
+  }
 }

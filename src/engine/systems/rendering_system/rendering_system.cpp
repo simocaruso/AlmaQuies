@@ -21,7 +21,7 @@ void RenderingSystem::render() {
     for (auto entity: view) {
         auto &transform = view.get<TransformComponent>(entity);
         auto &render = view.get<RenderComponent>(entity);
-        renderer_->draw_bitmap(render.sprite_id, transform.position);
+        renderer_->draw_bitmap(render.sprite_id, transform.position, render.offset);
     }
     renderer_->end(bitmap_target);
 
