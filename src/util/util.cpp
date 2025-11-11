@@ -5,8 +5,14 @@
 #include "util.hpp"
 #include <iostream>
 
-void must_init(bool test, const char* description) {
+void must_init(const bool test, const char* description) {
     if (test) return;
     printf("Couldn't initialize %s\n", description);
+    exit(1);
+}
+
+void error(const bool test, const char* description) {
+    if (test) return;
+    printf("Error: %s\n", description);
     exit(1);
 }

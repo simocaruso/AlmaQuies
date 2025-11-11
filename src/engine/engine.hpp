@@ -13,7 +13,7 @@
 #include "entt/entt.hpp"
 #include "systems/rendering_system/rendering_system.hpp"
 #include "entity_loader.hpp"
-#include "world.hpp"
+#include "world/world.hpp"
 #include "managers/input_manager.hpp"
 
 

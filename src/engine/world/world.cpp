@@ -3,7 +3,7 @@
 //
 
 #include "world.hpp"
-#include "managers/input_manager.hpp"
+#include "../managers/input_manager.hpp"
 
 World::World(Display *display, Renderer *renderer, ResourceManager *resource_manager, FileManager *file_manager,
              InputManager *input_manager) :
@@ -18,14 +18,15 @@ World::World(Display *display, Renderer *renderer, ResourceManager *resource_man
     input_system_ = std::make_unique<InputSystem>(registry_.get(), input_manager_, dispatcher_.get());
     entity_loader_ = std::make_unique<EntityLoader>(registry_.get(), file_manager_, resource_manager_);
     entity_loader_->load_entity("blue", Vec2(100, 100));
+    entity_loader_->load_entity("tree", Vec2(100, 100));
 }
 
-void World::update(int elapsed) {
+void World::update(int elapsed) const {
     dispatcher_->update();
     input_system_->update(elapsed);
     movement_system_->update(elapsed);
 }
 
-void World::render() {
+void World::render() const {
     rendering_system_->render();
 }

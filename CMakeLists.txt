@@ -36,8 +36,8 @@ add_executable(FarmAndConquer
         src/engine/systems/rendering_system/bitmap_target.hpp
         src/engine/components/transform_component.hpp
         src/engine/components/render_component.hpp
-        src/engine/world.cpp
-        src/engine/world.hpp
+        src/engine/world/world.cpp
+        src/engine/world/world.hpp
         src/engine/managers/input_manager.cpp
         src/engine/managers/input_manager.hpp
         src/engine/systems/input_system.cpp
@@ -47,6 +47,10 @@ add_executable(FarmAndConquer
         src/engine/systems/movement_system.cpp
         src/engine/systems/movement_system.hpp
         src/engine/components/velocity_component.hpp
+        src/engine/world/map.cpp
+        src/engine/world/map.hpp
+        src/engine/managers/json_reader.cpp
+        src/engine/managers/json_reader.hpp
 )
 
 add_custom_target(
@@ -56,6 +60,14 @@ add_custom_target(
         COMMENT "Copying assets directory to output"
 )
 add_dependencies(${PROJECT_NAME} CopyAssets)
+
+add_custom_target(
+        CopyEntities ALL
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/entities ./entities
+        COMMENT "Copying entities directory to output"
+)
+add_dependencies(${PROJECT_NAME} CopyEntities)
 
 
 include(FindPkgConfig)
@@ -83,6 +95,9 @@ target_include_directories(FarmAndConquer PRIVATE
         include
 )
 
+# fmt library
+find_package(fmt REQUIRED)
+
 target_link_libraries(FarmAndConquer
         ${allegro-5_LIBRARIES}
         ${allegro_primitives-5_LIBRARIES}
@@ -91,4 +106,5 @@ target_link_libraries(FarmAndConquer
         ${allegro_ttf-5_LIBRARIES}
         ${allegro_audio-5_LIBRARIES}
         ${allegro_acodec-5_LIBRARIES}
+        fmt::fmt
 )

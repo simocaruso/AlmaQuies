@@ -73,4 +73,3 @@ void InputManager::handle_event(const ALLEGRO_EVENT &event) {
             break;
     }
 }
-
