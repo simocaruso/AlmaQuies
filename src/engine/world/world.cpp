@@ -19,7 +19,7 @@ World::World(Display* display, Renderer* renderer, ResourceManager* resource_man
     entity_loader_ = std::make_unique<EntityLoader>(registry_.get(), dispatcher_.get(),
                                                     file_manager_, resource_manager_);
     entity_loader_->load_entity("blue", Vec2(100, 100));
-    entity_loader_->load_entity("tree", Vec2(100, 100));
+    entity_loader_->load_entity("tree", Vec2(150, 100));
 }
 
 void World::update(const int elapsed) const {

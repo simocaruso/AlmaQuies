@@ -35,6 +35,7 @@ void MovementSystem::update(int elapsed) {
         if (vel.speed.length() > vel.max_speed)
             vel.speed = vel.speed.normalized() * vel.max_speed;
 
+        transform.prev_position = transform.position;
         transform.position += vel.speed * elapsed / 1000;
         vel.active = false;
     }

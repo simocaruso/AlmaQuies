@@ -59,6 +59,8 @@ add_executable(FarmAndConquer
         src/engine/systems/collision/collision_system.cpp
         src/engine/systems/collision/collision_system.hpp
         src/engine/systems/events/created_collidable_event.hpp
+        src/engine/systems/collision/collision_resolver.cpp
+        src/engine/systems/collision/collision_resolver.hpp
 )
 
 add_custom_target(

@@ -21,7 +21,7 @@ EntityLoader::EntityLoader(entt::registry* registry, entt::dispatcher* dispatche
 
 entt::entity EntityLoader::load_entity(const std::string &name, const Vec2 &position) const {
     const auto res = registry_->create();
-    registry_->emplace<TransformComponent>(res, position);
+    registry_->emplace<TransformComponent>(res, position, position);
     if (entities_config_.has_field(fmt::format("{}.playerTag", name))) {
         registry_->emplace<PlayerTag>(res);
     }

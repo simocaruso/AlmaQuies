@@ -14,6 +14,7 @@ public:
     static bool collide(const TransformComponent &t1, const ColliderComponent &c1,
                         const TransformComponent &t2, const ColliderComponent &c2);
 
+private:
     static bool circle_vs_circle(const Vec2 &pos1, int radius1, const Vec2 &pos2, int radius2);
 
     static bool rect_vs_rect(const Vec2 &pos1, int width1, int height1, const Vec2 &pos2, int width2, int height2);

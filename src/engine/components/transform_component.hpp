@@ -9,6 +9,7 @@
 
 struct TransformComponent {
     Vec2 position;
+    Vec2 prev_position;
     float angle = 0;
 };
 

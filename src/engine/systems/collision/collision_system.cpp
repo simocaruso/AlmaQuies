@@ -5,6 +5,7 @@
 #include "collision_system.hpp"
 
 #include "collision_checker.hpp"
+#include "collision_resolver.hpp"
 #include "../../../util/constants.hpp"
 #include "../../components/collider_component.hpp"
 #include "../../components/transform_component.hpp"
@@ -50,7 +51,7 @@ void CollisionSystem::check_collisions() const {
             auto &t2 = view.get<TransformComponent>(e2);
             auto &c2 = view.get<ColliderComponent>(e2);
             if (CollisionChecker::collide(t1, c1, t2, c2)) {
-                printf("Collision!\n");
+                CollisionResolver::resolve_collision(t1, t2);
             }
         }
     }
