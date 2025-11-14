@@ -11,7 +11,7 @@
 #include <memory>
 #include "display.hpp"
 #include "entt/entt.hpp"
-#include "systems/rendering_system/rendering_system.hpp"
+#include "systems/rendering/rendering_system.hpp"
 #include "entity_loader.hpp"
 #include "world/world.hpp"
 #include "managers/input_manager.hpp"

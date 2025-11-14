@@ -11,7 +11,7 @@ MovementSystem::MovementSystem(entt::registry *registry, entt::dispatcher &dispa
     dispatcher.sink<MoveCommandEvent>().connect<&MovementSystem::on_move_command>(this);
 }
 
-void MovementSystem::on_move_command(const MoveCommandEvent &event) {
+void MovementSystem::on_move_command(const MoveCommandEvent &event) const {
     auto &vel = registry_->get_or_emplace<VelocityComponent>(event.entity);
     vel.acceleration = event.direction * vel.acceleration_strength;
     vel.active = true;

@@ -12,3 +12,5 @@ const int DISP_W = 1280;
 
 const int BUFF_H = 720;
 const int BUFF_W = 1280;
+
+const int COLLISION_SPATIAL_GRID_CELL_SIZE = 64;

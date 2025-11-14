@@ -12,6 +12,8 @@ class System {
 public:
     explicit System(entt::registry* registry);
 
+    virtual ~System() = default;
+
     virtual void update(int elapsed) = 0;
 
 protected:

@@ -6,6 +6,10 @@
         "x": 8,
         "y": 24
       }
+    },
+    "collider": {
+      "shape": "circle",
+      "radius": 4
     }
   },
   "tree": {
@@ -14,6 +18,11 @@
         "x": 24,
         "y": 64
       }
+    },
+    "collider": {
+      "shape": "rect",
+      "width": 4,
+      "height": 4
     }
   }
 }

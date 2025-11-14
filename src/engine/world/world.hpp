@@ -6,11 +6,12 @@
 #define FARMANDCONQUER_WORLD_HPP
 
 
-#include "../systems/rendering_system/rendering_system.hpp"
+#include "../systems/rendering/rendering_system.hpp"
 #include "../entity_loader.hpp"
 #include "../managers/input_manager.hpp"
 #include "../systems/input_system.hpp"
 #include "../systems/movement_system.hpp"
+#include "../systems/collision/collision_system.hpp"
 
 class World {
 public:
@@ -33,6 +34,7 @@ private:
     std::unique_ptr<EntityLoader> entity_loader_;
     std::unique_ptr<entt::dispatcher> dispatcher_;
     std::unique_ptr<MovementSystem> movement_system_;
+    std::unique_ptr<CollisionSystem> collision_system_;
 };
 
 

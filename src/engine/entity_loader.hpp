@@ -13,17 +13,21 @@
 
 class EntityLoader {
 public:
-    EntityLoader(entt::registry *registry, FileManager *file_manager, ResourceManager *resource_manager);
+    EntityLoader(entt::registry* registry, entt::dispatcher* dispatcher,
+                 FileManager* file_manager, ResourceManager* resource_manager);
 
     entt::entity load_entity(const std::string &name, const Vec2 &position) const;
 
 private:
     JSONReader entities_config_;
-    entt::registry *registry_;
-    FileManager *file_manager_;
-    ResourceManager *resource_manager_;
+    entt::registry* registry_;
+    entt::dispatcher* dispatcher_;
+    FileManager* file_manager_;
+    ResourceManager* resource_manager_;
 
     void render(const std::string &name, const entt::entity &entity) const;
+
+    void collision(const std::string &name, const entt::entity &entity) const;
 
     Vec2 vec2(const std::string &field) const;
 };

@@ -15,7 +15,7 @@ public:
 
     void update(int elapsed) override;
 
-    void on_move_command(const MoveCommandEvent &event);
+    void on_move_command(const MoveCommandEvent &event) const;
 };
 
 

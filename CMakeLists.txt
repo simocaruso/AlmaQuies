@@ -25,15 +25,15 @@ add_executable(FarmAndConquer
         src/engine/entity_loader.cpp
         src/engine/entity_loader.hpp
         src/util/vec_2.hpp
-        src/engine/systems/rendering_system/render_target.hpp
-        src/engine/systems/rendering_system/renderer.cpp
-        src/engine/systems/rendering_system/renderer.hpp
-        src/engine/systems/rendering_system/rendering_system.cpp
-        src/engine/systems/rendering_system/rendering_system.hpp
-        src/engine/systems/rendering_system/display_target.cpp
-        src/engine/systems/rendering_system/display_target.hpp
-        src/engine/systems/rendering_system/bitmap_target.cpp
-        src/engine/systems/rendering_system/bitmap_target.hpp
+        src/engine/systems/rendering/render_target.hpp
+        src/engine/systems/rendering/renderer.cpp
+        src/engine/systems/rendering/renderer.hpp
+        src/engine/systems/rendering/rendering_system.cpp
+        src/engine/systems/rendering/rendering_system.hpp
+        src/engine/systems/rendering/display_target.cpp
+        src/engine/systems/rendering/display_target.hpp
+        src/engine/systems/rendering/bitmap_target.cpp
+        src/engine/systems/rendering/bitmap_target.hpp
         src/engine/components/transform_component.hpp
         src/engine/components/render_component.hpp
         src/engine/world/world.cpp
@@ -51,6 +51,14 @@ add_executable(FarmAndConquer
         src/engine/world/map.hpp
         src/engine/managers/json_reader.cpp
         src/engine/managers/json_reader.hpp
+        src/engine/components/collider_component.hpp
+        src/engine/systems/collision/collision_checker.cpp
+        src/engine/systems/collision/collision_checker.hpp
+        src/engine/systems/collision/spatial_grid.cpp
+        src/engine/systems/collision/spatial_grid.hpp
+        src/engine/systems/collision/collision_system.cpp
+        src/engine/systems/collision/collision_system.hpp
+        src/engine/systems/events/created_collidable_event.hpp
 )
 
 add_custom_target(
