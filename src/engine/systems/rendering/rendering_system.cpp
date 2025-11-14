@@ -9,7 +9,7 @@
 #include "../../components/render_component.hpp"
 
 RenderingSystem::RenderingSystem(entt::registry* registry, Renderer* renderer, Display* display)
-        : System(registry), display_(display), renderer_(renderer) {
+    : System(registry), display_(display), renderer_(renderer) {
     render_buffer = al_create_bitmap(BUFF_W, BUFF_H);
 }
 
@@ -18,6 +18,11 @@ void RenderingSystem::render() {
     renderer_->begin(bitmap_target);
     renderer_->clear_to_color(.5f, .5f, .5f);
     auto view = registry_->view<TransformComponent, RenderComponent>();
+
+    registry_->sort<TransformComponent>([](const TransformComponent &a, const TransformComponent &b) {
+        return a.position.y < b.position.y;
+    });
+
     for (auto entity: view) {
         auto &transform = view.get<TransformComponent>(entity);
         auto &render = view.get<RenderComponent>(entity);
