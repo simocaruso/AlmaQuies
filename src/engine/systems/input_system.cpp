@@ -3,16 +3,21 @@
 //
 
 #include "input_system.hpp"
+
+#include "../components/camera_component.hpp"
 #include "../components/player_tag.hpp"
 #include "events/move_command_event.hpp"
+#include "events/zoom_command_event.hpp"
 
-InputSystem::InputSystem(entt::registry *registry, InputManager *input_manager, entt::dispatcher *dispatcher) :
-        System(registry), input_manager_(input_manager), dispatcher_(dispatcher) {
+InputSystem::InputSystem(entt::registry* registry, InputManager* input_manager,
+                         entt::dispatcher* dispatcher) : System(registry), input_manager_(input_manager),
+                                                         dispatcher_(dispatcher) {
 }
 
 void InputSystem::update(int elapsed) {
     input_manager_->update();
     process_movement();
+    process_camera();
 }
 
 void InputSystem::process_movement() {
@@ -26,6 +31,29 @@ void InputSystem::process_movement() {
         auto view = registry_->view<PlayerTag>();
         for (auto e: view) {
             dispatcher_->enqueue(MoveCommandEvent{e, dir});
+        }
+    }
+}
+
+void InputSystem::process_camera() const {
+    Vec2 dir = {0, 0};
+    if (input_manager_->key_down(ALLEGRO_KEY_UP)) dir.y -= 1;
+    if (input_manager_->key_down(ALLEGRO_KEY_DOWN)) dir.y += 1;
+    if (input_manager_->key_down(ALLEGRO_KEY_LEFT)) dir.x -= 1;
+    if (input_manager_->key_down(ALLEGRO_KEY_RIGHT)) dir.x += 1;
+
+    if (dir.x != 0 || dir.y != 0) {
+        auto view = registry_->view<CameraComponent>();
+        for (auto e: view) {
+            dispatcher_->enqueue(MoveCommandEvent{e, dir});
+        }
+    }
+
+    int zoom_factor = input_manager_->mouse_wheel_delta();
+    if (zoom_factor != 0) {
+        auto view = registry_->view<CameraComponent>();
+        for (auto e: view) {
+            dispatcher_->enqueue(ZoomCommandEvent{e, zoom_factor});
         }
     }
 }

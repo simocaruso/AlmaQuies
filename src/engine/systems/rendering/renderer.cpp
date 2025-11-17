@@ -4,7 +4,9 @@
 
 #include "renderer.hpp"
 
-Renderer::Renderer(ResourceManager *resource_manager) : resource_manager_(resource_manager) {
+#include "../../../util/constants.hpp"
+
+Renderer::Renderer(ResourceManager* resource_manager) : resource_manager_(resource_manager) {
 }
 
 void Renderer::begin(const RenderTarget &target) {
@@ -19,7 +21,7 @@ void Renderer::clear_to_color(float r, float g, float b, float a) {
     al_clear_to_color(al_map_rgba_f(r, g, b, a));
 }
 
-void Renderer::draw_scaled_bitmap(ALLEGRO_BITMAP *bitmap, const Vec2 &drawing_position,
+void Renderer::draw_scaled_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_position,
                                   const float &destination_width,
                                   const float &destination_height) { // NOLINT(*-convert-member-functions-to-static)
     al_draw_scaled_bitmap(bitmap,
@@ -32,4 +34,13 @@ void Renderer::draw_bitmap(const std::string &sprite_id, const Vec2 &drawing_pos
                    drawing_position.x - drawing_offset.x,
                    drawing_position.y - drawing_offset.y,
                    0);
+}
+
+void Renderer::update_camera(const Vec2 &position, const float zoom) {
+    ALLEGRO_TRANSFORM trans;
+    al_identity_transform(&trans);
+    al_translate_transform(&trans, -position.x - BUFF_W/2, -position.y - BUFF_H/2);
+    al_scale_transform(&trans, zoom, zoom);
+    al_translate_transform(&trans, BUFF_W/2, BUFF_H/2);
+    al_use_transform(&trans);
 }

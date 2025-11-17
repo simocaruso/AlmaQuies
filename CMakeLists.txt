@@ -61,6 +61,12 @@ add_executable(FarmAndConquer
         src/engine/systems/events/created_collidable_event.hpp
         src/engine/systems/collision/collision_resolver.cpp
         src/engine/systems/collision/collision_resolver.hpp
+        src/engine/components/camera_component.hpp
+        src/engine/systems/camera_system.cpp
+        src/engine/systems/camera_system.hpp
+        src/engine/entity_factory.cpp
+        src/engine/entity_factory.hpp
+        src/engine/systems/events/zoom_command_event.hpp
 )
 
 add_custom_target(

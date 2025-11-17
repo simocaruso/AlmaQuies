@@ -21,6 +21,8 @@ private:
     entt::dispatcher *dispatcher_;
 
     void process_movement();
+
+    void process_camera() const;
 };
 
 

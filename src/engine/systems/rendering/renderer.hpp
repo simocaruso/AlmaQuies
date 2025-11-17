@@ -25,8 +25,9 @@ public:
 
     void draw_bitmap(const std::string &sprite_id, const Vec2 &drawing_position, const Vec2 &drawing_offset);
 
-private:
+    static void update_camera(const Vec2 &position, float zoom);
 
+private:
     ResourceManager* resource_manager_;
 };
 

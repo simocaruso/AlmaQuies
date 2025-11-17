@@ -30,13 +30,19 @@ public:
 
     bool mouse_button_released(int button) const;
 
+    int mouse_wheel_delta();
+
+    Vec2 mouse_position() const;
+
 private:
-    ALLEGRO_EVENT_QUEUE *queue_ = nullptr;
+    ALLEGRO_EVENT_QUEUE* queue_ = nullptr;
     bool keys_[ALLEGRO_KEY_MAX] = {false};
     bool prev_keys_[ALLEGRO_KEY_MAX] = {false};
     bool mouse_buttons_[8] = {false};
     bool prev_mouse_buttons_[8] = {false};
+    int mouse_wheel_delta_{0};
     Vec2 mouse_position_;
+
     void handle_event(const ALLEGRO_EVENT &event);
 };
 

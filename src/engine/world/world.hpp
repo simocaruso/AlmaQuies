@@ -12,6 +12,9 @@
 #include "../systems/input_system.hpp"
 #include "../systems/movement_system.hpp"
 #include "../systems/collision/collision_system.hpp"
+#include "../systems/camera_system.hpp"
+#include "../entity_factory.hpp"
+
 
 class World {
 public:
@@ -31,10 +34,11 @@ private:
     std::unique_ptr<entt::registry> registry_;
     std::unique_ptr<RenderingSystem> rendering_system_;
     std::unique_ptr<InputSystem> input_system_;
-    std::unique_ptr<EntityLoader> entity_loader_;
     std::unique_ptr<entt::dispatcher> dispatcher_;
     std::unique_ptr<MovementSystem> movement_system_;
     std::unique_ptr<CollisionSystem> collision_system_;
+    std::unique_ptr<EntityFactory> entity_factory_;
+    std::unique_ptr<CameraSystem> camera_system_;
 };
 
 

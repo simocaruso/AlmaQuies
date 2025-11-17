@@ -13,13 +13,13 @@
 #include "systems/events/created_collidable_event.hpp"
 #include "systems/events/move_command_event.hpp"
 
-EntityLoader::EntityLoader(entt::registry* registry, entt::dispatcher* dispatcher,
+EntityFileLoader::EntityFileLoader(entt::registry* registry, entt::dispatcher* dispatcher,
                            FileManager* file_manager, ResourceManager* resource_manager)
     : registry_(registry), dispatcher_(dispatcher), file_manager_(file_manager), resource_manager_(resource_manager) {
     entities_config_.load(file_manager_->get_file("entities", "entities", "json"));
 }
 
-entt::entity EntityLoader::load_entity(const std::string &name, const Vec2 &position) const {
+entt::entity EntityFileLoader::load_entity(const std::string &name, const Vec2 &position) const {
     const auto res = registry_->create();
     registry_->emplace<TransformComponent>(res, position, position);
     if (entities_config_.has_field(fmt::format("{}.playerTag", name))) {
@@ -30,7 +30,7 @@ entt::entity EntityLoader::load_entity(const std::string &name, const Vec2 &posi
     return res;
 }
 
-void EntityLoader::render(const std::string &name, const entt::entity &entity) const {
+void EntityFileLoader::render(const std::string &name, const entt::entity &entity) const {
     auto base_field = fmt::format("{}.render", name);
     RenderComponent render_component;
     render_component.sprite_id = name;
@@ -40,7 +40,7 @@ void EntityLoader::render(const std::string &name, const entt::entity &entity) c
     registry_->emplace<RenderComponent>(entity, render_component);
 }
 
-void EntityLoader::collision(const std::string &name, const entt::entity &entity) const {
+void EntityFileLoader::collision(const std::string &name, const entt::entity &entity) const {
     auto base_field = fmt::format("{}.collider", name);
     if (!entities_config_.has_field(base_field)) {
         return;
@@ -61,7 +61,7 @@ void EntityLoader::collision(const std::string &name, const entt::entity &entity
     dispatcher_->enqueue(CreatedCollidableEvent{entity, registry_->get<TransformComponent>(entity).position});
 }
 
-Vec2 EntityLoader::vec2(const std::string &field) const {
+Vec2 EntityFileLoader::vec2(const std::string &field) const {
     Vec2 res;
     if (entities_config_.has_field(field)) {
         res.x = entities_config_.get<int>(fmt::format("{}.x", field));

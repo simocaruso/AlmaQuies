@@ -11,9 +11,9 @@
 #include "../util/vec_2.hpp"
 #include "managers/json_reader.hpp"
 
-class EntityLoader {
+class EntityFileLoader {
 public:
-    EntityLoader(entt::registry* registry, entt::dispatcher* dispatcher,
+    EntityFileLoader(entt::registry* registry, entt::dispatcher* dispatcher,
                  FileManager* file_manager, ResourceManager* resource_manager);
 
     entt::entity load_entity(const std::string &name, const Vec2 &position) const;

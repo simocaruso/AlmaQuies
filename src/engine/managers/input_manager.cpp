@@ -53,6 +53,16 @@ bool InputManager::mouse_button_released(int button) const {
     return !mouse_buttons_[button] && prev_mouse_buttons_[button];
 }
 
+int InputManager::mouse_wheel_delta() {
+    const int res = mouse_wheel_delta_;
+    mouse_wheel_delta_ = 0;
+    return res;
+}
+
+Vec2 InputManager::mouse_position() const {
+    return mouse_position_;
+}
+
 void InputManager::handle_event(const ALLEGRO_EVENT &event) {
     switch (event.type) {
         case ALLEGRO_EVENT_KEY_DOWN:
@@ -70,6 +80,7 @@ void InputManager::handle_event(const ALLEGRO_EVENT &event) {
         case ALLEGRO_EVENT_MOUSE_AXES:
             mouse_position_.x = event.mouse.x;
             mouse_position_.y = event.mouse.y;
+            mouse_wheel_delta_ = event.mouse.dz;
             break;
     }
 }

@@ -14,17 +14,19 @@
 
 class RenderingSystem : public System {
 public:
-
     RenderingSystem(entt::registry* registry, Renderer* renderer, Display* display);
 
-    void update(int elapsed) override {};
+    void update(int elapsed) override {
+    };
 
-    void render();
+    void render() const;
 
 private:
     Display* display_;
     ALLEGRO_BITMAP* render_buffer;
     Renderer* renderer_;
+
+    void update_camera() const;
 };
 
 
