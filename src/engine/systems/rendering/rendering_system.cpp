@@ -20,14 +20,14 @@ void RenderingSystem::render() const {
     renderer_->clear_to_color(.5f, .5f, .5f);
     update_camera();
 
-    const auto view = registry_->view<TransformComponent, RenderComponent>();
-    registry_->sort<TransformComponent>([](const TransformComponent &a, const TransformComponent &b) {
+    auto group = registry_->group<RenderComponent>(entt::get<TransformComponent>);
+    group.sort<TransformComponent>([](const TransformComponent &a, const TransformComponent &b) {
         return a.position.y < b.position.y;
     });
 
-    for (const auto entity: view) {
-        auto &transform = view.get<TransformComponent>(entity);
-        auto &render = view.get<RenderComponent>(entity);
+    for (auto entity: group) {
+        auto &transform = group.get<TransformComponent>(entity);
+        auto &render = group.get<RenderComponent>(entity);
         renderer_->draw_bitmap(render.sprite_id, transform.position, render.offset);
     }
     renderer_->end(bitmap_target);
