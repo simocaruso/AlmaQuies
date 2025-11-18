@@ -38,8 +38,14 @@ ALLEGRO_BITMAP* ResourceManager::get_resource(const TileType &tile_type) {
 
 std::string ResourceManager::get_resource_name(const TileType &tile) {
     switch (tile) {
-        case TileType::Grass:
+        case Grass:
             return "grass_tile";
+            break;
+        case Forest:
+            return "grass_tile";
+            break;
+        case Mountain:
+            return "mountain_tile";
             break;
         default:
             return "default_tile";
