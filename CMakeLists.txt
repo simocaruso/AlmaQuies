@@ -72,6 +72,7 @@ add_executable(FarmAndConquer
         src/engine/systems/rendering/map_renderer.cpp
         src/engine/systems/rendering/map_renderer.hpp
         src/engine/map/tile.hpp
+        include/FastNoiseLite/FastNoiseLite.hpp
 )
 
 add_custom_target(
