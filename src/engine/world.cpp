@@ -3,8 +3,9 @@
 //
 
 #include "world.hpp"
-#include "../managers/input_manager.hpp"
-#include "../systems/camera_system.hpp"
+#include "managers/input_manager.hpp"
+#include "map/map_generator.hpp"
+#include "systems/camera_system.hpp"
 
 World::World(Display* display, Renderer* renderer, ResourceManager* resource_manager, FileManager* file_manager,
              InputManager* input_manager) : display_(display), renderer_(renderer),
@@ -12,7 +13,8 @@ World::World(Display* display, Renderer* renderer, ResourceManager* resource_man
                                             file_manager_(file_manager),
                                             input_manager_(input_manager) {
     registry_ = std::make_unique<entt::registry>();
-    rendering_system_ = std::make_unique<RenderingSystem>(registry_.get(), renderer_, display_);
+    map_ = std::make_unique<Map>(MapGenerator::generate(64, 16));
+    rendering_system_ = std::make_unique<RenderingSystem>(map_.get(), registry_.get(), renderer_, display_);
     dispatcher_ = std::make_unique<entt::dispatcher>();
     movement_system_ = std::make_unique<MovementSystem>(registry_.get(), *dispatcher_);
     input_system_ = std::make_unique<InputSystem>(registry_.get(), input_manager_, dispatcher_.get());

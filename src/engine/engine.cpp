@@ -19,13 +19,13 @@ Engine::~Engine() {
 
 void Engine::init_components() {
     file_manager_ = std::make_unique<FileManager>();
-    resource_manager_ = std::make_unique<ResourceManager>(file_manager_.get());
     display_ = std::make_unique<Display>(DISP_W, DISP_H);
+    resource_manager_ = std::make_unique<ResourceManager>(file_manager_.get());
     renderer_ = std::make_unique<Renderer>(resource_manager_.get());
     input_manager_ = std::make_unique<InputManager>();
     world_ = std::make_unique<World>(display_.get(), renderer_.get(), resource_manager_.get(), file_manager_.get(),
                                      input_manager_.get());
-    timer_ = al_create_timer(FPS_MILLIS / 1000);
+    timer_ = al_create_timer(FPS_MILLIS);
     queue_ = al_create_event_queue();
     al_register_event_source(queue_, al_get_timer_event_source(timer_));
     al_register_event_source(queue_, al_get_display_event_source(display_->get_display()));
@@ -39,7 +39,7 @@ void Engine::start() {
 }
 
 void Engine::process_event(ALLEGRO_EVENT &event, int elapsed) {
-    if (display_->is_display_event(event)) {
+    if (Display::is_display_event(event)) {
         display_->process_event(event);
         if (display_->is_closed()) {
             running_ = false;
@@ -71,6 +71,7 @@ void Engine::game_loop() {
         }
 
         elapsed = update_elapsed();
+        printf("Elapsed: %d\n", elapsed);
     }
     al_stop_timer(timer_);
 }

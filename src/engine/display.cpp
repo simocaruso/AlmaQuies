@@ -5,11 +5,9 @@
 #include "display.hpp"
 #include "../util/util.hpp"
 
-Display::Display(int disp_w, int disp_h) {
-    al_set_new_display_flags(ALLEGRO_WINDOWED | ALLEGRO_RESIZABLE | ALLEGRO_PROGRAMMABLE_PIPELINE | 0);
+Display::Display(const int disp_w, const int disp_h) {
+    al_set_new_display_flags(ALLEGRO_WINDOWED | ALLEGRO_RESIZABLE | ALLEGRO_PROGRAMMABLE_PIPELINE);
     al_set_new_display_option(ALLEGRO_VSYNC, 1, ALLEGRO_SUGGEST);
-    al_set_new_display_option(ALLEGRO_SAMPLE_BUFFERS, 1, ALLEGRO_REQUIRE);
-    al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
     display_ = al_create_display(disp_w, disp_h);
     must_init(display_, "display");
 }
@@ -19,15 +17,15 @@ Display::~Display() {
         al_destroy_display(display_);
 }
 
-int Display::get_width() {
+int Display::get_width() const {
     return al_get_display_width(display_);
 }
 
-int Display::get_height() {
+int Display::get_height() const {
     return al_get_display_height(display_);
 }
 
-void Display::toggle_fullscreen() {
+void Display::toggle_fullscreen() const {
     al_set_display_flag(display_, ALLEGRO_FULLSCREEN_WINDOW,
                         !(al_get_display_flags(display_) & ALLEGRO_FULLSCREEN_WINDOW));
 }

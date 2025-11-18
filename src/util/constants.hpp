@@ -30,7 +30,8 @@ extern const float CAMERA_DEFAULT_ZOOM_SENSITIVITY;
 extern const float CAMERA_MIN_ZOOM;
 extern const float CAMERA_MAX_ZOOM;
 
-
+// Map
+extern const int TILE_SIZE;
 
 
 #endif //FARMANDCONQUER_CONSTANTS_HPP

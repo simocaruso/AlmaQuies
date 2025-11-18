@@ -8,10 +8,9 @@
 
 #include <string>
 #include <allegro5/allegro.h>
-#include <allegro5/allegro_image.h>
-#include <allegro5/allegro_primitives.h>
 #include <map>
 #include "file_manager.hpp"
+#include "../map/tile.hpp"
 
 class ResourceManager {
 public:
@@ -21,11 +20,16 @@ public:
 
     ALLEGRO_BITMAP* get_resource(const std::string &name);
 
+    ALLEGRO_BITMAP* get_resource(const TileType &tile_type);
+
 private:
     std::map<std::string, ALLEGRO_BITMAP*> bitmaps_;
+
     FileManager* file_manager_;
 
     void load_bitmap(const std::string &name);
+
+    static std::string get_resource_name(const TileType &tile);
 };
 
 

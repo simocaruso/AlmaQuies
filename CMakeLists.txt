@@ -36,8 +36,8 @@ add_executable(FarmAndConquer
         src/engine/systems/rendering/bitmap_target.hpp
         src/engine/components/transform_component.hpp
         src/engine/components/render_component.hpp
-        src/engine/world/world.cpp
-        src/engine/world/world.hpp
+        src/engine/world.cpp
+        src/engine/world.hpp
         src/engine/managers/input_manager.cpp
         src/engine/managers/input_manager.hpp
         src/engine/systems/input_system.cpp
@@ -47,8 +47,8 @@ add_executable(FarmAndConquer
         src/engine/systems/movement_system.cpp
         src/engine/systems/movement_system.hpp
         src/engine/components/velocity_component.hpp
-        src/engine/world/map.cpp
-        src/engine/world/map.hpp
+        src/engine/map/map.cpp
+        src/engine/map/map.hpp
         src/engine/managers/json_reader.cpp
         src/engine/managers/json_reader.hpp
         src/engine/components/collider_component.hpp
@@ -67,6 +67,11 @@ add_executable(FarmAndConquer
         src/engine/entity_factory.cpp
         src/engine/entity_factory.hpp
         src/engine/systems/events/zoom_command_event.hpp
+        src/engine/map/map_generator.cpp
+        src/engine/map/map_generator.hpp
+        src/engine/systems/rendering/map_renderer.cpp
+        src/engine/systems/rendering/map_renderer.hpp
+        src/engine/map/tile.hpp
 )
 
 add_custom_target(

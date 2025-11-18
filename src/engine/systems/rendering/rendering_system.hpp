@@ -6,15 +6,15 @@
 #define FARMANDCONQUER_RENDERING_SYSTEM_HPP
 
 
+#include "map_renderer.hpp"
 #include "../system.hpp"
 #include "../../display.hpp"
-#include "../../managers/resource_manager.hpp"
 #include "renderer.hpp"
-#include "bitmap_target.hpp"
+#include "../../map/map.hpp"
 
 class RenderingSystem : public System {
 public:
-    RenderingSystem(entt::registry* registry, Renderer* renderer, Display* display);
+    RenderingSystem(Map* map, entt::registry* registry, Renderer* renderer, Display* display);
 
     void update(int elapsed) override {
     };
@@ -25,6 +25,7 @@ private:
     Display* display_;
     ALLEGRO_BITMAP* render_buffer;
     Renderer* renderer_;
+    MapRenderer map_renderer_;
 
     void update_camera() const;
 };

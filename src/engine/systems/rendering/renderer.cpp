@@ -3,8 +3,8 @@
 //
 
 #include "renderer.hpp"
-
 #include "../../../util/constants.hpp"
+#include "../../managers/resource_manager.hpp"
 
 Renderer::Renderer(ResourceManager* resource_manager) : resource_manager_(resource_manager) {
 }
@@ -17,7 +17,7 @@ void Renderer::end(const RenderTarget &target) {
     target.end();
 }
 
-void Renderer::clear_to_color(float r, float g, float b, float a) {
+void Renderer::clear_to_color(const float r, const float g, const float b, const float a) {
     al_clear_to_color(al_map_rgba_f(r, g, b, a));
 }
 
@@ -29,8 +29,18 @@ void Renderer::draw_scaled_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_po
                           drawing_position.x, drawing_position.y, destination_width, destination_height, 0);
 }
 
-void Renderer::draw_bitmap(const std::string &sprite_id, const Vec2 &drawing_position, const Vec2 &drawing_offset) {
-    al_draw_bitmap(resource_manager_->get_resource(sprite_id),
+void Renderer::draw_bitmap(const std::string &sprite_id, const Vec2 &drawing_position, const Vec2 &drawing_offset) const {
+    draw_bitmap(resource_manager_->get_resource(sprite_id),
+                drawing_position, drawing_offset);
+}
+
+void Renderer::draw_bitmap(const TileType &tile_type, const Vec2 &drawing_position, const Vec2 &drawing_offset) const {
+    draw_bitmap(resource_manager_->get_resource(tile_type),
+                drawing_position, drawing_offset);
+}
+
+void Renderer::draw_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_position, const Vec2 &drawing_offset) {
+    al_draw_bitmap(bitmap,
                    drawing_position.x - drawing_offset.x,
                    drawing_position.y - drawing_offset.y,
                    0);
@@ -39,8 +49,8 @@ void Renderer::draw_bitmap(const std::string &sprite_id, const Vec2 &drawing_pos
 void Renderer::update_camera(const Vec2 &position, const float zoom) {
     ALLEGRO_TRANSFORM trans;
     al_identity_transform(&trans);
-    al_translate_transform(&trans, -position.x - BUFF_W/2, -position.y - BUFF_H/2);
+    al_translate_transform(&trans, -position.x - BUFF_W / 2, -position.y - BUFF_H / 2);
     al_scale_transform(&trans, zoom, zoom);
-    al_translate_transform(&trans, BUFF_W/2, BUFF_H/2);
+    al_translate_transform(&trans, BUFF_W / 2, BUFF_H / 2);
     al_use_transform(&trans);
 }

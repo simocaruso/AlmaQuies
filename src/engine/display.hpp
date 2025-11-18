@@ -14,9 +14,9 @@ public:
 
     ~Display();
 
-    int get_width();
+    int get_width() const;
 
-    int get_height();
+    int get_height() const;
 
     ALLEGRO_DISPLAY* get_display() const { return display_; }
 
@@ -26,11 +26,11 @@ public:
 
     void process_event(const ALLEGRO_EVENT &ev);
 
-    void toggle_fullscreen();
+    void toggle_fullscreen() const;
 private:
     ALLEGRO_DISPLAY* display_;
 
-    bool closed_;
+    bool closed_ = false;
 };
 
 

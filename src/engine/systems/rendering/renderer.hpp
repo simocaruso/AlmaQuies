@@ -14,16 +14,20 @@ class Renderer {
 public:
     explicit Renderer(ResourceManager* resource_manager);
 
-    void begin(const RenderTarget &target);
+    static void begin(const RenderTarget &target);
 
-    void end(const RenderTarget &target);
+    static void end(const RenderTarget &target);
 
-    void clear_to_color(float r, float g, float b, float a = 1);
+    static void clear_to_color(float r, float g, float b, float a = 1);
 
-    void draw_scaled_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_position, const float &destination_width,
+    static void draw_scaled_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_position, const float &destination_width,
                             const float &destination_height);
 
-    void draw_bitmap(const std::string &sprite_id, const Vec2 &drawing_position, const Vec2 &drawing_offset);
+    void draw_bitmap(const std::string &sprite_id, const Vec2 &drawing_position, const Vec2 &drawing_offset) const;
+
+    void draw_bitmap(const TileType &tile_type, const Vec2 &drawing_position, const Vec2 &drawing_offset) const;
+
+    static void draw_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_position, const Vec2 &drawing_offset);
 
     static void update_camera(const Vec2 &position, float zoom);
 

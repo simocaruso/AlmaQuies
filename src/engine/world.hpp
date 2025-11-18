@@ -6,14 +6,15 @@
 #define FARMANDCONQUER_WORLD_HPP
 
 
-#include "../systems/rendering/rendering_system.hpp"
-#include "../entity_loader.hpp"
-#include "../managers/input_manager.hpp"
-#include "../systems/input_system.hpp"
-#include "../systems/movement_system.hpp"
-#include "../systems/collision/collision_system.hpp"
-#include "../systems/camera_system.hpp"
-#include "../entity_factory.hpp"
+#include "systems/rendering/rendering_system.hpp"
+#include "entity_loader.hpp"
+#include "managers/input_manager.hpp"
+#include "systems/input_system.hpp"
+#include "systems/movement_system.hpp"
+#include "systems/collision/collision_system.hpp"
+#include "systems/camera_system.hpp"
+#include "entity_factory.hpp"
+#include "map/map.hpp"
 
 
 class World {
@@ -39,6 +40,7 @@ private:
     std::unique_ptr<CollisionSystem> collision_system_;
     std::unique_ptr<EntityFactory> entity_factory_;
     std::unique_ptr<CameraSystem> camera_system_;
+    std::unique_ptr<Map> map_;
 };
 
 

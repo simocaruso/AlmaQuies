@@ -5,7 +5,7 @@
 #include "constants.hpp"
 
 const char* GAME_NAME = "Farm And Conquer";
-const float FPS_MILLIS = 1000 / 60.0f;
+const float FPS_MILLIS = 1.0f / 60.0f;
 
 const int DISP_H = 720;
 const int DISP_W = 1280;
@@ -22,3 +22,5 @@ extern const float CAMERA_DEFAULT_ZOOM = 1.0f;
 extern const float CAMERA_DEFAULT_ZOOM_SENSITIVITY = 0.05f;
 extern const float CAMERA_MIN_ZOOM = 0.8f;
 extern const float CAMERA_MAX_ZOOM = 2.0f;
+
+extern const int TILE_SIZE = 64;
