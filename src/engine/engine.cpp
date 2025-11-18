@@ -6,6 +6,7 @@
 #include "../util/util.hpp"
 #include <allegro5/allegro.h>
 #include <memory>
+#include "../util/constants.hpp"
 
 Engine::Engine(const std::string &name) {
     must_init(al_init(), "allegro");

@@ -3,7 +3,6 @@
 //
 
 #include "entity_loader.hpp"
-
 #include <fmt/core.h>
 
 #include "components/collider_component.hpp"
@@ -11,7 +10,6 @@
 #include "components/render_component.hpp"
 #include "components/player_tag.hpp"
 #include "systems/events/created_collidable_event.hpp"
-#include "systems/events/move_command_event.hpp"
 
 EntityFileLoader::EntityFileLoader(entt::registry* registry, entt::dispatcher* dispatcher,
                            FileManager* file_manager, ResourceManager* resource_manager)

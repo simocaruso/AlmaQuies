@@ -6,7 +6,6 @@
 #define FARMANDCONQUER_DISPLAY_HPP
 
 #include <allegro5/allegro.h>
-#include "../util/constants.hpp"
 
 class Display {
 public:

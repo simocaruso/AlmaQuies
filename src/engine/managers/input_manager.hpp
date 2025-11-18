@@ -6,7 +6,6 @@
 #define FARMANDCONQUER_INPUT_MANAGER_HPP
 
 #include <allegro5/allegro.h>
-#include "../display.hpp"
 #include "../../util/vec_2.hpp"
 
 

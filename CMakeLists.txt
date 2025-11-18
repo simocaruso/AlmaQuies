@@ -102,23 +102,11 @@ pkg_check_modules(allegro_acodec-5 REQUIRED allegro_acodec-5)
 
 include(FetchContent)
 
-target_include_directories(FarmAndConquer PUBLIC
-        ${allegro-5_INCLUDE_DIRS}
-        ${allegro_primitives-5_INCLUDE_DIRS}
-        ${allegro_image-5_INCLUDE_DIRS}
-        ${allegro_font-5_INCLUDE_DIRS}
-        ${allegro_ttf-5_INCLUDE_DIRS}
-        ${allegro_audio-5_INCLUDE_DIRS}
-        ${allegro_acodec-5_INCLUDE_DIRS}
-)
-
 target_include_directories(FarmAndConquer PRIVATE
         include
 )
 
-# fmt library
-find_package(fmt REQUIRED)
-
+target_compile_definitions(FarmAndConquer PRIVATE FMT_HEADER_ONLY=1)
 target_link_libraries(FarmAndConquer
         ${allegro-5_LIBRARIES}
         ${allegro_primitives-5_LIBRARIES}
@@ -127,5 +115,4 @@ target_link_libraries(FarmAndConquer
         ${allegro_ttf-5_LIBRARIES}
         ${allegro_audio-5_LIBRARIES}
         ${allegro_acodec-5_LIBRARIES}
-        fmt::fmt
 )
