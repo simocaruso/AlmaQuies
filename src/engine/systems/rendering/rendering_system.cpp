@@ -10,6 +10,7 @@
 #include "../../components/camera_component.hpp"
 #include "../../components/transform_component.hpp"
 #include "../../components/render_component.hpp"
+#include "../../../util/util.hpp"
 
 RenderingSystem::RenderingSystem(Map* map, entt::registry* registry, Renderer* renderer, Display* display)
     : System(registry), map_renderer_(map, renderer), display_(display), renderer_(renderer) {
@@ -19,7 +20,7 @@ RenderingSystem::RenderingSystem(Map* map, entt::registry* registry, Renderer* r
 void RenderingSystem::update_camera() const {
     const auto camera = *registry_->view<CameraComponent, TransformComponent>().begin();
     Renderer::update_camera(registry_->get<TransformComponent>(camera).position,
-                             registry_->get<CameraComponent>(camera).zoom);
+                            registry_->get<CameraComponent>(camera).zoom);
 }
 
 void RenderingSystem::render() const {
@@ -31,6 +32,8 @@ void RenderingSystem::render() const {
 
     const auto group = registry_->group<RenderComponent>(entt::get<TransformComponent>);
     group.sort<TransformComponent>([](const TransformComponent &a, const TransformComponent &b) {
+        if (almost_equal(a.position.y, b.position.y))
+            return a.position.x < b.position.x;
         return a.position.y < b.position.y;
     });
 
