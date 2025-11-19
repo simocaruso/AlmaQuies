@@ -7,9 +7,9 @@
 #include "map.hpp"
 #include "FastNoiseLite/FastNoiseLite.hpp"
 
-class MapGenerator {
+class MapTilesGenerator {
 public:
-    MapGenerator();
+    MapTilesGenerator();
 
     Map generate(int width, int height) const;
 

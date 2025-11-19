@@ -1,0 +1,13 @@
+//
+// Created by simone on 19/11/25.
+//
+
+#ifndef FARMANDCONQUER_MAP_OBJECTS_GENERATOR_HPP
+#define FARMANDCONQUER_MAP_OBJECTS_GENERATOR_HPP
+
+
+class MapObjectsGenerator {
+};
+
+
+#endif //FARMANDCONQUER_MAP_OBJECTS_GENERATOR_HPP

@@ -4,7 +4,7 @@
 
 #include "map_generator.hpp"
 
-MapGenerator::MapGenerator() {
+MapTilesGenerator::MapTilesGenerator() {
     forest_noise_.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
     forest_noise_.SetFrequency(0.02f);
 
@@ -31,7 +31,7 @@ MapGenerator::MapGenerator() {
     elevation_noise_.SetFractalLacunarity(1.8f);
 }
 
-Map MapGenerator::generate(const int width, const int height) const {
+Map MapTilesGenerator::generate(const int width, const int height) const {
     Map res = {width, height};
 
     for (int i = 0; i < width; i++) {
