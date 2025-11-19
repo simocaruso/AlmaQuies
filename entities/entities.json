@@ -24,5 +24,18 @@
       "width": 7,
       "height": 5
     }
+  },
+  "rock": {
+    "render": {
+      "offset": {
+        "x": 16,
+        "y": 28
+      }
+    },
+    "collider": {
+      "shape": "rect",
+      "width": 32,
+      "height": 16
+    }
   }
 }

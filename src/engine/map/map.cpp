@@ -9,11 +9,11 @@
 
 /**
  *
- * @param width The number of tiles in the X axis
- * @param height The number of tiles in the Y axis
+ * @param width_tiles The number of tiles in the X axis
+ * @param height_tiles The number of tiles in the Y axis
  */
-Map::Map(const int width, const int height) : width_(width), height_(height) {
-    tiles_.resize(width * height);
+Map::Map(const int width_tiles, const int height_tiles) : width_tiles_(width_tiles), height_tiles_(height_tiles) {
+    tiles_.resize(width_tiles * height_tiles);
 }
 
 /**
@@ -22,7 +22,7 @@ Map::Map(const int width, const int height) : width_(width), height_(height) {
  *              (1,0) (1,1) ...
  */
 void Map::add_tile(const Vec2 pos, const TileType type) {
-    tiles_[width_ * pos.y + pos.x] = type;
+    tiles_[width_tiles_ * pos.y + pos.x] = type;
 }
 
 /**
@@ -35,18 +35,26 @@ TileType Map::get_tile_at(const Vec2 &pos) const {
     const int x = std::floor(pos.x / TILE_SIZE);
     const int y = std::floor(pos.y / TILE_SIZE);
 
-    if (x < 0 || x >= width_ || y < 0 || y >= height_) {
+    if (x < 0 || x >= width_tiles_ || y < 0 || y >= height_tiles_) {
         error(false, "Tile position out of bounds");
     }
 
-    return tiles_[width_ * y + x];
+    return tiles_[width_tiles_ * y + x];
 }
 
-int Map::get_width() const {
-    return width_;
+int Map::get_width_tiles() const {
+    return width_tiles_;
 }
 
-int Map::get_height() const {
-    return height_;
+int Map::get_height_tiles() const {
+    return height_tiles_;
+}
+
+int Map::get_width_pixels() const {
+    return width_tiles_ * TILE_SIZE;
+}
+
+int Map::get_height_pixels() const {
+    return height_tiles_ * TILE_SIZE;
 }
 

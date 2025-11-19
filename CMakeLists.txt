@@ -67,12 +67,17 @@ add_executable(FarmAndConquer
         src/engine/entity_factory.cpp
         src/engine/entity_factory.hpp
         src/engine/systems/events/zoom_command_event.hpp
-        src/engine/map/map_generator.cpp
-        src/engine/map/map_generator.hpp
+        src/engine/map/map_tiles_generator.cpp
+        src/engine/map/map_tiles_generator.hpp
         src/engine/systems/rendering/map_renderer.cpp
         src/engine/systems/rendering/map_renderer.hpp
         src/engine/map/tile.hpp
         include/FastNoiseLite/FastNoiseLite.hpp
+        src/engine/map/map_resources_generator.cpp
+        src/engine/map/map_resources_generator.hpp
+        src/util/random.hpp
+        src/engine/map/map_generator.cpp
+        src/engine/map/map_generator.hpp
 )
 
 add_custom_target(

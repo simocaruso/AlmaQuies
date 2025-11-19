@@ -32,6 +32,7 @@ extern const float CAMERA_MAX_ZOOM;
 
 // Map
 extern const int TILE_SIZE;
-
+extern const float FOREST_TREE_DENSITY;
+extern const float MOUNTAIN_ROCK_DENSITY;
 
 #endif //FARMANDCONQUER_CONSTANTS_HPP

@@ -14,14 +14,14 @@ World::World(Display* display, Renderer* renderer, ResourceManager* resource_man
                                             input_manager_(input_manager) {
     registry_ = std::make_unique<entt::registry>();
 
-    map_ = std::make_unique<Map>(MapGenerator().generate(128, 32));
-    rendering_system_ = std::make_unique<RenderingSystem>(map_.get(), registry_.get(), renderer_, display_);
     dispatcher_ = std::make_unique<entt::dispatcher>();
     movement_system_ = std::make_unique<MovementSystem>(registry_.get(), *dispatcher_);
     input_system_ = std::make_unique<InputSystem>(registry_.get(), input_manager_, dispatcher_.get());
     collision_system_ = std::make_unique<CollisionSystem>(registry_.get(), *dispatcher_);
     entity_factory_ = std::make_unique<EntityFactory>(registry_.get(), dispatcher_.get(),
                                                       file_manager_, resource_manager_);
+    map_ = std::make_unique<Map>(MapGenerator::generate(128, 32, entity_factory_.get()));
+    rendering_system_ = std::make_unique<RenderingSystem>(map_.get(), registry_.get(), renderer_, display_);
     camera_system_ = std::make_unique<CameraSystem>(registry_.get(), *dispatcher_);
     entity_factory_->create_from_file("blue", Vec2(100, 100));
     entity_factory_->create_from_file("tree", Vec2(150, 100));

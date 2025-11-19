@@ -24,3 +24,5 @@ extern const float CAMERA_MIN_ZOOM = 0.8f;
 extern const float CAMERA_MAX_ZOOM = 2.0f;
 
 extern const int TILE_SIZE = 64;
+extern const float FOREST_TREE_DENSITY = 0.001f;
+extern const float MOUNTAIN_ROCK_DENSITY = 0.0001f;

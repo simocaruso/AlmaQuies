@@ -2,9 +2,40 @@
 // Created by simone on 17/11/25.
 //
 
-#include "map_generator.hpp"
+#include "map_tiles_generator.hpp"
 
-MapTilesGenerator::MapTilesGenerator() {
+FastNoiseLite MapTilesGenerator::forest_noise_;
+FastNoiseLite MapTilesGenerator::rock_noise_;
+FastNoiseLite MapTilesGenerator::elevation_noise_;
+
+Map MapTilesGenerator::generate(const int width, const int height) {
+    set_up_noise();
+    Map res = {width, height};
+
+    for (int i = 0; i < width; i++) {
+        for (int j = 0; j < height; j++) {
+            float f = forest_noise_.GetNoise(float(i), float(j)) * 0.5f + 0.5f;
+            float r = rock_noise_.GetNoise(float(i), float(j)) * 0.5f + 0.5f;
+            float e = elevation_noise_.GetNoise(float(i), float(j)) * 0.5f + 0.5f;
+
+            TileType tile;
+            if (r > 0.3f && e > 0.55f) {
+                tile = Mountain;
+            } else if (e < 0.4f) {
+                tile = Water;
+            } else if (f > 0.58f) {
+                tile = Forest;
+            } else {
+                tile = Grass;
+            }
+            res.add_tile(Vec2(i, j), tile);
+        }
+    }
+
+    return res;
+}
+
+void MapTilesGenerator::set_up_noise() {
     forest_noise_.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
     forest_noise_.SetFrequency(0.02f);
 
@@ -29,30 +60,4 @@ MapTilesGenerator::MapTilesGenerator() {
     elevation_noise_.SetFractalOctaves(3);
     elevation_noise_.SetFractalGain(0.5f);
     elevation_noise_.SetFractalLacunarity(1.8f);
-}
-
-Map MapTilesGenerator::generate(const int width, const int height) const {
-    Map res = {width, height};
-
-    for (int i = 0; i < width; i++) {
-        for (int j = 0; j < height; j++) {
-            float f = forest_noise_.GetNoise(float(i), float(j)) * 0.5f + 0.5f;
-            float r = rock_noise_.GetNoise(float(i), float(j)) * 0.5f + 0.5f;
-            float e = elevation_noise_.GetNoise(float(i), float(j)) * 0.5f + 0.5f;
-
-            TileType tile;
-            if (r > 0.55f && e > 0.4f) {
-                tile = Mountain;
-            } else if (e < 0.5f) {
-                tile = Water;
-            } else if (f > 0.5f) {
-                tile = Forest;
-            } else {
-                tile = Grass;
-            }
-            res.add_tile(Vec2(i, j), tile);
-        }
-    }
-
-    return res;
 }

@@ -19,7 +19,7 @@ private:
     Map* map_;
     Renderer* renderer_;
     std::vector<ALLEGRO_BITMAP*> chunks_;
-    const int chunk_size_ = 16;
+    const int chunk_size_ = 16; // Size of the chunk in number of tiles
 };
 
 

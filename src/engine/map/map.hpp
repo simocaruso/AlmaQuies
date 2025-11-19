@@ -11,19 +11,23 @@
 
 class Map {
 public:
-    Map(int width, int height);
+    Map(int width_tiles, int height_tiles);
 
     void add_tile(Vec2 pos, TileType type);
 
     TileType get_tile_at(const Vec2 &pos) const;
 
-    int get_width() const;
+    int get_width_tiles() const;
 
-    int get_height() const;
+    int get_height_tiles() const;
+
+    int get_width_pixels() const;
+
+    int get_height_pixels() const;
 
 private:
-    int width_;
-    int height_;
+    int width_tiles_;
+    int height_tiles_;
     std::vector<TileType> tiles_;
 };
 

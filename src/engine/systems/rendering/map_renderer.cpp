@@ -11,8 +11,8 @@ MapRenderer::MapRenderer(Map* map, Renderer* renderer) : map_(map), renderer_(re
 }
 
 void MapRenderer::create_chunks() {
-    const int map_width = map_->get_width();
-    const int map_height = map_->get_height();
+    const int map_width = map_->get_width_tiles();
+    const int map_height = map_->get_height_tiles();
 
     const int chunks_x = std::ceil((float) map_width / chunk_size_);
     const int chunks_y = std::ceil((float) map_height / chunk_size_);
@@ -21,8 +21,8 @@ void MapRenderer::create_chunks() {
     al_set_new_bitmap_flags(ALLEGRO_VIDEO_BITMAP);
     for (int chunk_x = 0; chunk_x < chunks_x; chunk_x++) {
         for (int chunk_y = 0; chunk_y < chunks_y; chunk_y++) {
-            const int bitmap_width = chunk_size_ * TILE_SIZE;
-            const int bitmap_height = chunk_size_ * TILE_SIZE;
+            const int bitmap_width = map_->get_width_pixels();
+            const int bitmap_height = map_->get_height_pixels();
 
             ALLEGRO_BITMAP* chunk = al_create_bitmap(bitmap_width, bitmap_height);
             BitmapTarget target(chunk);
@@ -42,8 +42,8 @@ void MapRenderer::create_chunks() {
 }
 
 void MapRenderer::render() const {
-    const int chunks_x = std::ceil((float) map_->get_width() / chunk_size_);
-    const int chunks_y = std::ceil((float) map_->get_height() / chunk_size_);
+    const int chunks_x = std::ceil((float) map_->get_width_tiles() / chunk_size_);
+    const int chunks_y = std::ceil((float) map_->get_height_tiles() / chunk_size_);
     int chunk = 0;
     for (int i = 0; i < chunks_x; i++) {
         for (int j = 0; j < chunks_y; j++) {
