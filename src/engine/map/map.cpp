@@ -13,7 +13,7 @@
  * @param height The number of tiles in the Y axis
  */
 Map::Map(const int width, const int height) : width_(width), height_(height) {
-    tiles_.reserve(width * height);
+    tiles_.resize(width * height);
 }
 
 /**

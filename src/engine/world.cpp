@@ -13,7 +13,8 @@ World::World(Display* display, Renderer* renderer, ResourceManager* resource_man
                                             file_manager_(file_manager),
                                             input_manager_(input_manager) {
     registry_ = std::make_unique<entt::registry>();
-    map_ = std::make_unique<Map>(MapGenerator::generate(64, 16));
+
+    map_ = std::make_unique<Map>(MapGenerator().generate(128, 32));
     rendering_system_ = std::make_unique<RenderingSystem>(map_.get(), registry_.get(), renderer_, display_);
     dispatcher_ = std::make_unique<entt::dispatcher>();
     movement_system_ = std::make_unique<MovementSystem>(registry_.get(), *dispatcher_);

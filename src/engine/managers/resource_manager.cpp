@@ -18,7 +18,7 @@ ResourceManager::~ResourceManager() {
 }
 
 void ResourceManager::load_bitmap(const std::string &name) { // NOLINT(*-convert-member-functions-to-static)
-    al_set_new_bitmap_flags(ALLEGRO_MIPMAP | ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
+    al_set_new_bitmap_flags(ALLEGRO_VIDEO_BITMAP);
     ALLEGRO_STATE state;
     al_store_state(&state, ALLEGRO_STATE_TARGET_BITMAP | ALLEGRO_STATE_BLENDER);
     std::string path = file_manager_->get_file("assets", name.c_str(), "png");
@@ -40,13 +40,12 @@ std::string ResourceManager::get_resource_name(const TileType &tile) {
     switch (tile) {
         case Grass:
             return "grass_tile";
-            break;
         case Forest:
             return "grass_tile";
-            break;
         case Mountain:
             return "mountain_tile";
-            break;
+        case Water:
+            return "water_tile";
         default:
             return "default_tile";
     }

@@ -5,10 +5,18 @@
 #ifndef FARMANDCONQUER_MAP_GENERATOR_HPP
 #define FARMANDCONQUER_MAP_GENERATOR_HPP
 #include "map.hpp"
+#include "FastNoiseLite/FastNoiseLite.hpp"
 
 class MapGenerator {
 public:
-    static Map generate(int width, int height);
+    MapGenerator();
+
+    Map generate(int width, int height) const;
+
+private:
+    FastNoiseLite forest_noise_;
+    FastNoiseLite rock_noise_;
+    FastNoiseLite elevation_noise_;
 };
 
 
