@@ -13,7 +13,7 @@
 #include "../../../util/util.hpp"
 
 RenderingSystem::RenderingSystem(Map* map, entt::registry* registry, Renderer* renderer, Display* display)
-    : System(registry), map_renderer_(map, renderer), display_(display), renderer_(renderer) {
+    : System(registry), display_(display), renderer_(renderer), map_renderer_(map, renderer) {
     render_buffer = al_create_bitmap(BUFF_W, BUFF_H);
 }
 
@@ -29,7 +29,16 @@ void RenderingSystem::render() const {
     Renderer::clear_to_color(.5f, .5f, .5f);
     update_camera();
     map_renderer_.render();
+    render_entities();
+    Renderer::end(bitmap_target);
 
+    const DisplayTarget display_target(display_);
+    Renderer::begin(display_target);
+    Renderer::draw_scaled_bitmap(render_buffer, Vec2(0, 0), display_->get_width(), display_->get_height());
+    Renderer::end(display_target);
+}
+
+void RenderingSystem::render_entities() const {
     const auto group = registry_->group<RenderComponent>(entt::get<TransformComponent>);
     group.sort<TransformComponent>([](const TransformComponent &a, const TransformComponent &b) {
         if (almost_equal(a.position.y, b.position.y))
@@ -42,10 +51,4 @@ void RenderingSystem::render() const {
         auto &render = group.get<RenderComponent>(entity);
         renderer_->draw_bitmap(render.sprite_id, transform.position, render.offset);
     }
-    Renderer::end(bitmap_target);
-
-    const DisplayTarget display_target(display_);
-    Renderer::begin(display_target);
-    Renderer::draw_scaled_bitmap(render_buffer, Vec2(0, 0), display_->get_width(), display_->get_height());
-    Renderer::end(display_target);
 }

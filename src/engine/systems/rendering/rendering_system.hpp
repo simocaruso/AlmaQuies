@@ -28,6 +28,8 @@ private:
     MapRenderer map_renderer_;
 
     void update_camera() const;
+
+    void render_entities() const;
 };
 
 
