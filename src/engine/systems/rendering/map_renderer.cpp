@@ -5,8 +5,13 @@
 #include "map_renderer.hpp"
 #include "bitmap_target.hpp"
 #include "../../../util/constants.hpp"
+#include "../../../util/util.hpp"
+#include "entt/entt.hpp"
+#include "../../components/camera_component.hpp"
+#include "../../components/transform_component.hpp"
 
-MapRenderer::MapRenderer(Map* map, Renderer* renderer) : map_(map), renderer_(renderer) {
+MapRenderer::MapRenderer(Map* map, entt::registry* registry, Renderer* renderer)
+    : map_(map), renderer_(renderer), registry_(registry) {
     create_chunks();
 }
 
@@ -30,7 +35,8 @@ void MapRenderer::create_chunks() {
             target.begin();
             for (int i = 0; i < chunk_size_; ++i) {
                 for (int j = 0; j < chunk_size_; ++j) {
-                    auto tile = map_->get_tile_at(Vec2(chunk_x * TILE_SIZE * chunk_size_ + i * TILE_SIZE, chunk_y * TILE_SIZE * chunk_size_ + j * TILE_SIZE));
+                    auto tile = map_->get_tile_at(Vec2(chunk_x * TILE_SIZE * chunk_size_ + i * TILE_SIZE,
+                                                       chunk_y * TILE_SIZE * chunk_size_ + j * TILE_SIZE));
                     renderer_->draw_bitmap(tile, Vec2(i * TILE_SIZE, j * TILE_SIZE), Vec2(0, 0));
                 }
             }
@@ -42,14 +48,19 @@ void MapRenderer::create_chunks() {
 }
 
 void MapRenderer::render() const {
+    const auto camera = *registry_->view<CameraComponent, TransformComponent>().begin();
     const int chunks_x = std::ceil((float) map_->get_width_tiles() / chunk_size_);
     const int chunks_y = std::ceil((float) map_->get_height_tiles() / chunk_size_);
     int chunk = 0;
     for (int i = 0; i < chunks_x; i++) {
         for (int j = 0; j < chunks_y; j++) {
-            Renderer::draw_bitmap(chunks_[chunk],
-                                  Vec2(i * TILE_SIZE * chunk_size_, j * chunk_size_ * TILE_SIZE),
-                                  Vec2(0, 0));
+            auto pos = Vec2(i * TILE_SIZE * chunk_size_, j * chunk_size_ * TILE_SIZE);
+            if (is_on_screen(registry_->get<CameraComponent>(camera).transform,
+                             pos, TILE_SIZE * chunk_size_, TILE_SIZE * chunk_size_)) {
+                Renderer::draw_bitmap(chunks_[chunk],
+                                      pos,
+                                      Vec2(0, 0));
+            }
             chunk++;
         }
     }

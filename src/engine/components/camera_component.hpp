@@ -6,8 +6,10 @@
 #define FARMANDCONQUER_CAMERA_COMPONENT_HPP
 
 #include "../../util/constants.hpp"
+#include "allegro5/allegro.h"
 
 struct CameraComponent {
+    ALLEGRO_TRANSFORM transform;
     float zoom = CAMERA_DEFAULT_ZOOM;
     float zoom_sensitivity = CAMERA_DEFAULT_ZOOM_SENSITIVITY;
     int scroll_direction = -1;

@@ -22,6 +22,10 @@ public:
 
     ALLEGRO_BITMAP* get_resource(const TileType &tile_type);
 
+    int get_resource_width(const std::string & name);
+
+    int get_resource_height(const std::string & name);
+
 private:
     std::map<std::string, ALLEGRO_BITMAP*> bitmaps_;
 

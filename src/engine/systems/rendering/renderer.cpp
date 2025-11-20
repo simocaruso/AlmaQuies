@@ -29,7 +29,8 @@ void Renderer::draw_scaled_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_po
                           drawing_position.x, drawing_position.y, destination_width, destination_height, 0);
 }
 
-void Renderer::draw_bitmap(const std::string &sprite_id, const Vec2 &drawing_position, const Vec2 &drawing_offset) const {
+void Renderer::draw_bitmap(const std::string &sprite_id, const Vec2 &drawing_position,
+                           const Vec2 &drawing_offset) const {
     draw_bitmap(resource_manager_->get_resource(sprite_id),
                 drawing_position, drawing_offset);
 }
@@ -46,8 +47,7 @@ void Renderer::draw_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_position,
                    0);
 }
 
-void Renderer::update_camera(const Vec2 &position, const float zoom) {
-    ALLEGRO_TRANSFORM trans;
+void Renderer::update_camera(ALLEGRO_TRANSFORM &trans, const Vec2 &position, const float zoom) {
     al_identity_transform(&trans);
     al_translate_transform(&trans, -position.x - BUFF_W / 2, -position.y - BUFF_H / 2);
     al_scale_transform(&trans, zoom, zoom);

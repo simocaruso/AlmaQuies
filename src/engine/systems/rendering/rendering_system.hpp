@@ -12,6 +12,7 @@
 #include "renderer.hpp"
 #include "../../map/map.hpp"
 
+
 class RenderingSystem : public System {
 public:
     RenderingSystem(Map* map, entt::registry* registry, Renderer* renderer, Display* display);

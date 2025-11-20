@@ -8,18 +8,19 @@
 #include "renderer.hpp"
 #include "display_target.hpp"
 #include "../../components/camera_component.hpp"
-#include "../../components/transform_component.hpp"
-#include "../../components/render_component.hpp"
 #include "../../../util/util.hpp"
+#include "../../components/render_component.hpp"
+#include "../../components/transform_component.hpp"
 
 RenderingSystem::RenderingSystem(Map* map, entt::registry* registry, Renderer* renderer, Display* display)
-    : System(registry), display_(display), renderer_(renderer), map_renderer_(map, renderer) {
+    : System(registry), display_(display), renderer_(renderer), map_renderer_(map, registry, renderer) {
     render_buffer = al_create_bitmap(BUFF_W, BUFF_H);
 }
 
 void RenderingSystem::update_camera() const {
     const auto camera = *registry_->view<CameraComponent, TransformComponent>().begin();
-    Renderer::update_camera(registry_->get<TransformComponent>(camera).position,
+    Renderer::update_camera(registry_->get<CameraComponent>(camera).transform,
+                            registry_->get<TransformComponent>(camera).position,
                             registry_->get<CameraComponent>(camera).zoom);
 }
 
@@ -39,6 +40,7 @@ void RenderingSystem::render() const {
 }
 
 void RenderingSystem::render_entities() const {
+    const auto camera = *registry_->view<CameraComponent, TransformComponent>().begin();
     const auto group = registry_->group<RenderComponent>(entt::get<TransformComponent>);
     group.sort<TransformComponent>([](const TransformComponent &a, const TransformComponent &b) {
         if (almost_equal(a.position.y, b.position.y))
@@ -49,6 +51,10 @@ void RenderingSystem::render_entities() const {
     for (const auto entity: group) {
         auto &transform = group.get<TransformComponent>(entity);
         auto &render = group.get<RenderComponent>(entity);
-        renderer_->draw_bitmap(render.sprite_id, transform.position, render.offset);
+        if (is_on_screen(registry_->get<CameraComponent>(camera).transform,
+                         transform.position - render.offset,
+                         render.width, render.height)) {
+            renderer_->draw_bitmap(render.sprite_id, transform.position, render.offset);
+        }
     }
 }

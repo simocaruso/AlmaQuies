@@ -32,6 +32,8 @@ void EntityFileLoader::render(const std::string &name, const entt::entity &entit
     auto base_field = fmt::format("{}.render", name);
     RenderComponent render_component;
     render_component.sprite_id = name;
+    render_component.width = resource_manager_->get_resource_width(name);
+    render_component.height = resource_manager_->get_resource_height(name);
     if (entities_config_.has_field(base_field)) {
         render_component.offset = vec2(fmt::format("{}.offset", base_field));
     }

@@ -9,6 +9,7 @@
 
 struct RenderComponent {
     std::string sprite_id;
+    int width, height;
     Vec2 offset;
 };
 

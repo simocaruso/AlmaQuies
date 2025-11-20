@@ -29,7 +29,7 @@ public:
 
     static void draw_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_position, const Vec2 &drawing_offset);
 
-    static void update_camera(const Vec2 &position, float zoom);
+    static void update_camera(ALLEGRO_TRANSFORM &trans, const Vec2 &position, float zoom);
 
 private:
     ResourceManager* resource_manager_;

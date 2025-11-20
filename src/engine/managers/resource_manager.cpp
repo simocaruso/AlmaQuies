@@ -36,6 +36,14 @@ ALLEGRO_BITMAP* ResourceManager::get_resource(const TileType &tile_type) {
     return get_resource(get_resource_name(tile_type));
 }
 
+int ResourceManager::get_resource_width(const std::string &name) {
+    return al_get_bitmap_width(get_resource(name));
+}
+
+int ResourceManager::get_resource_height(const std::string &name) {
+    return al_get_bitmap_height(get_resource(name));
+}
+
 std::string ResourceManager::get_resource_name(const TileType &tile) {
     switch (tile) {
         case Grass:
