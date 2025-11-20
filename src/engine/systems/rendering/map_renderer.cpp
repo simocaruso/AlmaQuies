@@ -26,8 +26,8 @@ void MapRenderer::create_chunks() {
     al_set_new_bitmap_flags(ALLEGRO_VIDEO_BITMAP);
     for (int chunk_x = 0; chunk_x < chunks_x; chunk_x++) {
         for (int chunk_y = 0; chunk_y < chunks_y; chunk_y++) {
-            const int bitmap_width = map_->get_width_pixels();
-            const int bitmap_height = map_->get_height_pixels();
+            const int bitmap_width = chunk_size_ * TILE_SIZE;
+            const int bitmap_height = chunk_size_ * TILE_SIZE;
 
             ALLEGRO_BITMAP* chunk = al_create_bitmap(bitmap_width, bitmap_height);
             BitmapTarget target(chunk);
@@ -35,8 +35,8 @@ void MapRenderer::create_chunks() {
             target.begin();
             for (int i = 0; i < chunk_size_; ++i) {
                 for (int j = 0; j < chunk_size_; ++j) {
-                    auto tile = map_->get_tile_at(Vec2(chunk_x * TILE_SIZE * chunk_size_ + i * TILE_SIZE,
-                                                       chunk_y * TILE_SIZE * chunk_size_ + j * TILE_SIZE));
+                    auto tile = map_->get_tile_at(Vec2(chunk_x * bitmap_width + i * TILE_SIZE,
+                                                       chunk_y * bitmap_height + j * TILE_SIZE));
                     renderer_->draw_bitmap(tile, Vec2(i * TILE_SIZE, j * TILE_SIZE), Vec2(0, 0));
                 }
             }
