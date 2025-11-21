@@ -15,6 +15,12 @@ MapRenderer::MapRenderer(Map* map, entt::registry* registry, Renderer* renderer)
     create_chunks();
 }
 
+MapRenderer::~MapRenderer() {
+    for (const auto &chunk: chunks_) {
+        al_destroy_bitmap(chunk);
+    }
+}
+
 void MapRenderer::create_chunks() {
     const int map_width = map_->get_width_tiles();
     const int map_height = map_->get_height_tiles();

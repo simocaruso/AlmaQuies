@@ -12,6 +12,8 @@ class MapRenderer {
 public:
     MapRenderer(Map* map, entt::registry* registry, Renderer* renderer);
 
+    ~MapRenderer();
+
     void create_chunks();
 
     void render() const;

@@ -17,6 +17,10 @@ RenderingSystem::RenderingSystem(Map* map, entt::registry* registry, Renderer* r
     render_buffer = al_create_bitmap(BUFF_W, BUFF_H);
 }
 
+RenderingSystem::~RenderingSystem() {
+    al_destroy_bitmap(render_buffer);
+}
+
 void RenderingSystem::update_camera() const {
     const auto camera = *registry_->view<CameraComponent, TransformComponent>().begin();
     Renderer::update_camera(registry_->get<CameraComponent>(camera).transform,

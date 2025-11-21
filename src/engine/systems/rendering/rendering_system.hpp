@@ -17,6 +17,8 @@ class RenderingSystem : public System {
 public:
     RenderingSystem(Map* map, entt::registry* registry, Renderer* renderer, Display* display);
 
+    ~RenderingSystem();
+
     void update(int elapsed) override {
     };
 
