@@ -13,7 +13,6 @@ World::World(Display* display, Renderer* renderer, ResourceManager* resource_man
                                             file_manager_(file_manager),
                                             input_manager_(input_manager) {
     registry_ = std::make_unique<entt::registry>();
-
     dispatcher_ = std::make_unique<entt::dispatcher>();
     movement_system_ = std::make_unique<MovementSystem>(registry_.get(), *dispatcher_);
     input_system_ = std::make_unique<InputSystem>(registry_.get(), input_manager_, dispatcher_.get());

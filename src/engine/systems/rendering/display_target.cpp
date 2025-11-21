@@ -7,10 +7,10 @@
 DisplayTarget::DisplayTarget(Display* display): display_(display) {
 }
 
-void DisplayTarget::begin() const {
+void DisplayTarget::begin() {
     al_set_target_backbuffer(display_->get_display());
 }
 
-void DisplayTarget::end() const {
+void DisplayTarget::end() {
     al_flip_display();
 }

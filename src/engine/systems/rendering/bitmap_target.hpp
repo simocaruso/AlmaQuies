@@ -13,12 +13,13 @@ class BitmapTarget : public RenderTarget {
 public:
     explicit BitmapTarget(ALLEGRO_BITMAP* bitmap);
 
-    void begin() const override;
+    void begin() override;
 
-    void end() const override {};
+    void end() override;
 
 private:
     ALLEGRO_BITMAP* bitmap_;
+    ALLEGRO_BITMAP* curr_target_{};
 };
 
 

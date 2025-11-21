@@ -72,12 +72,15 @@ add_executable(FarmAndConquer
         src/engine/systems/rendering/map_renderer.cpp
         src/engine/systems/rendering/map_renderer.hpp
         src/engine/map/tile.hpp
-        include/FastNoiseLite/FastNoiseLite.hpp
+        third_party/FastNoiseLite/FastNoiseLite.hpp
         src/engine/map/map_resources_generator.cpp
         src/engine/map/map_resources_generator.hpp
         src/util/random.hpp
         src/engine/map/map_generator.cpp
         src/engine/map/map_generator.hpp
+        src/engine/managers/atlas_manager.cpp
+        src/engine/managers/atlas_manager.hpp
+        src/engine/managers/atlas_region.hpp
 )
 
 add_custom_target(
@@ -108,9 +111,14 @@ pkg_check_modules(allegro_acodec-5 REQUIRED allegro_acodec-5)
 
 include(FetchContent)
 
-target_include_directories(FarmAndConquer PRIVATE
-        include
+add_library(smol_atlas STATIC
+        third_party/smol_atlas/smol_atlas.cpp
 )
+
+target_include_directories(FarmAndConquer PRIVATE
+        third_party
+)
+
 
 target_compile_definitions(FarmAndConquer PRIVATE FMT_HEADER_ONLY=1)
 target_link_libraries(FarmAndConquer
@@ -121,4 +129,5 @@ target_link_libraries(FarmAndConquer
         ${allegro_ttf-5_LIBRARIES}
         ${allegro_audio-5_LIBRARIES}
         ${allegro_acodec-5_LIBRARIES}
+        smol_atlas
 )

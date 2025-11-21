@@ -35,4 +35,7 @@ extern const int TILE_SIZE;
 extern const float FOREST_TREE_DENSITY;
 extern const float MOUNTAIN_ROCK_DENSITY;
 
+// Resources
+extern const int ATLAS_SIZE;
+
 #endif //FARMANDCONQUER_CONSTANTS_HPP

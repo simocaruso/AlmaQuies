@@ -9,6 +9,8 @@
 #include <string>
 #include <allegro5/allegro.h>
 #include <map>
+
+#include "atlas_manager.hpp"
 #include "file_manager.hpp"
 #include "../map/tile.hpp"
 
@@ -18,16 +20,16 @@ public:
 
     ~ResourceManager();
 
-    ALLEGRO_BITMAP* get_resource(const std::string &name);
+    AtlasRegion get_resource(const std::string &name);
 
-    ALLEGRO_BITMAP* get_resource(const TileType &tile_type);
+    AtlasRegion get_resource(const TileType &tile_type);
 
     int get_resource_width(const std::string & name);
 
     int get_resource_height(const std::string & name);
 
 private:
-    std::map<std::string, ALLEGRO_BITMAP*> bitmaps_;
+    AtlasManager atlas_manager_;
 
     FileManager* file_manager_;
 

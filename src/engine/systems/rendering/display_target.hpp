@@ -13,9 +13,9 @@ class DisplayTarget : public RenderTarget {
 public:
     explicit DisplayTarget(Display* display);
 
-    void begin() const override;
+    void begin() override;
 
-    void end() const override;
+    void end() override;
 
 private:
     Display* display_;

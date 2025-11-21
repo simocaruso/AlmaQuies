@@ -25,18 +25,18 @@ void RenderingSystem::update_camera() const {
 }
 
 void RenderingSystem::render() const {
-    const BitmapTarget bitmap_target(render_buffer);
-    Renderer::begin(bitmap_target);
+    BitmapTarget bitmap_target(render_buffer);
+    bitmap_target.begin();
     Renderer::clear_to_color(.5f, .5f, .5f);
     update_camera();
     map_renderer_.render();
     render_entities();
-    Renderer::end(bitmap_target);
+    bitmap_target.end();
 
-    const DisplayTarget display_target(display_);
-    Renderer::begin(display_target);
+    DisplayTarget display_target(display_);
+    display_target.begin();
     Renderer::draw_scaled_bitmap(render_buffer, Vec2(0, 0), display_->get_width(), display_->get_height());
-    Renderer::end(display_target);
+    display_target.end();
 }
 
 void RenderingSystem::render_entities() const {
@@ -47,14 +47,15 @@ void RenderingSystem::render_entities() const {
             return a.position.x < b.position.x;
         return a.position.y < b.position.y;
     });
-
+    al_hold_bitmap_drawing(true);
     for (const auto entity: group) {
         auto &transform = group.get<TransformComponent>(entity);
         auto &render = group.get<RenderComponent>(entity);
         if (is_on_screen(registry_->get<CameraComponent>(camera).transform,
                          transform.position - render.offset,
                          render.width, render.height)) {
-            renderer_->draw_bitmap(render.sprite_id, transform.position, render.offset);
+            renderer_->draw_resource(render.sprite_id, transform.position, render.offset);
         }
     }
+    al_hold_bitmap_drawing(false);
 }

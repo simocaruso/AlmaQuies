@@ -9,14 +9,6 @@
 Renderer::Renderer(ResourceManager* resource_manager) : resource_manager_(resource_manager) {
 }
 
-void Renderer::begin(const RenderTarget &target) {
-    target.begin();
-}
-
-void Renderer::end(const RenderTarget &target) {
-    target.end();
-}
-
 void Renderer::clear_to_color(const float r, const float g, const float b, const float a) {
     al_clear_to_color(al_map_rgba_f(r, g, b, a));
 }
@@ -29,15 +21,21 @@ void Renderer::draw_scaled_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_po
                           drawing_position.x, drawing_position.y, destination_width, destination_height, 0);
 }
 
-void Renderer::draw_bitmap(const std::string &sprite_id, const Vec2 &drawing_position,
-                           const Vec2 &drawing_offset) const {
-    draw_bitmap(resource_manager_->get_resource(sprite_id),
-                drawing_position, drawing_offset);
+void Renderer::draw_resource(const std::string &sprite_id, const Vec2 &drawing_position,
+                             const Vec2 &drawing_offset) const {
+    auto resource = resource_manager_->get_resource(sprite_id);
+    draw_bitmap_region(resource.atlas,
+                   Vec2(resource.position.x, resource.position.y),
+                   resource.width, resource.height,
+                   drawing_position, drawing_offset);
 }
 
-void Renderer::draw_bitmap(const TileType &tile_type, const Vec2 &drawing_position, const Vec2 &drawing_offset) const {
-    draw_bitmap(resource_manager_->get_resource(tile_type),
-                drawing_position, drawing_offset);
+void Renderer::draw_tile(const TileType &tile_type, const Vec2 &drawing_position, const Vec2 &drawing_offset) const {
+    auto resource = resource_manager_->get_resource(tile_type);
+    draw_bitmap_region(resource.atlas,
+                       Vec2(resource.position.x, resource.position.y),
+                       resource.width, resource.height,
+                       drawing_position, drawing_offset);
 }
 
 void Renderer::draw_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_position, const Vec2 &drawing_offset) {
@@ -46,6 +44,17 @@ void Renderer::draw_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_position,
                    drawing_position.y - drawing_offset.y,
                    0);
 }
+
+void Renderer::draw_bitmap_region(ALLEGRO_BITMAP* bitmap, const Vec2 &region_position, const int region_width,
+                                  const int region_height, const Vec2 &drawing_position, const Vec2 &drawing_offset) {
+    al_draw_bitmap_region(bitmap,
+                          region_position.x, region_position.y,
+                          region_width, region_height,
+                          drawing_position.x - drawing_offset.x,
+                          drawing_position.y - drawing_offset.y,
+                          0);
+}
+
 
 void Renderer::update_camera(ALLEGRO_TRANSFORM &trans, const Vec2 &position, const float zoom) {
     al_identity_transform(&trans);
