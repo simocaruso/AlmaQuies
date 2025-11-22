@@ -21,9 +21,9 @@ Map MapTilesGenerator::generate(const int width, const int height) {
             TileType tile;
             if (r > 0.3f && e > 0.55f) {
                 tile = Mountain;
-            } else if (e < 0.4f) {
+            } else if (e < 0.38f) {
                 tile = Water;
-            } else if (f > 0.58f) {
+            } else if (f > 0.40f && e < 0.45f) {
                 tile = Forest;
             } else {
                 tile = Grass;
@@ -36,8 +36,12 @@ Map MapTilesGenerator::generate(const int width, const int height) {
 }
 
 void MapTilesGenerator::set_up_noise() {
+    forest_noise_.SetSeed((int)time(NULL));
+    elevation_noise_.SetSeed((int)time(NULL));
+    rock_noise_.SetSeed((int)time(NULL));
+
     forest_noise_.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
-    forest_noise_.SetFrequency(0.02f);
+    forest_noise_.SetFrequency(0.1f);
 
     rock_noise_.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
     rock_noise_.SetFrequency(0.02f);

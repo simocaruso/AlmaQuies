@@ -19,28 +19,32 @@
 
 class World {
 public:
-    World(Display* display, Renderer* renderer, ResourceManager* resource_manager,
-          FileManager* file_manager, InputManager* input_manager);
+    World(Display *display, Renderer *renderer, ResourceManager *resource_manager,
+          FileManager *file_manager, InputManager *input_manager);
 
-    void render() const;
+    void render();
+
+    template<typename T, typename... Args>
+    T &add_system(const SystemType &type, Args &&... args) {
+        auto system = std::make_unique<T>(std::forward<Args>(args)...);
+        T &ref = *system;
+        systems_[type] = std::move(system);
+        return ref;
+    }
 
     void update(int elapsed) const;
 
 private:
-    Display* display_;
-    Renderer* renderer_;
-    ResourceManager* resource_manager_;
-    FileManager* file_manager_;
-    InputManager* input_manager_;
+    Display *display_;
+    Renderer *renderer_;
+    ResourceManager *resource_manager_;
+    FileManager *file_manager_;
+    InputManager *input_manager_;
     std::unique_ptr<entt::registry> registry_;
-    std::unique_ptr<RenderingSystem> rendering_system_;
-    std::unique_ptr<InputSystem> input_system_;
     std::unique_ptr<entt::dispatcher> dispatcher_;
-    std::unique_ptr<MovementSystem> movement_system_;
-    std::unique_ptr<CollisionSystem> collision_system_;
     std::unique_ptr<EntityFactory> entity_factory_;
-    std::unique_ptr<CameraSystem> camera_system_;
     std::unique_ptr<Map> map_;
+    std::unordered_map<SystemType, std::unique_ptr<System> > systems_;
 };
 
 

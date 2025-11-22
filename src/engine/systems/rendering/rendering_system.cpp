@@ -28,7 +28,7 @@ void RenderingSystem::update_camera() const {
                             registry_->get<CameraComponent>(camera).zoom);
 }
 
-void RenderingSystem::render() const {
+void RenderingSystem::render() {
     BitmapTarget bitmap_target(render_buffer);
     bitmap_target.begin();
     Renderer::clear_to_color(.5f, .5f, .5f);

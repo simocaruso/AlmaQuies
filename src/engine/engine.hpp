@@ -32,8 +32,8 @@ private:
     std::unique_ptr<FileManager> file_manager_;
     std::unique_ptr<InputManager> input_manager_;
     std::unique_ptr<World> world_;
-    ALLEGRO_TIMER* timer_{};
-    ALLEGRO_EVENT_QUEUE* queue_{};
+    ALLEGRO_TIMER *timer_{};
+    ALLEGRO_EVENT_QUEUE *queue_{};
     long start_time_ = 0;
 
     bool redraw_ = false;

@@ -22,7 +22,7 @@ public:
     void update(int elapsed) override {
     };
 
-    void render() const;
+    void render() override;
 
 private:
     Display* display_;

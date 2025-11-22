@@ -7,17 +7,27 @@
 
 #include "entt/entt.hpp"
 
-class System {
+enum SystemType {
+    RENDERING,
+    COLLISION,
+    MOVEMENT,
+    INPUT,
+    CAMERA
+};
 
+class System {
 public:
-    explicit System(entt::registry* registry);
+    explicit System(entt::registry *registry);
 
     virtual ~System() = default;
 
     virtual void update(int elapsed) = 0;
 
+    virtual void render() {
+    };
+
 protected:
-    entt::registry* registry_;
+    entt::registry *registry_;
 };
 
 
