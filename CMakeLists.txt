@@ -81,6 +81,8 @@ add_executable(FarmAndConquer
         src/engine/managers/atlas_manager.cpp
         src/engine/managers/atlas_manager.hpp
         src/engine/managers/atlas_region.hpp
+        src/engine/systems/spatial_grid_system.cpp
+        src/engine/systems/spatial_grid_system.hpp
 )
 
 add_custom_target(

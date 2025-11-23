@@ -10,9 +10,7 @@
 #include "entity_loader.hpp"
 #include "managers/input_manager.hpp"
 #include "systems/input_system.hpp"
-#include "systems/movement_system.hpp"
 #include "systems/collision/collision_system.hpp"
-#include "systems/camera_system.hpp"
 #include "entity_factory.hpp"
 #include "map/map.hpp"
 
@@ -44,6 +42,7 @@ private:
     std::unique_ptr<entt::dispatcher> dispatcher_;
     std::unique_ptr<EntityFactory> entity_factory_;
     std::unique_ptr<Map> map_;
+    std::unique_ptr<SpatialGrid> spatial_grid_;
     std::unordered_map<SystemType, std::unique_ptr<System> > systems_;
 };
 

@@ -12,7 +12,8 @@ enum SystemType {
     COLLISION,
     MOVEMENT,
     INPUT,
-    CAMERA
+    CAMERA,
+    SPATIAL_GRID
 };
 
 class System {

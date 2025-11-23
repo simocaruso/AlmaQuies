@@ -12,20 +12,14 @@
 
 class CollisionSystem : public System {
 public:
-    CollisionSystem(entt::registry* registry, entt::dispatcher &dispatcher);
+    CollisionSystem(SpatialGrid *grid, entt::registry *registry, entt::dispatcher &dispatcher);
 
     void update(int elapsed) override;
 
 private:
-    SpatialGrid grid_;
-
-    void clear_moving_entities();
-
-    void register_moving_entities();
+    SpatialGrid *grid_;
 
     void check_collisions() const;
-
-    void on_created_collidable(const CreatedCollidableEvent &event);
 
     float compute_radius(const ColliderComponent &collider) const;
 };

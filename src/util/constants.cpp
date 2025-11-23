@@ -13,7 +13,7 @@ const int DISP_W = 1280;
 const int BUFF_H = 720;
 const int BUFF_W = 1280;
 
-const int COLLISION_SPATIAL_GRID_CELL_SIZE = 64;
+const int SPATIAL_GRID_CELL_SIZE = 64;
 
 extern const int CAMERA_ACCELERATION_STRENGTH = 1000;
 extern const int CAMERA_DECELERATION_STRENGTH = 1000;

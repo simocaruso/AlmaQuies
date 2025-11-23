@@ -19,7 +19,7 @@ extern const int BUFF_H;
 extern const int BUFF_W;
 
 // Collisions
-extern const int COLLISION_SPATIAL_GRID_CELL_SIZE;
+extern const int SPATIAL_GRID_CELL_SIZE;
 
 // Camera
 extern const int CAMERA_ACCELERATION_STRENGTH;
