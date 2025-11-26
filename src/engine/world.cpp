@@ -8,25 +8,29 @@
 #include "systems/camera_system.hpp"
 #include "../util/constants.hpp"
 #include "systems/movement_system.hpp"
+#include "systems/occlusion_system.hpp"
 #include "systems/spatial_grid_system.hpp"
 
-World::World(Display *display, Renderer *renderer, ResourceManager *resource_manager, FileManager *file_manager,
-             InputManager *input_manager) : display_(display), renderer_(renderer),
+World::World(Display* display, Renderer* renderer, ResourceManager* resource_manager, FileManager* file_manager,
+             InputManager* input_manager) : display_(display), renderer_(renderer),
                                             resource_manager_(resource_manager),
                                             file_manager_(file_manager),
                                             input_manager_(input_manager) {
     registry_ = std::make_unique<entt::registry>();
     dispatcher_ = std::make_unique<entt::dispatcher>();
-    spatial_grid_ = std::make_unique<SpatialGrid>(SPATIAL_GRID_CELL_SIZE);
-    add_system<SpatialGridSystem>(SPATIAL_GRID, spatial_grid_.get(), registry_.get(), dispatcher_.get());
+    physic_spatial_grid_ = std::make_unique<SpatialGrid>(SPATIAL_GRID_CELL_SIZE);
+    rendering_spatial_grid_ = std::make_unique<SpatialGrid>(SPATIAL_GRID_CELL_SIZE);
+    add_system<SpatialGridSystem>(SPATIAL_GRID, rendering_spatial_grid_.get(), physic_spatial_grid_.get(),
+                                  registry_.get(), dispatcher_.get());
     add_system<MovementSystem>(MOVEMENT, registry_.get(), *dispatcher_);
     add_system<InputSystem>(INPUT, registry_.get(), input_manager_, dispatcher_.get());
-    add_system<CollisionSystem>(COLLISION, spatial_grid_.get(), registry_.get(), *dispatcher_);
+    add_system<CollisionSystem>(COLLISION, physic_spatial_grid_.get(), registry_.get(), *dispatcher_);
     entity_factory_ = std::make_unique<EntityFactory>(registry_.get(), dispatcher_.get(),
                                                       file_manager_, resource_manager_);
     map_ = std::make_unique<Map>(MapGenerator::generate(128, 32, entity_factory_.get()));
     add_system<RenderingSystem>(RENDERING, map_.get(), registry_.get(), renderer_, display_);
     add_system<CameraSystem>(CAMERA, registry_.get(), *dispatcher_);
+    add_system<OcclusionSystem>(OCCLUSION, registry_.get(), rendering_spatial_grid_.get());
     entity_factory_->create_from_file("blue", Vec2(100, 100));
     entity_factory_->create_camera();
 }

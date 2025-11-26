@@ -10,6 +10,7 @@
 struct CreatedCollidableEvent {
     entt::entity entity;
     Vec2 position;
+    ColliderComponent collider;
 };
 
 #endif //FARMANDCONQUER_CREATED_COLLIDABLE_EVENT_HPP

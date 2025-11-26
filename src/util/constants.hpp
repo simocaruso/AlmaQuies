@@ -37,5 +37,6 @@ extern const float MOUNTAIN_ROCK_DENSITY;
 
 // Resources
 extern const int ATLAS_SIZE;
+extern const std::string BORDER_SUFFIX;
 
 #endif //FARMANDCONQUER_CONSTANTS_HPP

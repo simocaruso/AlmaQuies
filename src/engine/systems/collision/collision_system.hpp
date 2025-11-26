@@ -7,8 +7,6 @@
 
 #include "spatial_grid.hpp"
 #include "../system.hpp"
-#include "../events/created_collidable_event.hpp"
-#include "../../components/collider_component.hpp"
 
 class CollisionSystem : public System {
 public:
@@ -20,8 +18,6 @@ private:
     SpatialGrid *grid_;
 
     void check_collisions() const;
-
-    float compute_radius(const ColliderComponent &collider) const;
 };
 
 

@@ -13,22 +13,24 @@ enum SystemType {
     MOVEMENT,
     INPUT,
     CAMERA,
-    SPATIAL_GRID
+    SPATIAL_GRID,
+    OCCLUSION,
 };
 
 class System {
 public:
-    explicit System(entt::registry *registry);
+    explicit System(entt::registry* registry);
 
     virtual ~System() = default;
 
-    virtual void update(int elapsed) = 0;
+    virtual void update(int elapsed) {
+    };
 
     virtual void render() {
     };
 
 protected:
-    entt::registry *registry_;
+    entt::registry* registry_;
 };
 
 

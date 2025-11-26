@@ -8,6 +8,11 @@
 #include <unordered_map>
 #include "entt/entt.hpp"
 #include "../../../util/vec_2.hpp"
+#include "../../components/collider_component.hpp"
+
+struct GridRect {
+    float min_x, max_x, min_y, max_y;
+};
 
 class SpatialGrid {
 public:
@@ -15,22 +20,25 @@ public:
 
     void clear();
 
-    void insert(const entt::entity &entity, const Vec2 &pos);
+    void insert(const entt::entity &entity, const Vec2 &pos, const int radius);
 
-    void remove(const entt::entity &entity, const Vec2 &pos);
+    void remove(const entt::entity &entity, const Vec2 &pos, const int radius);
 
-    std::vector<entt::entity> query_nearby(const Vec2 &pos, const int &radius) const;
+    std::set<entt::entity> query_nearby(const Vec2 &pos, const int radius) const;
 
-    std::vector<entt::entity> query_nearby(const Vec2 &pos, const int &width, const int &height) const;
-
-private:
+private
+:
     int cell_size_;
 
     std::unordered_map<long long, std::set<entt::entity> > cells_;
 
+    static GridRect compute_grid_rect(const Vec2 &pos, const int radius);
+
     long long make_key(const Vec2 &pos) const;
 
-    std::vector<entt::entity> collect_entities(const int &min_x, const int &min_y, const int &max_x, const int &max_y) const;
+    std::set<entt::entity> collect_entities(GridRect grid_rect) const;
+
+    static float compute_radius(const ColliderComponent &collider);
 };
 
 

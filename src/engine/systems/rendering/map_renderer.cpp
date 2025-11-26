@@ -11,7 +11,7 @@
 #include "../../components/transform_component.hpp"
 
 MapRenderer::MapRenderer(Map* map, entt::registry* registry, Renderer* renderer)
-    : map_(map), renderer_(renderer), registry_(registry) {
+    : System(registry), map_(map), renderer_(renderer) {
     create_chunks();
 }
 

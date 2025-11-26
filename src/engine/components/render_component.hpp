@@ -6,6 +6,7 @@
 #define FARMANDCONQUER_RENDER_COMPONENT_HPP
 
 #include <string>
+#include "../../util/vec_2.hpp"
 
 struct RenderComponent {
     std::string sprite_id;

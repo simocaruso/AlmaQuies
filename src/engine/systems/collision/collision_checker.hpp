@@ -6,13 +6,12 @@
 #define FARMANDCONQUER_COLLISION_CHECKER_HPP
 
 #include "../../../util/vec_2.hpp"
-#include "../../components/transform_component.hpp"
 #include "../../components/collider_component.hpp"
 
 class CollisionChecker {
 public:
-    static bool collide(const TransformComponent &t1, const ColliderComponent &c1,
-                        const TransformComponent &t2, const ColliderComponent &c2);
+    static bool collide(const Vec2 &pos1, const ColliderComponent &c1,
+                        const Vec2 &pos2, const ColliderComponent &c2);
 
 private:
     static bool circle_vs_circle(const Vec2 &pos1, int radius1, const Vec2 &pos2, int radius2);

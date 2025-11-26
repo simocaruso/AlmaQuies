@@ -41,3 +41,20 @@ bool is_on_screen(const ALLEGRO_TRANSFORM &camera_transform, Vec2 top_left,
     if (maxY < 0 || minY > BUFF_H) return false;
     return true;
 }
+
+float compute_rect_radius(const int width, const int height) {
+    return std::sqrt((width * width + height * height) / 4.0f);
+}
+
+float compute_radius(const ColliderComponent &collider) {
+    return std::visit([]<typename T>(T &&shape) -> float {
+        using U = std::decay_t<decltype(shape)>;
+        if constexpr (std::is_same_v<U, CircleCollider>) {
+            return shape.radius;
+        } else if constexpr (std::is_same_v<U, RectCollider>) {
+            return compute_rect_radius(shape.width, shape.height);
+        } else {
+            return 0.0f;
+        }
+    }, collider.data);
+}

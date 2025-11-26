@@ -13,6 +13,14 @@ void Renderer::clear_to_color(const float r, const float g, const float b, const
     al_clear_to_color(al_map_rgba_f(r, g, b, a));
 }
 
+void Renderer::set_hold_bitmap(const bool status) {
+    al_hold_bitmap_drawing(status);
+}
+
+bool Renderer::get_hold_bimap_status() {
+    return al_is_bitmap_drawing_held();
+}
+
 void Renderer::draw_scaled_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_position,
                                   const float &destination_width,
                                   const float &destination_height) { // NOLINT(*-convert-member-functions-to-static)
@@ -25,9 +33,9 @@ void Renderer::draw_resource(const std::string &sprite_id, const Vec2 &drawing_p
                              const Vec2 &drawing_offset) const {
     auto resource = resource_manager_->get_resource(sprite_id);
     draw_bitmap_region(resource.atlas,
-                   Vec2(resource.position.x, resource.position.y),
-                   resource.width, resource.height,
-                   drawing_position, drawing_offset);
+                       Vec2(resource.position.x, resource.position.y),
+                       resource.width, resource.height,
+                       drawing_position, drawing_offset);
 }
 
 void Renderer::draw_tile(const TileType &tile_type, const Vec2 &drawing_position, const Vec2 &drawing_offset) const {

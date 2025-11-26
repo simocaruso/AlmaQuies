@@ -7,7 +7,6 @@
 
 
 #include "../../managers/resource_manager.hpp"
-#include "render_target.hpp"
 #include "../../../util/vec_2.hpp"
 
 class Renderer {
@@ -16,8 +15,14 @@ public:
 
     static void clear_to_color(float r, float g, float b, float a = 1);
 
+    static void set_hold_bitmap(bool status);
+
+    static bool get_hold_bimap_status();
+
+    static void draw_rect(Vec2 pos, int width, int height);
+
     static void draw_scaled_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_position, const float &destination_width,
-                            const float &destination_height);
+                                   const float &destination_height);
 
     void draw_resource(const std::string &sprite_id, const Vec2 &drawing_position, const Vec2 &drawing_offset) const;
 

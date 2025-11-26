@@ -28,3 +28,4 @@ extern const float FOREST_TREE_DENSITY = 0.001f;
 extern const float MOUNTAIN_ROCK_DENSITY = 0.0001f;
 
 extern const int ATLAS_SIZE = 256;
+extern const std::string BORDER_SUFFIX = "_border";

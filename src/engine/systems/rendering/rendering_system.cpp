@@ -13,19 +13,13 @@
 #include "../../components/transform_component.hpp"
 
 RenderingSystem::RenderingSystem(Map* map, entt::registry* registry, Renderer* renderer, Display* display)
-    : System(registry), display_(display), renderer_(renderer), map_renderer_(map, registry, renderer) {
+    : System(registry), display_(display), renderer_(renderer),
+      map_renderer_(map, registry, renderer), occluded_entities_renderer_(registry, renderer) {
     render_buffer = al_create_bitmap(BUFF_W, BUFF_H);
 }
 
 RenderingSystem::~RenderingSystem() {
     al_destroy_bitmap(render_buffer);
-}
-
-void RenderingSystem::update_camera() const {
-    const auto camera = *registry_->view<CameraComponent, TransformComponent>().begin();
-    Renderer::update_camera(registry_->get<CameraComponent>(camera).transform,
-                            registry_->get<TransformComponent>(camera).position,
-                            registry_->get<CameraComponent>(camera).zoom);
 }
 
 void RenderingSystem::render() {
@@ -35,12 +29,20 @@ void RenderingSystem::render() {
     update_camera();
     map_renderer_.render();
     render_entities();
+    occluded_entities_renderer_.render();
     bitmap_target.end();
 
     DisplayTarget display_target(display_);
     display_target.begin();
     Renderer::draw_scaled_bitmap(render_buffer, Vec2(0, 0), display_->get_width(), display_->get_height());
     display_target.end();
+}
+
+void RenderingSystem::update_camera() const {
+    const auto camera = *registry_->view<CameraComponent, TransformComponent>().begin();
+    Renderer::update_camera(registry_->get<CameraComponent>(camera).transform,
+                            registry_->get<TransformComponent>(camera).position,
+                            registry_->get<CameraComponent>(camera).zoom);
 }
 
 void RenderingSystem::render_entities() const {
@@ -51,7 +53,7 @@ void RenderingSystem::render_entities() const {
             return a.position.x < b.position.x;
         return a.position.y < b.position.y;
     });
-    al_hold_bitmap_drawing(true);
+    Renderer::set_hold_bitmap(true);
     for (const auto entity: group) {
         auto &transform = group.get<TransformComponent>(entity);
         auto &render = group.get<RenderComponent>(entity);
@@ -61,5 +63,5 @@ void RenderingSystem::render_entities() const {
             renderer_->draw_resource(render.sprite_id, transform.position, render.offset);
         }
     }
-    al_hold_bitmap_drawing(false);
+    Renderer::set_hold_bitmap(false);
 }

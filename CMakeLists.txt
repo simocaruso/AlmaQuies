@@ -83,6 +83,11 @@ add_executable(FarmAndConquer
         src/engine/managers/atlas_region.hpp
         src/engine/systems/spatial_grid_system.cpp
         src/engine/systems/spatial_grid_system.hpp
+        src/engine/systems/occlusion_system.cpp
+        src/engine/systems/occlusion_system.hpp
+        src/engine/components/visibility_compnent.hpp
+        src/engine/systems/rendering/occluded_entities_renderer.cpp
+        src/engine/systems/rendering/occluded_entities_renderer.hpp
 )
 
 add_custom_target(

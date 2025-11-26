@@ -4,8 +4,7 @@
 
 #include "bitmap_target.hpp"
 
-BitmapTarget::BitmapTarget(ALLEGRO_BITMAP* bitmap): bitmap_(bitmap) {
-
+BitmapTarget::BitmapTarget(ALLEGRO_BITMAP* bitmap) : bitmap_(bitmap) {
 }
 
 void BitmapTarget::begin() {

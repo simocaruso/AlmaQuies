@@ -32,9 +32,12 @@ void AtlasManager::add_sprite(const std::string &name, ALLEGRO_BITMAP* sprite) {
             bitmap_, position, al_get_bitmap_width(sprite), al_get_bitmap_height(sprite)
         };
         BitmapTarget target(bitmap_);
+        const bool was_bitmap_held = Renderer::get_hold_bimap_status();
+        Renderer::set_hold_bitmap(false);
         target.begin();
         Renderer::draw_bitmap(sprite, position, Vec2(0, 0));
         target.end();
+        Renderer::set_hold_bitmap(was_bitmap_held);
     } else {
         error(false, "Unable to put image in atlas");
     }
