@@ -12,11 +12,12 @@
 #include "../../display.hpp"
 #include "renderer.hpp"
 #include "../../map/map.hpp"
+#include "../collision/spatial_grid.hpp"
 
 
 class RenderingSystem : public System {
 public:
-    RenderingSystem(Map* map, entt::registry* registry, Renderer* renderer, Display* display);
+    RenderingSystem(Map* map, SpatialGrid* grid, entt::registry* registry, Renderer* renderer, Display* display);
 
     ~RenderingSystem();
 
@@ -31,6 +32,7 @@ private:
     Renderer* renderer_;
     MapRenderer map_renderer_;
     OccludedEntitiesRenderer occluded_entities_renderer_;
+    SpatialGrid *grid_;
     void update_camera() const;
 
     void render_entities() const;

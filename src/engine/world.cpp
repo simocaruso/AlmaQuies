@@ -28,7 +28,7 @@ World::World(Display* display, Renderer* renderer, ResourceManager* resource_man
     entity_factory_ = std::make_unique<EntityFactory>(registry_.get(), dispatcher_.get(),
                                                       file_manager_, resource_manager_);
     map_ = std::make_unique<Map>(MapGenerator::generate(128, 32, entity_factory_.get()));
-    add_system<RenderingSystem>(RENDERING, map_.get(), registry_.get(), renderer_, display_);
+    add_system<RenderingSystem>(RENDERING, map_.get(), rendering_spatial_grid_.get(), registry_.get(), renderer_, display_);
     add_system<CameraSystem>(CAMERA, registry_.get(), *dispatcher_);
     add_system<OcclusionSystem>(OCCLUSION, registry_.get(), rendering_spatial_grid_.get());
     entity_factory_->create_from_file("blue", Vec2(100, 100));

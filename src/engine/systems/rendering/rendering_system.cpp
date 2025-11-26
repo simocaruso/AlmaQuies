@@ -12,8 +12,9 @@
 #include "../../components/render_component.hpp"
 #include "../../components/transform_component.hpp"
 
-RenderingSystem::RenderingSystem(Map* map, entt::registry* registry, Renderer* renderer, Display* display)
-    : System(registry), display_(display), renderer_(renderer),
+RenderingSystem::RenderingSystem(Map* map, SpatialGrid* grid, entt::registry* registry, Renderer* renderer,
+                                 Display* display)
+    : System(registry), grid_(grid), display_(display), renderer_(renderer),
       map_renderer_(map, registry, renderer), occluded_entities_renderer_(registry, renderer) {
     render_buffer = al_create_bitmap(BUFF_W, BUFF_H);
 }
@@ -46,18 +47,33 @@ void RenderingSystem::update_camera() const {
 }
 
 void RenderingSystem::render_entities() const {
-    const auto camera = *registry_->view<CameraComponent, TransformComponent>().begin();
-    const auto group = registry_->group<RenderComponent>(entt::get<TransformComponent>);
-    group.sort<TransformComponent>([](const TransformComponent &a, const TransformComponent &b) {
-        if (almost_equal(a.position.y, b.position.y))
-            return a.position.x < b.position.x;
-        return a.position.y < b.position.y;
-    });
+    const auto camera_entity = *registry_->view<CameraComponent, TransformComponent>().begin();
+    auto &cam = registry_->get<CameraComponent>(camera_entity);
+    auto pos = registry_->get<TransformComponent>(camera_entity).position;
+
+    const Vec2 offset{
+        BUFF_W / cam.zoom / 2.0f,
+        BUFF_H / cam.zoom / 2.0f
+    };
+    float radius = compute_rect_radius(BUFF_W / cam.zoom, BUFF_H / cam.zoom);
+
+    auto on_screen_entities = grid_->query_nearby(pos + offset, radius);
+
+
+    std::vector<entt::entity> sortable_entities = {on_screen_entities.begin(), on_screen_entities.end()};
+    std::sort(sortable_entities.begin(), sortable_entities.end(),
+              [this](const entt::entity &a, const entt::entity &b) {
+                  const auto pos_a = registry_->get<TransformComponent>(a).position;
+                  const auto pos_b = registry_->get<TransformComponent>(b).position;
+                  if (almost_equal(pos_a.y, pos_b.y))
+                      return pos_a.x < pos_b.x;
+                  return pos_a.y < pos_b.y;
+              });
     Renderer::set_hold_bitmap(true);
-    for (const auto entity: group) {
-        auto &transform = group.get<TransformComponent>(entity);
-        auto &render = group.get<RenderComponent>(entity);
-        if (is_on_screen(registry_->get<CameraComponent>(camera).transform,
+    for (auto entity: sortable_entities) {
+        auto &transform = registry_->get<TransformComponent>(entity);
+        auto &render = registry_->get<RenderComponent>(entity);
+        if (is_on_screen(registry_->get<CameraComponent>(camera_entity).transform,
                          transform.position - render.offset,
                          render.width, render.height)) {
             renderer_->draw_resource(render.sprite_id, transform.position, render.offset);

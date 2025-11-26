@@ -32,13 +32,12 @@ private
 
     std::unordered_map<long long, std::set<entt::entity> > cells_;
 
-    static GridRect compute_grid_rect(const Vec2 &pos, const int radius);
+    GridRect compute_grid_rect(const Vec2 &pos, const int radius) const;
 
     long long make_key(const Vec2 &pos) const;
 
     std::set<entt::entity> collect_entities(GridRect grid_rect) const;
 
-    static float compute_radius(const ColliderComponent &collider);
 };
 
 
