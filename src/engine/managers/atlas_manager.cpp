@@ -25,9 +25,10 @@ AtlasManager::~AtlasManager() {
 }
 
 void AtlasManager::add_sprite(const std::string &name, ALLEGRO_BITMAP* sprite) {
-    smol_atlas_item_t* item = sma_item_add(manager_, al_get_bitmap_width(sprite), al_get_bitmap_height(sprite));
+    constexpr float offset = 1.0f;
+    smol_atlas_item_t* item = sma_item_add(manager_, al_get_bitmap_width(sprite) + offset * 2, al_get_bitmap_height(sprite) + offset * 2);
     if (item) {
-        Vec2 position = {(float) sma_item_x(item), (float) sma_item_y(item)};
+        Vec2 position = {(float) sma_item_x(item) + offset, (float) sma_item_y(item) + offset};
         regions_[name] = AtlasRegion{
             bitmap_, position, al_get_bitmap_width(sprite), al_get_bitmap_height(sprite)
         };
