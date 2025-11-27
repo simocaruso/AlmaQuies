@@ -9,7 +9,8 @@ enum TileType {
     Grass,
     Forest,
     Mountain,
-    Water
+    Water,
+    DeepWater,
 };
 
 #endif //FARMANDCONQUER_TILE_HPP

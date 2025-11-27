@@ -122,6 +122,16 @@ add_library(smol_atlas STATIC
         third_party/smol_atlas/smol_atlas.cpp
 )
 
+add_library(imgui STATIC
+        third_party/imgui/imgui_impl_allegro5.cpp
+        third_party/imgui/imgui.cpp
+        third_party/imgui/imgui_draw.cpp
+        third_party/imgui/imgui_widgets.cpp
+        third_party/imgui/imgui_tables.cpp
+        third_party/imgui/imgui_demo.cpp          # optional
+        third_party/imgui/imgui_impl_allegro5.cpp
+)
+
 target_include_directories(FarmAndConquer PRIVATE
         third_party
 )
@@ -137,4 +147,5 @@ target_link_libraries(FarmAndConquer
         ${allegro_audio-5_LIBRARIES}
         ${allegro_acodec-5_LIBRARIES}
         smol_atlas
+        imgui
 )

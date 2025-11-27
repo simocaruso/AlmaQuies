@@ -23,6 +23,7 @@ Map MapTilesGenerator::generate(const int width, const int height) {
                 tile = Mountain;
             } else if (e < 0.38f) {
                 tile = Water;
+                if (e < 0.30f) tile = DeepWater;
             } else if (f > 0.40f && e < 0.45f) {
                 tile = Forest;
             } else {

@@ -19,7 +19,7 @@ public:
 
     static bool get_hold_bimap_status();
 
-    static void draw_rect(Vec2 pos, int width, int height);
+    void draw_rect(Vec2 pos, int width, int height);
 
     static void draw_scaled_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_position, const float &destination_width,
                                    const float &destination_height);

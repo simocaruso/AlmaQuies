@@ -3,10 +3,14 @@
 //
 
 #include "renderer.hpp"
+
+#include <allegro5/allegro_primitives.h>
+
 #include "../../../util/constants.hpp"
 #include "../../managers/resource_manager.hpp"
 
 Renderer::Renderer(ResourceManager* resource_manager) : resource_manager_(resource_manager) {
+    al_init_primitives_addon();
 }
 
 void Renderer::clear_to_color(const float r, const float g, const float b, const float a) {
@@ -19,6 +23,12 @@ void Renderer::set_hold_bitmap(const bool status) {
 
 bool Renderer::get_hold_bimap_status() {
     return al_is_bitmap_drawing_held();
+}
+
+
+void Renderer::draw_rect(Vec2 pos, int width, int height) {
+    al_draw_rectangle(pos.x, pos.y,
+        pos.x + width, pos.y + height, al_map_rgb_f(1, 0, 0), 4);
 }
 
 void Renderer::draw_scaled_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_position,

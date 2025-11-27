@@ -52,8 +52,8 @@ void RenderingSystem::render_entities() const {
     auto pos = registry_->get<TransformComponent>(camera_entity).position;
 
     const Vec2 offset{
-        BUFF_W / cam.zoom / 2.0f,
-        BUFF_H / cam.zoom / 2.0f
+        BUFF_W / 2.0f,
+        BUFF_H / 2.0f
     };
     float radius = compute_rect_radius(BUFF_W / cam.zoom, BUFF_H / cam.zoom);
 

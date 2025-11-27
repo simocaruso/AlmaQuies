@@ -52,8 +52,8 @@ std::set<entt::entity> SpatialGrid::query_nearby(const Vec2 &pos, const int radi
 std::set<entt::entity> SpatialGrid::collect_entities(const GridRect grid_rect) const {
     std::set<entt::entity> res;
 
-    for (int i = grid_rect.min_x - cell_size_; i <= grid_rect.max_x + cell_size_ - 1; i += cell_size_) {
-        for (int j = grid_rect.min_y - cell_size_; j <= grid_rect.max_y + cell_size_ - 1; j += cell_size_) {
+    for (int i = grid_rect.min_x - cell_size_; i <= grid_rect.max_x; i += cell_size_) {
+        for (int j = grid_rect.min_y - cell_size_; j <= grid_rect.max_y; j += cell_size_) {
             auto it = cells_.find(make_key(Vec2(i, j)));
             if (it != cells_.end())
                 res.insert(it->second.begin(), it->second.end());

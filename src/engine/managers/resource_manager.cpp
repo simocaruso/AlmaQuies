@@ -52,6 +52,8 @@ std::string ResourceManager::get_resource_name(const TileType &tile) {
             return "mountain_tile";
         case Water:
             return "water_tile";
+        case DeepWater:
+            return "deep_water_tile";
         default:
             return "default_tile";
     }
