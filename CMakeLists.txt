@@ -54,8 +54,8 @@ add_executable(FarmAndConquer
         src/engine/components/collider_component.hpp
         src/engine/systems/collision/collision_checker.cpp
         src/engine/systems/collision/collision_checker.hpp
-        src/engine/systems/collision/spatial_grid.cpp
-        src/engine/systems/collision/spatial_grid.hpp
+        engine/spatial_grid.cpp
+        engine/spatial_grid.hpp
         src/engine/systems/collision/collision_system.cpp
         src/engine/systems/collision/collision_system.hpp
         src/engine/systems/events/created_collidable_event.hpp

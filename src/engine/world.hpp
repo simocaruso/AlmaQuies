@@ -9,7 +9,6 @@
 #include "systems/rendering/rendering_system.hpp"
 #include "entity_loader.hpp"
 #include "managers/input_manager.hpp"
-#include "systems/input_system.hpp"
 #include "systems/collision/collision_system.hpp"
 #include "entity_factory.hpp"
 #include "map/map.hpp"
@@ -23,9 +22,9 @@ public:
     void render();
 
     template<typename T, typename... Args>
-    T &add_system(const SystemType &type, Args &&... args) {
+    T *add_system(const SystemType &type, Args &&... args) {
         auto system = std::make_unique<T>(std::forward<Args>(args)...);
-        T &ref = *system;
+        T* ref = system.get();
         systems_[type] = std::move(system);
         return ref;
     }

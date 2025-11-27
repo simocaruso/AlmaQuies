@@ -11,7 +11,7 @@
 #include "../../../util/util.hpp"
 #include "../../components/velocity_component.hpp"
 
-CollisionSystem::CollisionSystem(SpatialGrid* grid, entt::registry* registry, entt::dispatcher &dispatcher)
+CollisionSystem::CollisionSystem(SpatialGrid* grid, entt::registry* registry)
     : System(registry), grid_(grid) {
 }
 
@@ -27,7 +27,6 @@ void CollisionSystem::check_collisions() const {
         auto nearby = grid_->query_nearby(t1.position, compute_radius(c1));
         for (const auto e2: nearby) {
             if (e1 == e2) continue;
-            // if (!view.contains(e2)) continue;
             auto &t2 = view.get<TransformComponent>(e2);
             auto &c2 = view.get<ColliderComponent>(e2);
             if (CollisionChecker::collide(t1.position, c1, t2.position, c2)) {

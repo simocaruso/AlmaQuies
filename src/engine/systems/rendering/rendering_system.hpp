@@ -12,7 +12,7 @@
 #include "../../display.hpp"
 #include "renderer.hpp"
 #include "../../map/map.hpp"
-#include "../collision/spatial_grid.hpp"
+#include "../../../../engine/spatial_grid.hpp"
 
 
 class RenderingSystem : public System {

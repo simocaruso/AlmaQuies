@@ -13,15 +13,13 @@
 
 class EntityFileLoader {
 public:
-    EntityFileLoader(entt::registry* registry, entt::dispatcher* dispatcher,
-                 FileManager* file_manager, ResourceManager* resource_manager);
+    EntityFileLoader(entt::registry* registry, FileManager* file_manager, ResourceManager* resource_manager);
 
     entt::entity load_entity(const std::string &name, const Vec2 &position) const;
 
 private:
     JSONReader entities_config_;
     entt::registry* registry_;
-    entt::dispatcher* dispatcher_;
     FileManager* file_manager_;
     ResourceManager* resource_manager_;
 

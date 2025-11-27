@@ -5,7 +5,7 @@
 #ifndef FARMANDCONQUER_PLAYER_OCCLUSION_SYSTEM_HPP
 #define FARMANDCONQUER_PLAYER_OCCLUSION_SYSTEM_HPP
 #include "system.hpp"
-#include "collision/spatial_grid.hpp"
+#include "../../../engine/spatial_grid.hpp"
 #include "../components/render_component.hpp"
 
 struct Data {

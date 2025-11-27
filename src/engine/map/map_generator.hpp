@@ -9,7 +9,7 @@
 
 class MapGenerator {
 public:
-    static Map generate(int width, int height, const EntityFactory* entity_factory);
+    static Map generate(int width, int height, entt::registry* registry, EntityFactory* entity_factory);
 };
 
 

@@ -10,7 +10,7 @@
 #include "../components/transform_component.hpp"
 #include "../components/visibility_compnent.hpp"
 #include "collision/collision_checker.hpp"
-#include "collision/spatial_grid.hpp"
+#include "../../../engine/spatial_grid.hpp"
 
 
 OcclusionSystem::OcclusionSystem(entt::registry* registry, SpatialGrid* grid)

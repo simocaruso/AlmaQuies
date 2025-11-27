@@ -8,11 +8,9 @@
 #include "components/velocity_component.hpp"
 #include "../util/constants.hpp"
 
-EntityFactory::EntityFactory(entt::registry* registry, entt::dispatcher* dispatcher,
-                             FileManager* file_manager, ResourceManager* resource_manager)
-    : registry_(registry), dispatcher_(dispatcher) {
-    entity_loader_ = std::make_unique<EntityFileLoader>(registry_, dispatcher_,
-                                                    file_manager, resource_manager);
+EntityFactory::EntityFactory(entt::registry* registry, FileManager* file_manager, ResourceManager* resource_manager)
+    : registry_(registry) {
+    entity_loader_ = std::make_unique<EntityFileLoader>(registry_, file_manager, resource_manager);
 }
 
 entt::entity EntityFactory::create_from_file(const std::string &name, const Vec2 &position) const {
@@ -28,5 +26,11 @@ entt::entity EntityFactory::create_camera() const {
     velocity.deceleration_strength = CAMERA_DECELERATION_STRENGTH;
     velocity.max_speed = CAMERA_MAX_SPEED;
     registry_->emplace<VelocityComponent>(res, velocity);
+    return res;
+}
+
+entt::entity EntityFactory::create_basic_unit(const Vec2 &pos) const {
+    const auto res = registry_->create();
+    registry_->emplace<TransformComponent>(res, pos, pos);
     return res;
 }

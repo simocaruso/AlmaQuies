@@ -7,17 +7,12 @@
 #include "../../util/util.hpp"
 #include "../components/render_component.hpp"
 #include "collision/collision_system.hpp"
-#include "events/created_collidable_event.hpp"
 #include "../components/transform_component.hpp"
 #include "../components/velocity_component.hpp"
-#include "events/created_renderable_event.hpp"
 
 
-SpatialGridSystem::SpatialGridSystem(SpatialGrid* rendering_grid, SpatialGrid* physic_grid, entt::registry* registry,
-                                     entt::dispatcher* dispatcher)
+SpatialGridSystem::SpatialGridSystem(SpatialGrid* rendering_grid, SpatialGrid* physic_grid, entt::registry* registry)
     : System(registry), rendering_grid_(rendering_grid), physic_grid_(physic_grid) {
-    dispatcher->sink<CreatedCollidableEvent>().connect<&SpatialGridSystem::on_created_collidable>(this);
-    dispatcher->sink<CreatedRenderableEvent>().connect<&SpatialGridSystem::on_created_renderable>(this);
 }
 
 void SpatialGridSystem::update(int elapsed) {
@@ -53,10 +48,14 @@ void SpatialGridSystem::register_moving_entities() const {
     }
 }
 
-void SpatialGridSystem::on_created_collidable(const CreatedCollidableEvent &event) const {
-    physic_grid_->insert(event.entity, event.position, compute_radius(event.collider));
+void SpatialGridSystem::on_created_collidable(entt::registry &registry, entt::entity entity) {
+    auto position = registry.get<TransformComponent>(entity).position;
+    auto collider = registry.get<ColliderComponent>(entity);
+    physic_grid_->insert(entity, position, compute_radius(collider));
 }
 
-void SpatialGridSystem::on_created_renderable(const CreatedRenderableEvent &event) const {
-    rendering_grid_->insert(event.entity, event.position, compute_rect_radius(event.render.width, event.render.height));
+void SpatialGridSystem::on_created_renderable(entt::registry &registry, entt::entity entity) {
+    auto position = registry.get<TransformComponent>(entity).position;
+    auto render = registry.get<RenderComponent>(entity);
+    rendering_grid_->insert(entity, position, compute_rect_radius(render.width, render.height));
 }

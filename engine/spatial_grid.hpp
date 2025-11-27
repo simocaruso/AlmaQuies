@@ -7,8 +7,8 @@
 
 #include <unordered_map>
 #include "entt/entt.hpp"
-#include "../../../util/vec_2.hpp"
-#include "../../components/collider_component.hpp"
+#include "../src/util/vec_2.hpp"
+#include "../src/engine/components/collider_component.hpp"
 
 struct GridRect {
     float min_x, max_x, min_y, max_y;
@@ -20,11 +20,11 @@ public:
 
     void clear();
 
-    void insert(const entt::entity &entity, const Vec2 &pos, const int radius);
+    void insert(const entt::entity &entity, const Vec2 &pos, int radius);
 
-    void remove(const entt::entity &entity, const Vec2 &pos, const int radius);
+    void remove(const entt::entity &entity, const Vec2 &pos, int radius);
 
-    std::set<entt::entity> query_nearby(const Vec2 &pos, const int radius) const;
+    std::set<entt::entity> query_nearby(const Vec2 &pos, int radius) const;
 
 private
 :
@@ -32,7 +32,7 @@ private
 
     std::unordered_map<long long, std::set<entt::entity> > cells_;
 
-    GridRect compute_grid_rect(const Vec2 &pos, const int radius) const;
+    GridRect compute_grid_rect(const Vec2 &pos, int radius) const;
 
     long long make_key(const Vec2 &pos) const;
 

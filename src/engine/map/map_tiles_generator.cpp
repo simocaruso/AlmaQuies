@@ -4,12 +4,18 @@
 
 #include "map_tiles_generator.hpp"
 
+#include "../components/collider_component.hpp"
+
 FastNoiseLite MapTilesGenerator::forest_noise_;
 FastNoiseLite MapTilesGenerator::rock_noise_;
 FastNoiseLite MapTilesGenerator::elevation_noise_;
 
-Map MapTilesGenerator::generate(const int width, const int height) {
+MapTilesGenerator::MapTilesGenerator(entt::registry* registry, EntityFactory* entity_factory)
+    : registry_(registry), entity_factory_(entity_factory) {
     set_up_noise();
+}
+
+Map MapTilesGenerator::generate(const int width, const int height, const int tile_size) const {
     Map res = {width, height};
 
     for (int i = 0; i < width; i++) {
@@ -24,6 +30,9 @@ Map MapTilesGenerator::generate(const int width, const int height) {
             } else if (e < 0.38f) {
                 tile = Water;
                 if (e < 0.30f) tile = DeepWater;
+                auto entity = entity_factory_->create_basic_unit(
+                    Vec2((i + 0.5) * tile_size, (j + 0.5) * tile_size));
+                registry_->emplace<ColliderComponent>(entity, RectCollider(tile_size, tile_size));
             } else if (f > 0.40f && e < 0.45f) {
                 tile = Forest;
             } else {
@@ -37,9 +46,9 @@ Map MapTilesGenerator::generate(const int width, const int height) {
 }
 
 void MapTilesGenerator::set_up_noise() {
-    forest_noise_.SetSeed((int)time(NULL));
-    elevation_noise_.SetSeed((int)time(NULL));
-    rock_noise_.SetSeed((int)time(NULL));
+    forest_noise_.SetSeed((int) time(NULL));
+    elevation_noise_.SetSeed((int) time(NULL));
+    rock_noise_.SetSeed((int) time(NULL));
 
     forest_noise_.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
     forest_noise_.SetFrequency(0.1f);

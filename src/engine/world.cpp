@@ -7,6 +7,7 @@
 #include "map/map_generator.hpp"
 #include "systems/camera_system.hpp"
 #include "../util/constants.hpp"
+#include "systems/input_system.hpp"
 #include "systems/movement_system.hpp"
 #include "systems/occlusion_system.hpp"
 #include "systems/spatial_grid_system.hpp"
@@ -20,19 +21,21 @@ World::World(Display* display, Renderer* renderer, ResourceManager* resource_man
     dispatcher_ = std::make_unique<entt::dispatcher>();
     physic_spatial_grid_ = std::make_unique<SpatialGrid>(SPATIAL_GRID_CELL_SIZE);
     rendering_spatial_grid_ = std::make_unique<SpatialGrid>(SPATIAL_GRID_CELL_SIZE);
-    add_system<SpatialGridSystem>(SPATIAL_GRID, rendering_spatial_grid_.get(), physic_spatial_grid_.get(),
-                                  registry_.get(), dispatcher_.get());
-    add_system<MovementSystem>(MOVEMENT, registry_.get(), *dispatcher_);
-    add_system<InputSystem>(INPUT, registry_.get(), input_manager_, dispatcher_.get());
-    add_system<CollisionSystem>(COLLISION, physic_spatial_grid_.get(), registry_.get(), *dispatcher_);
-    entity_factory_ = std::make_unique<EntityFactory>(registry_.get(), dispatcher_.get(),
-                                                      file_manager_, resource_manager_);
-    map_ = std::make_unique<Map>(MapGenerator::generate(128, 32, entity_factory_.get()));
-    add_system<RenderingSystem>(RENDERING, map_.get(), rendering_spatial_grid_.get(), registry_.get(), renderer_, display_);
-    add_system<CameraSystem>(CAMERA, registry_.get(), *dispatcher_);
-    add_system<OcclusionSystem>(OCCLUSION, registry_.get(), rendering_spatial_grid_.get());
+    auto spatial_sys = add_system<SpatialGridSystem>(SPATIAL_GRID, rendering_spatial_grid_.get(),
+                                                     physic_spatial_grid_.get(), registry_.get());
+    registry_->on_construct<ColliderComponent>().connect<&SpatialGridSystem::on_created_collidable>(spatial_sys);
+    registry_->on_construct<RenderComponent>().connect<&SpatialGridSystem::on_created_renderable>(spatial_sys);
+    entity_factory_ = std::make_unique<EntityFactory>(registry_.get(), file_manager_, resource_manager_);
+    map_ = std::make_unique<Map>(MapGenerator::generate(128, 32, registry_.get(), entity_factory_.get()));
     entity_factory_->create_from_file("blue", Vec2(100, 100));
     entity_factory_->create_camera();
+    add_system<MovementSystem>(MOVEMENT, registry_.get(), *dispatcher_);
+    add_system<InputSystem>(INPUT, registry_.get(), input_manager_, dispatcher_.get());
+    add_system<CollisionSystem>(COLLISION, physic_spatial_grid_.get(), registry_.get());
+    add_system<RenderingSystem>(RENDERING, map_.get(), rendering_spatial_grid_.get(), registry_.get(), renderer_,
+                                display_);
+    add_system<CameraSystem>(CAMERA, registry_.get(), *dispatcher_);
+    add_system<OcclusionSystem>(OCCLUSION, registry_.get(), rendering_spatial_grid_.get());
 }
 
 void World::update(const int elapsed) const {

@@ -5,10 +5,11 @@
 #include "map_generator.hpp"
 #include "map_tiles_generator.hpp"
 #include "map_resources_generator.hpp"
+#include "../../util/constants.hpp"
 
-
-Map MapGenerator::generate(const int width, const int height, const EntityFactory* entity_factory) {
-    auto res = MapTilesGenerator::generate(width, height);
+Map MapGenerator::generate(const int width, const int height, entt::registry* registry, EntityFactory* entity_factory) {
+    const MapTilesGenerator map_tiles_generator{registry, entity_factory};
+    auto res = map_tiles_generator.generate(width, height, TILE_SIZE);
     MapResourcesGenerator::generate(&res, entity_factory);
     return res;
 }

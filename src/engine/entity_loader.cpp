@@ -12,9 +12,9 @@
 #include "systems/events/created_collidable_event.hpp"
 #include "systems/events/created_renderable_event.hpp"
 
-EntityFileLoader::EntityFileLoader(entt::registry* registry, entt::dispatcher* dispatcher,
-                                   FileManager* file_manager, ResourceManager* resource_manager)
-    : registry_(registry), dispatcher_(dispatcher), file_manager_(file_manager), resource_manager_(resource_manager) {
+EntityFileLoader::EntityFileLoader(entt::registry* registry, FileManager* file_manager,
+                                   ResourceManager* resource_manager)
+    : registry_(registry), file_manager_(file_manager), resource_manager_(resource_manager) {
     entities_config_.load(file_manager_->get_file("entities", "entities", "json"));
 }
 
@@ -39,11 +39,6 @@ void EntityFileLoader::render(const std::string &name, const entt::entity &entit
         render_component.offset = vec2(fmt::format("{}.offset", base_field));
     }
     registry_->emplace<RenderComponent>(entity, render_component);
-    dispatcher_->enqueue(CreatedRenderableEvent{
-        entity,
-        registry_->get<TransformComponent>(entity).position,
-        registry_->get<RenderComponent>(entity)
-    });
 }
 
 void EntityFileLoader::collision(const std::string &name, const entt::entity &entity) const {
@@ -64,11 +59,6 @@ void EntityFileLoader::collision(const std::string &name, const entt::entity &en
     } else {
         return;
     }
-    dispatcher_->enqueue(CreatedCollidableEvent{
-        entity,
-        registry_->get<TransformComponent>(entity).position,
-        registry_->get<ColliderComponent>(entity)
-    });
 }
 
 Vec2 EntityFileLoader::vec2(const std::string &field) const {
