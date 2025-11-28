@@ -8,13 +8,13 @@
 #include "entt/entt.hpp"
 
 enum SystemType {
-    RENDERING,
-    COLLISION,
+    OCCLUSION,
     MOVEMENT,
+    SPATIAL_GRID,
+    COLLISION,
     INPUT,
     CAMERA,
-    SPATIAL_GRID,
-    OCCLUSION,
+    RENDERING,
 };
 
 class System {

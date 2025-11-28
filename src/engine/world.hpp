@@ -43,7 +43,7 @@ private:
     std::unique_ptr<Map> map_;
     std::unique_ptr<SpatialGrid> physic_spatial_grid_;
     std::unique_ptr<SpatialGrid> rendering_spatial_grid_;
-    std::unordered_map<SystemType, std::unique_ptr<System> > systems_;
+    std::map<SystemType, std::unique_ptr<System> > systems_;
 };
 
 
