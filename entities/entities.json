@@ -36,5 +36,12 @@
       "shape": "circle",
       "radius": 13
     }
+  },
+  "not_walkable_tile": {
+    "collider": {
+      "shape": "rect",
+      "width": 64,
+      "height": 64
+    }
   }
 }

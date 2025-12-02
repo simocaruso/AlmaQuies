@@ -8,8 +8,8 @@
 #include "../../util/constants.hpp"
 
 Map MapGenerator::generate(const int width, const int height, entt::registry* registry, EntityFactory* entity_factory) {
-    const MapTilesGenerator map_tiles_generator{registry, entity_factory};
-    auto res = map_tiles_generator.generate(width, height, TILE_SIZE);
+    const MapTilesGenerator tiles{registry, entity_factory};
+    auto res = tiles.generate(width, height, TILE_SIZE);
     MapResourcesGenerator::generate(&res, entity_factory);
     return res;
 }

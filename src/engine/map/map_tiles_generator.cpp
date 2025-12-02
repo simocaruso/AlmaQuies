@@ -18,8 +18,27 @@ MapTilesGenerator::MapTilesGenerator(entt::registry* registry, EntityFactory* en
 Map MapTilesGenerator::generate(const int width, const int height, const int tile_size) const {
     Map res = {width, height};
 
+    // Create borders
     for (int i = 0; i < width; i++) {
-        for (int j = 0; j < height; j++) {
+        res.add_tile(Vec2(i, 0), Water);
+        entity_factory_->create_from_file("not_walkable_tile",
+                                          Vec2((i + 0.5) * tile_size, tile_size / 2));
+        res.add_tile(Vec2(i, height - 1), Water);
+        entity_factory_->create_from_file("not_walkable_tile",
+                                          Vec2((i + 0.5) * tile_size, (height - 1 + 0.5) * tile_size ));
+    }
+
+    for (int j = 0; j < height; j++) {
+        res.add_tile(Vec2(0, j), Water);
+        entity_factory_->create_from_file("not_walkable_tile",
+                                          Vec2(tile_size / 2, (j + 0.5) * tile_size));
+        res.add_tile(Vec2(width - 1, j), Water);
+        entity_factory_->create_from_file("not_walkable_tile",
+                                          Vec2((width - 1 + 0.5) * tile_size, (j + 0.5) * tile_size));
+    }
+
+    for (int i = 1; i < width - 1; i++) {
+        for (int j = 1; j < height - 1; j++) {
             float f = forest_noise_.GetNoise(float(i), float(j)) * 0.5f + 0.5f;
             float r = rock_noise_.GetNoise(float(i), float(j)) * 0.5f + 0.5f;
             float e = elevation_noise_.GetNoise(float(i), float(j)) * 0.5f + 0.5f;
@@ -30,9 +49,8 @@ Map MapTilesGenerator::generate(const int width, const int height, const int til
             } else if (e < 0.38f) {
                 tile = Water;
                 if (e < 0.30f) tile = DeepWater;
-                auto entity = entity_factory_->create_basic_unit(
-                    Vec2((i + 0.5) * tile_size, (j + 0.5) * tile_size));
-                registry_->emplace<ColliderComponent>(entity, RectCollider(tile_size, tile_size));
+                entity_factory_->create_from_file("not_walkable_tile",
+                                                  Vec2((i + 0.5) * tile_size, (j + 0.5) * tile_size));
             } else if (f > 0.40f && e < 0.45f) {
                 tile = Forest;
             } else {

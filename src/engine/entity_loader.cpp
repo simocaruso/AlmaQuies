@@ -24,7 +24,9 @@ entt::entity EntityFileLoader::load_entity(const std::string &name, const Vec2 &
     if (entities_config_.has_field(fmt::format("{}.playerTag", name))) {
         registry_->emplace<PlayerTag>(res);
     }
-    render(name, res);
+    if (entities_config_.has_field(fmt::format("{}.render", name))) {
+        render(name, res);
+    }
     collision(name, res);
     return res;
 }
