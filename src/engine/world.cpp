@@ -10,13 +10,13 @@
 #include "systems/input_system.hpp"
 #include "systems/movement_system.hpp"
 #include "systems/occlusion_system.hpp"
+#include "systems/overlay_system.hpp"
 #include "systems/spatial_grid_system.hpp"
 
 World::World(Display* display, Renderer* renderer, ResourceManager* resource_manager, FileManager* file_manager,
              InputManager* input_manager) : display_(display), renderer_(renderer),
-                                            resource_manager_(resource_manager),
-                                            file_manager_(file_manager),
-                                            input_manager_(input_manager) {
+                                            resource_manager_(resource_manager), file_manager_(file_manager),
+                                            input_manager_(input_manager), display_target_(display) {
     registry_ = std::make_unique<entt::registry>();
     dispatcher_ = std::make_unique<entt::dispatcher>();
     physic_spatial_grid_ = std::make_unique<SpatialGrid>(SPATIAL_GRID_CELL_SIZE);
@@ -36,6 +36,7 @@ World::World(Display* display, Renderer* renderer, ResourceManager* resource_man
                                 display_);
     add_system<CameraSystem>(CAMERA, registry_.get(), *dispatcher_);
     add_system<OcclusionSystem>(OCCLUSION, registry_.get(), rendering_spatial_grid_.get());
+    add_system<OverlaySystem>(OVERLAY, registry_.get(), display);
 }
 
 void World::update(const int elapsed) const {
@@ -46,5 +47,8 @@ void World::update(const int elapsed) const {
 }
 
 void World::render() {
+    display_target_.begin();
     systems_[RENDERING]->render();
+    systems_[OVERLAY]->render();
+    display_target_.end();
 }

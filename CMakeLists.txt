@@ -88,6 +88,12 @@ add_executable(FarmAndConquer
         src/engine/components/visibility_compnent.hpp
         src/engine/systems/rendering/occluded_entities_renderer.cpp
         src/engine/systems/rendering/occluded_entities_renderer.hpp
+        src/engine/systems/overlay_system.cpp
+        src/engine/systems/overlay_system.hpp
+        src/engine/overlay/window.cpp
+        src/engine/overlay/window.hpp
+        src/engine/overlay/window_factory.cpp
+        src/engine/overlay/window_factory.hpp
 )
 
 add_custom_target(

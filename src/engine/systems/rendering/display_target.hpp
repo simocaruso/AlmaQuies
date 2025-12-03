@@ -6,6 +6,7 @@
 #define FARMANDCONQUER_DISPLAY_TARGET_HPP
 
 
+#include "bitmap_target.hpp"
 #include "render_target.hpp"
 #include "../../display.hpp"
 
@@ -19,6 +20,8 @@ public:
 
 private:
     Display* display_;
+    ALLEGRO_BITMAP* render_buffer_;
+    BitmapTarget bitmap_target_;
 };
 
 

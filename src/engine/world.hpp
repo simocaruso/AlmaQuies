@@ -12,6 +12,7 @@
 #include "systems/collision/collision_system.hpp"
 #include "entity_factory.hpp"
 #include "map/map.hpp"
+#include "systems/rendering/display_target.hpp"
 
 
 class World {
@@ -37,6 +38,7 @@ private:
     ResourceManager *resource_manager_;
     FileManager *file_manager_;
     InputManager *input_manager_;
+    DisplayTarget display_target_;
     std::unique_ptr<entt::registry> registry_;
     std::unique_ptr<entt::dispatcher> dispatcher_;
     std::unique_ptr<EntityFactory> entity_factory_;

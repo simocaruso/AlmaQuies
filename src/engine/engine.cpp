@@ -72,7 +72,6 @@ void Engine::game_loop() {
         }
 
         elapsed = update_elapsed();
-        printf("Elapsed: %d\n", elapsed);
     }
     al_stop_timer(timer_);
 }

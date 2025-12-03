@@ -19,8 +19,6 @@ class RenderingSystem : public System {
 public:
     RenderingSystem(Map* map, SpatialGrid* grid, entt::registry* registry, Renderer* renderer, Display* display);
 
-    ~RenderingSystem();
-
     void update(int elapsed) override {
     };
 
@@ -28,7 +26,6 @@ public:
 
 private:
     Display* display_;
-    ALLEGRO_BITMAP* render_buffer;
     Renderer* renderer_;
     MapRenderer map_renderer_;
     OccludedEntitiesRenderer occluded_entities_renderer_;

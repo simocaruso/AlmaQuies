@@ -16,27 +16,13 @@ RenderingSystem::RenderingSystem(Map* map, SpatialGrid* grid, entt::registry* re
                                  Display* display)
     : System(registry), grid_(grid), display_(display), renderer_(renderer),
       map_renderer_(map, registry, renderer), occluded_entities_renderer_(registry, renderer) {
-    render_buffer = al_create_bitmap(BUFF_W, BUFF_H);
-}
-
-RenderingSystem::~RenderingSystem() {
-    al_destroy_bitmap(render_buffer);
 }
 
 void RenderingSystem::render() {
-    BitmapTarget bitmap_target(render_buffer);
-    bitmap_target.begin();
-    Renderer::clear_to_color(.5f, .5f, .5f);
     update_camera();
     map_renderer_.render();
     render_entities();
     occluded_entities_renderer_.render();
-    bitmap_target.end();
-
-    DisplayTarget display_target(display_);
-    display_target.begin();
-    Renderer::draw_scaled_bitmap(render_buffer, Vec2(0, 0), display_->get_width(), display_->get_height());
-    display_target.end();
 }
 
 void RenderingSystem::update_camera() const {

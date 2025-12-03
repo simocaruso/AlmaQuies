@@ -9,12 +9,13 @@
 
 enum SystemType {
     OCCLUSION,
+    CAMERA,
     MOVEMENT,
     SPATIAL_GRID,
     COLLISION,
     INPUT,
-    CAMERA,
     RENDERING,
+    OVERLAY
 };
 
 class System {
