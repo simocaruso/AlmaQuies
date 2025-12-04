@@ -8,6 +8,7 @@
 #include "entt/entt.hpp"
 
 enum SystemType {
+    FPS,
     OCCLUSION,
     CAMERA,
     MOVEMENT,

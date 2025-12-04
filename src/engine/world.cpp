@@ -7,6 +7,7 @@
 #include "map/map_generator.hpp"
 #include "systems/camera_system.hpp"
 #include "../util/constants.hpp"
+#include "systems/fps_system.hpp"
 #include "systems/input_system.hpp"
 #include "systems/movement_system.hpp"
 #include "systems/occlusion_system.hpp"
@@ -37,6 +38,7 @@ World::World(Display* display, Renderer* renderer, ResourceManager* resource_man
     add_system<CameraSystem>(CAMERA, registry_.get(), *dispatcher_);
     add_system<OcclusionSystem>(OCCLUSION, registry_.get(), rendering_spatial_grid_.get());
     add_system<OverlaySystem>(OVERLAY, registry_.get(), display);
+    add_system<FpsSystem>(FPS, registry_.get());
 }
 
 void World::update(const int elapsed) const {
@@ -48,7 +50,8 @@ void World::update(const int elapsed) const {
 
 void World::render() {
     display_target_.begin();
-    systems_[RENDERING]->render();
-    systems_[OVERLAY]->render();
+    for (auto &[n, system]: systems_) {
+        system->render();
+    }
     display_target_.end();
 }

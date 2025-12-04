@@ -94,6 +94,8 @@ add_executable(FarmAndConquer
         src/engine/overlay/window.hpp
         src/engine/overlay/window_factory.cpp
         src/engine/overlay/window_factory.hpp
+        src/engine/systems/fps_system.cpp
+        src/engine/systems/fps_system.hpp
 )
 
 add_custom_target(

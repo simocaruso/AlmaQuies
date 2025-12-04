@@ -4,6 +4,7 @@
 
 #include "window_factory.hpp"
 
+#include "../systems/fps_system.hpp"
 #include "entt/entt.hpp"
 
 Window WindowFactory::create_fps_window(entt::registry *registry) {
@@ -14,7 +15,7 @@ Window WindowFactory::create_fps_window(entt::registry *registry) {
         ImGui::SetWindowPos(ImVec2(0,0));
         ImGui::SetWindowFontScale(1.5f);
         ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0, 0, 0, 1));
-        ImGui::TextWrapped("FPS 60");
+        ImGui::TextWrapped("FPS %lu", registry->ctx().get<Fps>().value);
         ImGui::PopStyleColor();
     });
     return w;
