@@ -30,9 +30,8 @@ void CollisionSystem::check_collisions() const {
             auto &t2 = view.get<TransformComponent>(e2);
             auto &c2 = view.get<ColliderComponent>(e2);
             if (CollisionChecker::collide(t1.position, c1, t2.position, c2)) {
-                CollisionResolver::resolve_collision(t1, t2);
+                CollisionResolver::resolve_collision(registry_, e1, e2);
             }
         }
     }
 }
-

@@ -5,11 +5,14 @@
 #ifndef FARMANDCONQUER_COLLISION_RESOLVER_HPP
 #define FARMANDCONQUER_COLLISION_RESOLVER_HPP
 
-#include "../../components/transform_component.hpp"
+#include "entt/entt.hpp"
 
 class CollisionResolver {
 public:
-    static void resolve_collision(TransformComponent &t1, TransformComponent &t2);
+    static void resolve_collision(entt::registry* registry, entt::entity entity1, entt::entity entity2);
+
+private:
+    static void get_data(entt::registry* registry, entt::entity entity);
 };
 
 

@@ -25,7 +25,6 @@ void MapResourcesGenerator::generate_trees(const Map* map, const EntityFactory* 
             }
         }
     }
-    printf("Generated %d trees\n", counter);
 }
 
 void MapResourcesGenerator::generate_rocks(const Map* map, const EntityFactory* entity_factory) {
@@ -41,5 +40,4 @@ void MapResourcesGenerator::generate_rocks(const Map* map, const EntityFactory* 
             }
         }
     }
-    printf("Generated %d rocks\n", counter);
 }
