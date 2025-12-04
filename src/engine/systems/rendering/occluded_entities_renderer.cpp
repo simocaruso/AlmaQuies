@@ -7,6 +7,8 @@
 #include "../../components/render_component.hpp"
 #include "../../components/transform_component.hpp"
 #include "../../../util/constants.hpp"
+#include "../../components/name_component.hpp"
+#include "fmt/format.h"
 
 OccludedEntitiesRenderer::OccludedEntitiesRenderer(entt::registry* registry, Renderer* renderer)
     : System(registry), renderer_(renderer) {
@@ -19,6 +21,7 @@ void OccludedEntitiesRenderer::render() {
         auto &visible = registry_->get<VisibilityComponent>(entity);
         auto &render = view.get<RenderComponent>(entity);
         if (!visible.visible)
-            renderer_->draw_resource(render.sprite_id + BORDER_SUFFIX, transform.position, render.offset);
+            renderer_->draw_resource(fmt::format("{}{}", registry_->get<NameComponent>(entity).name, BORDER_SUFFIX),
+                                     transform.position, render.offset);
     }
 }

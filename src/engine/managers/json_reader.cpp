@@ -19,14 +19,25 @@ bool JSONReader::load(const std::string &filename) {
 }
 
 bool JSONReader::has_field(const std::string &path) const {
+    return visit(path);
+}
+
+nlohmann::detail::iteration_proxy<nlohmann::detail::iter_impl<const nlohmann::basic_json<>>> JSONReader::items(
+    const std::string &path) const {
+    const auto node = visit(path);
+    return node->items();
+}
+
+const nlohmann::json* JSONReader::visit(const std::string &path) const {
     const nlohmann::json* current = &data_;
     size_t start = 0, end;
     while ((end = path.find('.', start)) != std::string::npos) {
         std::string key = path.substr(start, end - start);
-        if (!current->contains(key)) return false;
+        if (!current->contains(key)) return nullptr;
         current = &(*current)[key];
         start = end + 1;
     }
     const std::string last_key = path.substr(start);
-    return current->contains(last_key);
+    if (!current->contains(last_key)) return nullptr;
+    return &(*current)[last_key];;
 }

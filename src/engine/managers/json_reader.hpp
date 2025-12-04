@@ -15,6 +15,7 @@ public:
 
     [[nodiscard]] bool has_field(const std::string &path) const;
 
+
     template<typename T>
     T get(const std::string &path) const {
         const nlohmann::json* current = &data_;
@@ -28,8 +29,13 @@ public:
         return current->at(last_key).get<T>();
     }
 
+    nlohmann::detail::iteration_proxy<nlohmann::detail::iter_impl<const nlohmann::basic_json<>>> items(
+        const std::string &path) const;
+
 private:
     nlohmann::json data_;
+
+    const nlohmann::json* visit(const std::string &path) const;
 };
 
 #endif //FARMANDCONQUER_JSON_READER_HPP

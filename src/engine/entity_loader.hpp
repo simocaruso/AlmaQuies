@@ -27,6 +27,8 @@ private:
 
     void collision(const std::string &name, const entt::entity &entity) const;
 
+    void animation(const std::string &name, const entt::entity &entity) const;
+
     Vec2 vec2(const std::string &field) const;
 };
 

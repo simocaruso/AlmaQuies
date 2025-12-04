@@ -15,6 +15,7 @@ enum SystemType {
     SPATIAL_GRID,
     COLLISION,
     INPUT,
+    ANIMATION,
     RENDERING,
     OVERLAY
 };

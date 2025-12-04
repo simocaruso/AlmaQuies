@@ -5,10 +5,13 @@
 #include "entity_loader.hpp"
 #include <fmt/core.h>
 
+#include "components/animation_component.hpp"
 #include "components/collider_component.hpp"
+#include "components/name_component.hpp"
 #include "components/transform_component.hpp"
 #include "components/render_component.hpp"
 #include "components/player_tag.hpp"
+#include "components/state_component.hpp"
 #include "systems/events/created_collidable_event.hpp"
 #include "systems/events/created_renderable_event.hpp"
 
@@ -20,21 +23,24 @@ EntityFileLoader::EntityFileLoader(entt::registry* registry, FileManager* file_m
 
 entt::entity EntityFileLoader::load_entity(const std::string &name, const Vec2 &position) const {
     const auto res = registry_->create();
+    registry_->emplace<NameComponent>(res, name);
     registry_->emplace<TransformComponent>(res, position, position);
     if (entities_config_.has_field(fmt::format("{}.playerTag", name))) {
         registry_->emplace<PlayerTag>(res);
     }
-    if (entities_config_.has_field(fmt::format("{}.render", name))) {
-        render(name, res);
-    }
+    render(name, res);
     collision(name, res);
+    animation(name, res);
     return res;
 }
 
 void EntityFileLoader::render(const std::string &name, const entt::entity &entity) const {
     auto base_field = fmt::format("{}.render", name);
+    if (!entities_config_.has_field(base_field)) {
+        return;
+    }
     RenderComponent render_component;
-    render_component.sprite_id = name;
+    render_component.sprite = name;
     render_component.width = resource_manager_->get_resource_width(name);
     render_component.height = resource_manager_->get_resource_height(name);
     if (entities_config_.has_field(base_field)) {
@@ -58,9 +64,25 @@ void EntityFileLoader::collision(const std::string &name, const entt::entity &en
         r.width = entities_config_.get<int>(fmt::format("{}.width", base_field));
         r.height = entities_config_.get<int>(fmt::format("{}.height", base_field));
         registry_->emplace<ColliderComponent>(entity, r);
-    } else {
+    }
+}
+
+void EntityFileLoader::animation(const std::string &name, const entt::entity &entity) const {
+    auto base_field = fmt::format("{}.animations", name);
+    if (!entities_config_.has_field(base_field)) {
         return;
     }
+    AnimationComponent res;
+    for (auto field: entities_config_.items(base_field)) {
+        Animation anim;
+        anim.name = field.key();
+        anim.num_frames = field.value().at("frames");
+        anim.frame_speed = field.value().at("frame_speed");
+        res.animations.push_back(anim);
+        res.active = anim;
+    }
+    registry_->emplace<AnimationComponent>(entity, res);
+    registry_->emplace<StateComponent>(entity);
 }
 
 Vec2 EntityFileLoader::vec2(const std::string &field) const {

@@ -9,8 +9,8 @@
 #include "../../util/vec_2.hpp"
 
 struct RenderComponent {
-    std::string sprite_id;
-    int width, height;
+    std::string sprite;
+    size_t width, height;
     Vec2 offset;
 };
 

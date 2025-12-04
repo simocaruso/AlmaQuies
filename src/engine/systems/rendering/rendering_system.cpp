@@ -62,7 +62,7 @@ void RenderingSystem::render_entities() const {
         if (is_on_screen(registry_->get<CameraComponent>(camera_entity).transform,
                          transform.position - render.offset,
                          render.width, render.height)) {
-            renderer_->draw_resource(render.sprite_id, transform.position, render.offset);
+            renderer_->draw_resource(render.sprite, transform.position, render.offset);
         }
     }
     Renderer::set_hold_bitmap(false);

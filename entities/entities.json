@@ -1,5 +1,5 @@
 {
-  "blue": {
+  "player": {
     "playerTag": {},
     "render": {
       "offset": {
@@ -10,6 +10,12 @@
     "collider": {
       "shape": "circle",
       "radius": 4
+    },
+    "animations": {
+      "walking": {
+        "frames": 4,
+        "frame_speed": 200
+      }
     }
   },
   "tree": {
