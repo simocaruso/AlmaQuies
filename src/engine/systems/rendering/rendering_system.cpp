@@ -13,9 +13,9 @@
 #include "../../components/transform_component.hpp"
 
 RenderingSystem::RenderingSystem(Map* map, SpatialGrid* grid, entt::registry* registry, Renderer* renderer,
-                                 Display* display)
+                                 Display* display, FileManager* file_manager)
     : System(registry), grid_(grid), display_(display), renderer_(renderer),
-      map_renderer_(map, registry, renderer), occluded_entities_renderer_(registry, renderer) {
+      map_renderer_(map, registry, renderer), occluded_entities_renderer_(registry, renderer, file_manager) {
 }
 
 void RenderingSystem::render() {

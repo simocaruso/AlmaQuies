@@ -10,18 +10,23 @@
 #include "../../components/name_component.hpp"
 #include "fmt/format.h"
 
-OccludedEntitiesRenderer::OccludedEntitiesRenderer(entt::registry* registry, Renderer* renderer)
-    : System(registry), renderer_(renderer) {
+OccludedEntitiesRenderer::OccludedEntitiesRenderer(entt::registry *registry, Renderer *renderer,
+                                                   FileManager *file_manager)
+    : System(registry), renderer_(renderer),
+      shader_(file_manager->get_file("shaders", "vertex", "glsl"),
+              file_manager->get_file("shaders", "outline", "glsl")) {
 }
 
 void OccludedEntitiesRenderer::render() {
+    shader_.use();
     auto view = registry_->view<VisibilityComponent, TransformComponent, RenderComponent>();
     for (const auto entity: view) {
         auto &transform = view.get<TransformComponent>(entity);
         auto &visible = registry_->get<VisibilityComponent>(entity);
-        auto &render = view.get<RenderComponent>(entity);
+        auto &render = registry_->get<RenderComponent>(entity);
+        shader_.set_float_vec("tex_size", std::vector{(float)ATLAS_SIZE, (float)ATLAS_SIZE});
         if (!visible.visible)
-            renderer_->draw_resource(fmt::format("{}{}", registry_->get<NameComponent>(entity).name, BORDER_SUFFIX),
-                                     transform.position, render.offset);
+            renderer_->draw_resource(render.sprite, transform.position, render.offset);
     }
+    al_use_shader((NULL));
 }

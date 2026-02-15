@@ -17,7 +17,7 @@
 
 class RenderingSystem : public System {
 public:
-    RenderingSystem(Map* map, SpatialGrid* grid, entt::registry* registry, Renderer* renderer, Display* display);
+    RenderingSystem(Map* map, SpatialGrid* grid, entt::registry* registry, Renderer* renderer, Display* display, FileManager* file_manager);
 
     void update(int elapsed) override {
     };

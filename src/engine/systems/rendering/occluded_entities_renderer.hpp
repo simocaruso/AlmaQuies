@@ -7,15 +7,17 @@
 #include "renderer.hpp"
 #include "entt/entt.hpp"
 #include "../../systems/system.hpp"
+#include "../../shader.hpp"
 
 class OccludedEntitiesRenderer : public System {
 public:
-    OccludedEntitiesRenderer(entt::registry* registry, Renderer* renderer);
+    OccludedEntitiesRenderer(entt::registry *registry, Renderer *renderer, FileManager *file_manager);
 
     void render() override;
 
 private:
-    Renderer* renderer_;
+    Renderer *renderer_;
+    Shader shader_;
 };
 
 

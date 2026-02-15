@@ -101,6 +101,8 @@ add_executable(FarmAndConquer
         src/engine/components/animation_component.hpp
         src/engine/components/name_component.hpp
         src/engine/components/state_component.hpp
+        src/engine/shader.cpp
+        src/engine/shader.hpp
 )
 
 add_custom_target(
@@ -110,6 +112,14 @@ add_custom_target(
         COMMENT "Copying assets directory to output"
 )
 add_dependencies(${PROJECT_NAME} CopyAssets)
+
+add_custom_target(
+        CopyShaders ALL
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/shaders ./shaders
+        COMMENT "Copying shaders directory to output"
+)
+add_dependencies(${PROJECT_NAME} CopyShaders)
 
 add_custom_target(
         CopyEntities ALL

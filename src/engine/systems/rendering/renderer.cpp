@@ -31,6 +31,10 @@ void Renderer::draw_rect(Vec2 pos, int width, int height) {
         pos.x + width, pos.y + height, al_map_rgb_f(1, 0, 0), 4);
 }
 
+void Renderer::use(ALLEGRO_SHADER *shader) {
+    al_use_shader(shader);
+}
+
 void Renderer::draw_scaled_bitmap(ALLEGRO_BITMAP* bitmap, const Vec2 &drawing_position,
                                   const float &destination_width,
                                   const float &destination_height) { // NOLINT(*-convert-member-functions-to-static)

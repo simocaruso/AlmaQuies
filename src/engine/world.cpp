@@ -35,7 +35,7 @@ World::World(Display* display, Renderer* renderer, ResourceManager* resource_man
     add_system<InputSystem>(INPUT, registry_.get(), input_manager_, dispatcher_.get());
     add_system<CollisionSystem>(COLLISION, physic_spatial_grid_.get(), registry_.get());
     add_system<RenderingSystem>(RENDERING, map_.get(), rendering_spatial_grid_.get(), registry_.get(), renderer_,
-                                display_);
+                                display_, file_manager_);
     add_system<CameraSystem>(CAMERA, registry_.get(), *dispatcher_);
     add_system<OcclusionSystem>(OCCLUSION, registry_.get(), rendering_spatial_grid_.get());
     add_system<OverlaySystem>(OVERLAY, registry_.get(), display);
