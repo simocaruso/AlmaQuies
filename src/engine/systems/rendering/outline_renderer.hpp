@@ -9,9 +9,9 @@
 #include "../../systems/system.hpp"
 #include "../../shader.hpp"
 
-class OccludedEntitiesRenderer : public System {
+class OutlineRenderer : public System {
 public:
-    OccludedEntitiesRenderer(entt::registry *registry, Renderer *renderer, FileManager *file_manager);
+    OutlineRenderer(entt::registry *registry, Renderer *renderer, FileManager *file_manager);
 
     void render() override;
 

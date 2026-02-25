@@ -85,9 +85,9 @@ add_executable(FarmAndConquer
         src/engine/systems/spatial_grid_system.hpp
         src/engine/systems/occlusion_system.cpp
         src/engine/systems/occlusion_system.hpp
-        src/engine/components/visibility_compnent.hpp
-        src/engine/systems/rendering/occluded_entities_renderer.cpp
-        src/engine/systems/rendering/occluded_entities_renderer.hpp
+        src/engine/components/outline_component.hpp
+        src/engine/systems/rendering/outline_renderer.cpp
+        src/engine/systems/rendering/outline_renderer.hpp
         src/engine/systems/overlay_system.cpp
         src/engine/systems/overlay_system.hpp
         src/engine/overlay/window.cpp

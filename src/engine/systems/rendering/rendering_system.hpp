@@ -7,7 +7,7 @@
 
 
 #include "map_renderer.hpp"
-#include "occluded_entities_renderer.hpp"
+#include "outline_renderer.hpp"
 #include "../system.hpp"
 #include "../../display.hpp"
 #include "renderer.hpp"
@@ -28,7 +28,7 @@ private:
     Display* display_;
     Renderer* renderer_;
     MapRenderer map_renderer_;
-    OccludedEntitiesRenderer occluded_entities_renderer_;
+    OutlineRenderer occluded_entities_renderer_;
     SpatialGrid *grid_;
     void update_camera() const;
 

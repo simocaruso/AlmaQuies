@@ -8,9 +8,10 @@
 #include "../components/player_tag.hpp"
 #include "../components/render_component.hpp"
 #include "../components/transform_component.hpp"
-#include "../components/visibility_compnent.hpp"
+#include "../components/outline_component.hpp"
 #include "collision/collision_checker.hpp"
 #include "../../../engine/spatial_grid.hpp"
+#include "../../util/constants.hpp"
 
 
 OcclusionSystem::OcclusionSystem(entt::registry* registry, SpatialGrid* grid)
@@ -19,16 +20,17 @@ OcclusionSystem::OcclusionSystem(entt::registry* registry, SpatialGrid* grid)
 
 void OcclusionSystem::update(int elapsed) {
     const auto player = registry_->view<PlayerTag>().front();
-    auto &visibility_component = registry_->get_or_emplace<VisibilityComponent>(player);
-    visibility_component.visible = true;
     auto player_data = get_entity_data(player);
+
     for (const auto &near_entity: grid_->query_nearby(player_data.position, player_data.radius)) {
         if (near_entity == player) continue;
         auto near_entity_data = get_entity_data(near_entity);
         if (near_entity_data.position.y < player_data.position.y) continue;
         if (CollisionChecker::collide(player_data.bitmap_center, player_data.bitmap_collider,
                                       near_entity_data.bitmap_center, near_entity_data.bitmap_collider)) {
-            visibility_component.visible = false;
+            auto &outline_component = registry_->get_or_emplace<OutlineComponent>(player);
+            outline_component.color = OCCLUDED_ENTITY_OUTLINE_COLOR;
+            outline_component.is_active = true;
         }
     }
 }
