@@ -7,6 +7,7 @@
 
 
 #include <string>
+#include <vector>
 
 // Game
 extern const char* GAME_NAME;
@@ -38,5 +39,8 @@ extern const float MOUNTAIN_ROCK_DENSITY;
 // Resources
 extern const int ATLAS_SIZE;
 extern const std::string BORDER_SUFFIX;
+
+// Render
+extern const std::vector<float> OCCLUDED_ENTITY_OUTLINE_COLOR;
 
 #endif //FARMANDCONQUER_CONSTANTS_HPP

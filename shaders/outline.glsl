@@ -4,6 +4,7 @@ precision mediump float;
 
 uniform sampler2D al_tex;
 uniform vec2 tex_size;     // Size of the texture (width, height)
+uniform vec4 outline_color;     // Size of the texture (width, height)
 varying vec2 varying_texcoord;
 
 void main() {
@@ -23,5 +24,5 @@ void main() {
 
     float is_border = 1.0 - min(alpha_down, min(alpha_left, min(alpha_right, alpha_up)));
 
-    gl_FragColor = vec4(0.0,0.0,0.0,1.0) * is_border * is_colored;
+    gl_FragColor = outline_color * is_border * is_colored;
 }

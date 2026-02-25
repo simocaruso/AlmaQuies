@@ -25,6 +25,7 @@ void OccludedEntitiesRenderer::render() {
         auto &visible = registry_->get<VisibilityComponent>(entity);
         auto &render = registry_->get<RenderComponent>(entity);
         shader_.set_float_vec("tex_size", std::vector{(float)ATLAS_SIZE, (float)ATLAS_SIZE});
+        shader_.set_float_vec("outline_color", OCCLUDED_ENTITY_OUTLINE_COLOR);
         if (!visible.visible)
             renderer_->draw_resource(render.sprite, transform.position, render.offset);
     }
