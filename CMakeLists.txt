@@ -43,7 +43,7 @@ add_executable(FarmAndConquer
         src/engine/systems/input_system.cpp
         src/engine/systems/input_system.hpp
         src/engine/systems/events/move_command_event.hpp
-        src/engine/components/player_tag.hpp
+        src/engine/components/tags/player_tag.hpp
         src/engine/systems/movement_system.cpp
         src/engine/systems/movement_system.hpp
         src/engine/components/velocity_component.hpp
@@ -106,6 +106,7 @@ add_executable(FarmAndConquer
         src/engine/systems/selection_system.cpp
         src/engine/systems/selection_system.hpp
         src/engine/components/input_state_component.hpp
+        src/engine/components/selected_tag.hpp
 )
 
 add_custom_target(

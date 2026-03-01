@@ -7,10 +7,11 @@
 #include "../../util/constants.hpp"
 #include "../components/input_state_component.hpp"
 #include "../components/outline_component.hpp"
-#include "../components/player_tag.hpp"
+#include "../components/tags/player_tag.hpp"
 #include "collision/collision_checker.hpp"
 #include "../components/transform_component.hpp"
 #include "../components/render_component.hpp"
+#include "../components/selected_tag.hpp"
 #include "../components/state_component.hpp"
 
 
@@ -43,27 +44,21 @@ void SelectionSystem::select_entity() const {
             auto &entity_outline = registry_->get_or_emplace<OutlineComponent>(entity);
             entity_outline.color = SELECTED_ENTITY_OUTLINE_COLOR;
             entity_outline.is_active = true;
-            auto &state = registry_->get_or_emplace<StateComponent>(entity);
-            state.is_selected = true;
+            registry_->emplace<SelectedTag>(entity);
             break;
         }
     }
 }
 
 void SelectionSystem::clean_entities_states() const {
-    for (auto entity: registry_->view<StateComponent>()) {
-        auto &state = registry_->get<StateComponent>(entity);
-        if (state.is_selected) {
-            state.is_selected = false;
-        }
+    for (auto entity: registry_->view<SelectedTag>()) {
+        registry_->remove<SelectedTag>(entity);
     }
 }
 
 void SelectionSystem::maintain_selection() const {
-    for (auto entity: registry_->view<StateComponent>()) {
-        if (registry_->get<StateComponent>(entity).is_selected) {
-            auto &entity_outline = registry_->get_or_emplace<OutlineComponent>(entity);
-            entity_outline.is_active = true;
-        }
+    for (auto entity: registry_->view<SelectedTag>()) {
+        auto &entity_outline = registry_->get_or_emplace<OutlineComponent>(entity);
+        entity_outline.is_active = true;
     }
 }

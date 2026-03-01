@@ -10,7 +10,7 @@
 #include "components/name_component.hpp"
 #include "components/transform_component.hpp"
 #include "components/render_component.hpp"
-#include "components/player_tag.hpp"
+#include "components/tags/player_tag.hpp"
 #include "components/state_component.hpp"
 #include "systems/events/created_collidable_event.hpp"
 #include "systems/events/created_renderable_event.hpp"

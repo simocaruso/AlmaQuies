@@ -6,7 +6,7 @@
 
 #include "../components/camera_component.hpp"
 #include "../components/input_state_component.hpp"
-#include "../components/player_tag.hpp"
+#include "../components/tags/player_tag.hpp"
 #include "events/move_command_event.hpp"
 #include "events/zoom_command_event.hpp"
 
