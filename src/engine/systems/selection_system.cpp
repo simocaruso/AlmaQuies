@@ -7,6 +7,7 @@
 #include "../../util/constants.hpp"
 #include "../components/input_state_component.hpp"
 #include "../components/outline_component.hpp"
+#include "../components/player_tag.hpp"
 #include "collision/collision_checker.hpp"
 #include "../components/transform_component.hpp"
 #include "../components/render_component.hpp"
@@ -20,6 +21,7 @@ void SelectionSystem::update(int elapsed) {
     const auto input = registry_->ctx().get<InputStateComponent>();
     if (input.left_click) {
         for (const auto entity: grid_->query_nearby(Vec2(input.mouse_x, input.mouse_y), MOUSE_CLICK_RADIUS)) {
+            if (registry_->any_of<PlayerTag>(entity)) continue;
             auto entity_position = registry_->get<TransformComponent>(entity).position;
             const auto &render = registry_->get<RenderComponent>(entity);
             RectCollider bitmap_collider = {render.width, render.height};
