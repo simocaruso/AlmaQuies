@@ -4,14 +4,11 @@
 
 #include "movement_system.hpp"
 
-#include "../components/name_component.hpp"
 #include "../components/state_component.hpp"
-#include "events/move_command_event.hpp"
 #include "../components/velocity_component.hpp"
 #include "../components/transform_component.hpp"
 
 MovementSystem::MovementSystem(entt::registry* registry, entt::dispatcher &dispatcher) : System(registry) {
-    dispatcher.sink<MoveCommandEvent>().connect<&MovementSystem::on_move_command>(this);
 }
 
 
@@ -46,13 +43,6 @@ void MovementSystem::update(int elapsed) {
         if (vel.speed.length() < 0.001f && registry_->all_of<StateComponent>(entity))
             registry_->get<StateComponent>(entity).is_moving = false;
     }
-}
-
-void MovementSystem::on_move_command(const MoveCommandEvent &event) const {
-    auto &vel = registry_->get_or_emplace<VelocityComponent>(event.entity);
-    vel.acceleration = event.direction * vel.acceleration_strength;
-    vel.active = true;
-    registry_->get<StateComponent>(event.entity).is_moving = true;
 }
 
 void MovementSystem::apply_deceleration_axis(float &v, const float deceleration_strength, const int elapsed) {

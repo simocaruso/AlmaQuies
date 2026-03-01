@@ -42,7 +42,6 @@ add_executable(AlmaQuies
         src/engine/managers/input_manager.hpp
         src/engine/systems/input_system.cpp
         src/engine/systems/input_system.hpp
-        src/engine/systems/events/move_command_event.hpp
         src/engine/components/tags/player_tag.hpp
         src/engine/systems/movement_system.cpp
         src/engine/systems/movement_system.hpp

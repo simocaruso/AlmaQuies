@@ -6,8 +6,6 @@
 
 #include "../components/camera_component.hpp"
 #include "../components/input_state_component.hpp"
-#include "../components/tags/player_tag.hpp"
-#include "events/move_command_event.hpp"
 #include "events/zoom_command_event.hpp"
 
 InputSystem::InputSystem(entt::registry* registry, InputManager* input_manager,
@@ -36,39 +34,24 @@ void InputSystem::update_mouse_state() const {
 }
 
 void InputSystem::process_movement() const {
-    Vec2 dir = {0, 0};
-    if (input_manager_->key_down(ALLEGRO_KEY_W)) dir.y -= 1;
-    if (input_manager_->key_down(ALLEGRO_KEY_S)) dir.y += 1;
-    if (input_manager_->key_down(ALLEGRO_KEY_A)) dir.x -= 1;
-    if (input_manager_->key_down(ALLEGRO_KEY_D)) dir.x += 1;
-
-    if (dir.x != 0 || dir.y != 0) {
-        auto view = registry_->view<PlayerTag>();
-        for (auto e: view) {
-            dispatcher_->enqueue(MoveCommandEvent{e, dir});
-        }
-    }
+    auto &input = registry_->ctx().get<InputStateComponent>();
+    input.request_player_movement = {0, 0};
+    if (input_manager_->key_down(ALLEGRO_KEY_W)) input.request_player_movement.y -= 1;
+    if (input_manager_->key_down(ALLEGRO_KEY_S)) input.request_player_movement.y += 1;
+    if (input_manager_->key_down(ALLEGRO_KEY_A)) input.request_player_movement.x -= 1;
+    if (input_manager_->key_down(ALLEGRO_KEY_D)) input.request_player_movement.x += 1;
 }
 
 void InputSystem::process_camera() const {
-    Vec2 dir = {0, 0};
-    if (input_manager_->key_down(ALLEGRO_KEY_UP)) dir.y -= 1;
-    if (input_manager_->key_down(ALLEGRO_KEY_DOWN)) dir.y += 1;
-    if (input_manager_->key_down(ALLEGRO_KEY_LEFT)) dir.x -= 1;
-    if (input_manager_->key_down(ALLEGRO_KEY_RIGHT)) dir.x += 1;
+    auto &input = registry_->ctx().get<InputStateComponent>();
+    input.request_camera_movement = {0, 0};
+    if (input_manager_->key_down(ALLEGRO_KEY_UP)) input.request_camera_movement.y -= 1;
+    if (input_manager_->key_down(ALLEGRO_KEY_DOWN)) input.request_camera_movement.y += 1;
+    if (input_manager_->key_down(ALLEGRO_KEY_LEFT)) input.request_camera_movement.x -= 1;
+    if (input_manager_->key_down(ALLEGRO_KEY_RIGHT)) input.request_camera_movement.x += 1;
 
-    if (dir.x != 0 || dir.y != 0) {
-        auto view = registry_->view<CameraComponent>();
-        for (auto e: view) {
-            dispatcher_->enqueue(MoveCommandEvent{e, dir});
-        }
-    }
-
-    int zoom_factor = input_manager_->mouse_wheel_delta();
+    const int zoom_factor = input_manager_->mouse_wheel_delta();
     if (zoom_factor != 0) {
-        auto view = registry_->view<CameraComponent>();
-        for (auto e: view) {
-            dispatcher_->enqueue(ZoomCommandEvent{e, zoom_factor});
-        }
+        input.request_camera_zoom = zoom_factor;
     }
 }
