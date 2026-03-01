@@ -16,6 +16,12 @@ public:
 
 private:
     SpatialGrid* grid_;
+
+    void clean_entities_states() const;
+
+    void maintain_selection() const;
+
+    void select_entity() const;
 };
 
 
