@@ -41,5 +41,9 @@ extern const int ATLAS_SIZE;
 
 // Render
 extern const std::vector<float> OCCLUDED_ENTITY_OUTLINE_COLOR;
+extern const std::vector<float> SELECTED_ENTITY_OUTLINE_COLOR;
+
+// Miscellaneous
+extern const float MOUSE_CLICK_RADIUS;
 
 #endif //FARMANDCONQUER_CONSTANTS_HPP

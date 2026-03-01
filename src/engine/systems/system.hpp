@@ -13,6 +13,7 @@ enum SystemType {
     CAMERA,
     MOVEMENT,
     SPATIAL_GRID,
+    SELECTION,
     COLLISION,
     INPUT,
     ANIMATION,

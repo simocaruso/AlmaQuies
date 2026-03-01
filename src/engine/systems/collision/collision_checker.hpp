@@ -13,6 +13,8 @@ public:
     static bool collide(const Vec2 &pos1, const ColliderComponent &c1,
                         const Vec2 &pos2, const ColliderComponent &c2);
 
+    static bool contains(const Vec2 &pos, const ColliderComponent &c, const Vec2 &c_pos);
+
 private:
     static bool circle_vs_circle(const Vec2 &pos1, int radius1, const Vec2 &pos2, int radius2);
 
@@ -21,6 +23,14 @@ private:
     static bool rect_vs_circle(const Vec2 &pos1, int width1, int height1, const Vec2 &pos2, int radius2);
 
     static bool circle_vs_rect(const Vec2 &pos1, int radius1, const Vec2 &pos2, int width2, int height2);
+
+    static bool circle_vs_point(const Vec2 &pos1, int radius1, const Vec2 &pos2);
+
+    static bool point_vs_circle(const Vec2 &pos1, const Vec2 &pos2, int radius2);
+
+    static bool rect_vs_point(const Vec2 &pos1, int width1, int height1, const Vec2 &pos2);
+
+    static bool point_vs_rect(const Vec2 &pos1, const Vec2 &pos2, int width2, int height2);
 };
 
 

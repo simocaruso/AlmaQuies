@@ -13,6 +13,7 @@
 #include "systems/movement_system.hpp"
 #include "systems/occlusion_system.hpp"
 #include "systems/overlay_system.hpp"
+#include "systems/selection_system.hpp"
 #include "systems/spatial_grid_system.hpp"
 
 World::World(Display* display, Renderer* renderer, ResourceManager* resource_manager, FileManager* file_manager,
@@ -37,6 +38,7 @@ World::World(Display* display, Renderer* renderer, ResourceManager* resource_man
     add_system<RenderingSystem>(RENDERING, map_.get(), rendering_spatial_grid_.get(), registry_.get(), renderer_,
                                 display_, file_manager_);
     add_system<CameraSystem>(CAMERA, registry_.get(), *dispatcher_);
+    add_system<SelectionSystem>(SELECTION, registry_.get(), rendering_spatial_grid_.get());
     add_system<OcclusionSystem>(OCCLUSION, registry_.get(), rendering_spatial_grid_.get());
     add_system<OverlaySystem>(OVERLAY, registry_.get(), display);
     add_system<FpsSystem>(FPS, registry_.get());

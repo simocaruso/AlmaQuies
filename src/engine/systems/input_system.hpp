@@ -12,15 +12,17 @@
 
 class InputSystem : public System {
 public:
-    InputSystem(entt::registry *registry, InputManager *input_manager, entt::dispatcher *dispatcher);
+    InputSystem(entt::registry* registry, InputManager* input_manager, entt::dispatcher* dispatcher);
 
     void update(int elapsed) override;
 
 private:
-    InputManager *input_manager_;
-    entt::dispatcher *dispatcher_;
+    InputManager* input_manager_;
+    entt::dispatcher* dispatcher_;
 
-    void process_movement();
+    void update_mouse_state() const;
+
+    void process_movement() const;
 
     void process_camera() const;
 };

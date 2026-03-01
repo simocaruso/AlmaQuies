@@ -32,6 +32,18 @@ bool CollisionChecker::collide(const Vec2 &pos1, const ColliderComponent &c1,
     }, c1.data, c2.data);
 }
 
+bool CollisionChecker::contains(const Vec2 &pos, const ColliderComponent &c, const Vec2 &c_pos) {
+    return std::visit([&]<typename T>(T &&shape) -> bool {
+        using S = std::decay_t<T>;
+        if constexpr (std::is_same_v<S, CircleCollider>) {
+            return circle_vs_circle(pos, 0, c_pos, shape.radius);
+        } else if constexpr (std::is_same_v<S, RectCollider>) {
+            return circle_vs_rect(pos, 0, c_pos, shape.width, shape.height);
+        }
+        return false;
+    }, c.data);
+}
+
 bool CollisionChecker::circle_vs_circle(const Vec2 &pos1, const int radius1,
                                         const Vec2 &pos2, const int radius2) {
     const float dx = pos1.x - pos2.x;

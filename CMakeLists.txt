@@ -103,6 +103,9 @@ add_executable(FarmAndConquer
         src/engine/components/state_component.hpp
         src/engine/shader.cpp
         src/engine/shader.hpp
+        src/engine/systems/selection_system.cpp
+        src/engine/systems/selection_system.hpp
+        src/engine/components/input_state_component.hpp
 )
 
 add_custom_target(

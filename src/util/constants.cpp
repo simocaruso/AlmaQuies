@@ -30,3 +30,6 @@ extern const float MOUNTAIN_ROCK_DENSITY = 0.0001f;
 extern const int ATLAS_SIZE = 256;
 
 extern const std::vector<float> OCCLUDED_ENTITY_OUTLINE_COLOR = {.0f, .0f, .0f, 1.0f};
+extern const std::vector<float> SELECTED_ENTITY_OUTLINE_COLOR = {1.f, 1.f, .0f, 1.0f};
+
+extern const float MOUSE_CLICK_RADIUS = 1.f;
