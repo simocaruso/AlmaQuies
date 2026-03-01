@@ -2,8 +2,8 @@
 // Created by simone on 07/11/25.
 //
 
-#ifndef FARMANDCONQUER_INPUT_MANAGER_HPP
-#define FARMANDCONQUER_INPUT_MANAGER_HPP
+#ifndef ALMAQUIES_INPUT_MANAGER_HPP
+#define ALMAQUIES_INPUT_MANAGER_HPP
 
 #include <allegro5/allegro.h>
 #include "../../util/vec_2.hpp"
@@ -46,4 +46,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_INPUT_MANAGER_HPP
+#endif //ALMAQUIES_INPUT_MANAGER_HPP

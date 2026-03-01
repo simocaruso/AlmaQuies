@@ -2,8 +2,8 @@
 // Created by simone on 10/11/25.
 //
 
-#ifndef FARMANDCONQUER_MAP_HPP
-#define FARMANDCONQUER_MAP_HPP
+#ifndef ALMAQUIES_MAP_HPP
+#define ALMAQUIES_MAP_HPP
 
 #include "tile.hpp"
 #include "../systems/rendering/renderer.hpp"
@@ -32,4 +32,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_MAP_HPP
+#endif //ALMAQUIES_MAP_HPP

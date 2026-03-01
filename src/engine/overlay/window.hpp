@@ -2,8 +2,8 @@
 // Created by simone on 03/12/25.
 //
 
-#ifndef FARMANDCONQUER_WINDOW_HPP
-#define FARMANDCONQUER_WINDOW_HPP
+#ifndef ALMAQUIES_WINDOW_HPP
+#define ALMAQUIES_WINDOW_HPP
 #include <functional>
 #include <string>
 #include "imgui/imgui.h"
@@ -25,4 +25,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_WINDOW_HPP
+#endif //ALMAQUIES_WINDOW_HPP

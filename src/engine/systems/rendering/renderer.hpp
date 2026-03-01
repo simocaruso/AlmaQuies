@@ -2,8 +2,8 @@
 // Created by simone on 06/11/25.
 //
 
-#ifndef FARMANDCONQUER_RENDERER_HPP
-#define FARMANDCONQUER_RENDERER_HPP
+#ifndef ALMAQUIES_RENDERER_HPP
+#define ALMAQUIES_RENDERER_HPP
 
 
 #include "../../managers/resource_manager.hpp"
@@ -42,4 +42,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_RENDERER_HPP
+#endif //ALMAQUIES_RENDERER_HPP

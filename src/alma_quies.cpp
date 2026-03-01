@@ -2,8 +2,8 @@
 // Created by simone on 31/10/25.
 //
 
-#include "farm_and_conquer.hpp"
+#include "alma_quies.hpp"
 
-void FarmAndConquer::start() {
+void AlmaQuies::start() {
     engine_.start();
 }

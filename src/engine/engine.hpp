@@ -2,8 +2,8 @@
 // Created by simone on 31/10/25.
 //
 
-#ifndef FARMANDCONQUER_ENGINE_HPP
-#define FARMANDCONQUER_ENGINE_HPP
+#ifndef ALMAQUIES_ENGINE_HPP
+#define ALMAQUIES_ENGINE_HPP
 
 
 #include <string>
@@ -50,4 +50,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_ENGINE_HPP
+#endif //ALMAQUIES_ENGINE_HPP

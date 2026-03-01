@@ -2,8 +2,8 @@
 // Created by simone on 13/11/25.
 //
 
-#ifndef FARMANDCONQUER_CREATED_RENDERABLE_EVENT_HPP
-#define FARMANDCONQUER_CREATED_RENDERABLE_EVENT_HPP
+#ifndef ALMAQUIES_CREATED_RENDERABLE_EVENT_HPP
+#define ALMAQUIES_CREATED_RENDERABLE_EVENT_HPP
 
 #include "entt/entt.hpp"
 #include "../../components/render_component.hpp"
@@ -14,4 +14,4 @@ struct CreatedRenderableEvent {
     RenderComponent render;
 };
 
-#endif //FARMANDCONQUER_CREATED_RENDERABLE_EVENT_HPP
+#endif //ALMAQUIES_CREATED_RENDERABLE_EVENT_HPP

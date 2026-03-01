@@ -2,8 +2,8 @@
 // Created by simone on 06/11/25.
 //
 
-#ifndef FARMANDCONQUER_RENDER_TARGET_HPP
-#define FARMANDCONQUER_RENDER_TARGET_HPP
+#ifndef ALMAQUIES_RENDER_TARGET_HPP
+#define ALMAQUIES_RENDER_TARGET_HPP
 
 
 class RenderTarget {
@@ -13,4 +13,4 @@ public:
 };
 
 
-#endif //FARMANDCONQUER_RENDER_TARGET_HPP
+#endif //ALMAQUIES_RENDER_TARGET_HPP

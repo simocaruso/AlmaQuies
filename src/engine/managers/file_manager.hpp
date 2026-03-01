@@ -2,8 +2,8 @@
 // Created by simone on 05/11/25.
 //
 
-#ifndef FARMANDCONQUER_FILE_MANAGER_HPP
-#define FARMANDCONQUER_FILE_MANAGER_HPP
+#ifndef ALMAQUIES_FILE_MANAGER_HPP
+#define ALMAQUIES_FILE_MANAGER_HPP
 
 #include <allegro5/allegro.h>
 
@@ -20,4 +20,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_FILE_MANAGER_HPP
+#endif //ALMAQUIES_FILE_MANAGER_HPP

@@ -2,8 +2,8 @@
 // Created by simone on 14/11/25.
 //
 
-#ifndef FARMANDCONQUER_CAMERA_SYSTEM_HPP
-#define FARMANDCONQUER_CAMERA_SYSTEM_HPP
+#ifndef ALMAQUIES_CAMERA_SYSTEM_HPP
+#define ALMAQUIES_CAMERA_SYSTEM_HPP
 
 #include "system.hpp"
 #include "events/zoom_command_event.hpp"
@@ -19,4 +19,4 @@ public:
 };
 
 
-#endif //FARMANDCONQUER_CAMERA_SYSTEM_HPP
+#endif //ALMAQUIES_CAMERA_SYSTEM_HPP

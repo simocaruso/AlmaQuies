@@ -2,8 +2,8 @@
 // Created by simone on 03/12/25.
 //
 
-#ifndef FARMANDCONQUER_OVERLAY_SYSTEM_HPP
-#define FARMANDCONQUER_OVERLAY_SYSTEM_HPP
+#ifndef ALMAQUIES_OVERLAY_SYSTEM_HPP
+#define ALMAQUIES_OVERLAY_SYSTEM_HPP
 #include "system.hpp"
 #include "../display.hpp"
 #include "../overlay/window.hpp"
@@ -20,4 +20,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_OVERLAY_SYSTEM_HPP
+#endif //ALMAQUIES_OVERLAY_SYSTEM_HPP

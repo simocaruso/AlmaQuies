@@ -2,8 +2,8 @@
 // Created by simone on 17/11/25.
 //
 
-#ifndef FARMANDCONQUER_MAP_TILES_GENERATOR_HPP
-#define FARMANDCONQUER_MAP_TILES_GENERATOR_HPP
+#ifndef ALMAQUIES_MAP_TILES_GENERATOR_HPP
+#define ALMAQUIES_MAP_TILES_GENERATOR_HPP
 #include "map.hpp"
 #include "entt/entt.hpp"
 #include "FastNoiseLite/FastNoiseLite.hpp"
@@ -26,4 +26,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_MAP_TILES_GENERATOR_HPP
+#endif //ALMAQUIES_MAP_TILES_GENERATOR_HPP

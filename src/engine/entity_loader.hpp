@@ -2,8 +2,8 @@
 // Created by simone on 05/11/25.
 //
 
-#ifndef FARMANDCONQUER_ENTITY_LOADER_HPP
-#define FARMANDCONQUER_ENTITY_LOADER_HPP
+#ifndef ALMAQUIES_ENTITY_LOADER_HPP
+#define ALMAQUIES_ENTITY_LOADER_HPP
 
 
 #include "managers/resource_manager.hpp"
@@ -33,4 +33,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_ENTITY_LOADER_HPP
+#endif //ALMAQUIES_ENTITY_LOADER_HPP

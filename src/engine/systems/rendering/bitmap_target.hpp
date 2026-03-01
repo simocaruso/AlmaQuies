@@ -2,8 +2,8 @@
 // Created by simone on 06/11/25.
 //
 
-#ifndef FARMANDCONQUER_BITMAP_TARGET_HPP
-#define FARMANDCONQUER_BITMAP_TARGET_HPP
+#ifndef ALMAQUIES_BITMAP_TARGET_HPP
+#define ALMAQUIES_BITMAP_TARGET_HPP
 
 
 #include <allegro5/allegro5.h>
@@ -23,4 +23,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_BITMAP_TARGET_HPP
+#endif //ALMAQUIES_BITMAP_TARGET_HPP

@@ -2,8 +2,8 @@
 // Created by simone on 26/11/25.
 //
 
-#ifndef FARMANDCONQUER_OCCLUDED_ENTITIES_RENDERER_HPP
-#define FARMANDCONQUER_OCCLUDED_ENTITIES_RENDERER_HPP
+#ifndef ALMAQUIES_OCCLUDED_ENTITIES_RENDERER_HPP
+#define ALMAQUIES_OCCLUDED_ENTITIES_RENDERER_HPP
 #include "renderer.hpp"
 #include "entt/entt.hpp"
 #include "../../systems/system.hpp"
@@ -21,4 +21,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_OCCLUDED_ENTITIES_RENDERER_HPP
+#endif //ALMAQUIES_OCCLUDED_ENTITIES_RENDERER_HPP

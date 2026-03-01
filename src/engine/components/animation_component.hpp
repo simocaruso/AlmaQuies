@@ -2,8 +2,8 @@
 // Created by simone on 04/12/25.
 //
 
-#ifndef FARMANDCONQUER_ANIMATION_COMPONENT_HPP
-#define FARMANDCONQUER_ANIMATION_COMPONENT_HPP
+#ifndef ALMAQUIES_ANIMATION_COMPONENT_HPP
+#define ALMAQUIES_ANIMATION_COMPONENT_HPP
 #include <string>
 #include <set>
 
@@ -21,4 +21,4 @@ struct AnimationComponent {
     std::vector<Animation> animations;
 };
 
-#endif //FARMANDCONQUER_ANIMATION_COMPONENT_HPP
+#endif //ALMAQUIES_ANIMATION_COMPONENT_HPP

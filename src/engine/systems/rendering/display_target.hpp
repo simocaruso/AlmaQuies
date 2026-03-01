@@ -2,8 +2,8 @@
 // Created by simone on 06/11/25.
 //
 
-#ifndef FARMANDCONQUER_DISPLAY_TARGET_HPP
-#define FARMANDCONQUER_DISPLAY_TARGET_HPP
+#ifndef ALMAQUIES_DISPLAY_TARGET_HPP
+#define ALMAQUIES_DISPLAY_TARGET_HPP
 
 
 #include "bitmap_target.hpp"
@@ -25,4 +25,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_DISPLAY_TARGET_HPP
+#endif //ALMAQUIES_DISPLAY_TARGET_HPP

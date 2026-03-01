@@ -2,8 +2,8 @@
 // Created by simone on 31/10/25.
 //
 
-#ifndef FARMANDCONQUER_DISPLAY_HPP
-#define FARMANDCONQUER_DISPLAY_HPP
+#ifndef ALMAQUIES_DISPLAY_HPP
+#define ALMAQUIES_DISPLAY_HPP
 
 #include <allegro5/allegro.h>
 
@@ -33,4 +33,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_DISPLAY_HPP
+#endif //ALMAQUIES_DISPLAY_HPP

@@ -2,8 +2,8 @@
 // Created by simone on 06/11/25.
 //
 
-#ifndef FARMANDCONQUER_VEC_2_HPP
-#define FARMANDCONQUER_VEC_2_HPP
+#ifndef ALMAQUIES_VEC_2_HPP
+#define ALMAQUIES_VEC_2_HPP
 
 
 #include <valarray>
@@ -53,4 +53,4 @@ struct Vec2 {
 
 };
 
-#endif //FARMANDCONQUER_VEC_2_HPP
+#endif //ALMAQUIES_VEC_2_HPP

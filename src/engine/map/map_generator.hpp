@@ -2,8 +2,8 @@
 // Created by simone on 19/11/25.
 //
 
-#ifndef FARMANDCONQUER_MAP_GENERATOR_HPP
-#define FARMANDCONQUER_MAP_GENERATOR_HPP
+#ifndef ALMAQUIES_MAP_GENERATOR_HPP
+#define ALMAQUIES_MAP_GENERATOR_HPP
 #include "map.hpp"
 #include "../entity_factory.hpp"
 
@@ -13,4 +13,4 @@ public:
 };
 
 
-#endif //FARMANDCONQUER_MAP_GENERATOR_HPP
+#endif //ALMAQUIES_MAP_GENERATOR_HPP

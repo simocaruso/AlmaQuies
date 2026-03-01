@@ -2,8 +2,8 @@
 // Created by simone on 31/10/25.
 //
 
-#ifndef FARMANDCONQUER_CONSTANTS_HPP
-#define FARMANDCONQUER_CONSTANTS_HPP
+#ifndef ALMAQUIES_CONSTANTS_HPP
+#define ALMAQUIES_CONSTANTS_HPP
 
 
 #include <string>
@@ -46,4 +46,4 @@ extern const std::vector<float> SELECTED_ENTITY_OUTLINE_COLOR;
 // Miscellaneous
 extern const float MOUSE_CLICK_RADIUS;
 
-#endif //FARMANDCONQUER_CONSTANTS_HPP
+#endif //ALMAQUIES_CONSTANTS_HPP

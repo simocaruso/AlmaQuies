@@ -2,14 +2,14 @@
 // Created by simone on 31/10/25.
 //
 
-#ifndef FARMANDCONQUER_FARM_AND_CONQUER_HPP
-#define FARMANDCONQUER_FARM_AND_CONQUER_HPP
+#ifndef ALMAQUIES_HPP
+#define ALMAQUIES_HPP
 
 
 #include "engine/engine.hpp"
 #include "util/constants.hpp"
 
-class FarmAndConquer {
+class AlmaQuies {
 public:
     void start();
 private:
@@ -17,4 +17,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_FARM_AND_CONQUER_HPP
+#endif //ALMAQUIES_HPP

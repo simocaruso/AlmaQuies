@@ -2,8 +2,8 @@
 // Created by simone on 28/02/26.
 //
 
-#ifndef FARMANDCONQUER_SELECTION_SYSTEM_HPP
-#define FARMANDCONQUER_SELECTION_SYSTEM_HPP
+#ifndef ALMAQUIES_SELECTION_SYSTEM_HPP
+#define ALMAQUIES_SELECTION_SYSTEM_HPP
 
 #include "system.hpp"
 #include "../../../engine/spatial_grid.hpp"
@@ -25,4 +25,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_SELECTION_SYSTEM_HPP
+#endif //ALMAQUIES_SELECTION_SYSTEM_HPP

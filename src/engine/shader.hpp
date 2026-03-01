@@ -2,8 +2,8 @@
 // Created by simone on 05/12/25.
 //
 
-#ifndef FARMANDCONQUER_SHADER_HPP
-#define FARMANDCONQUER_SHADER_HPP
+#ifndef ALMAQUIES_SHADER_HPP
+#define ALMAQUIES_SHADER_HPP
 #include <string>
 #include <vector>
 #include <allegro5/shader.h>
@@ -24,4 +24,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_SHADER_HPP
+#endif //ALMAQUIES_SHADER_HPP

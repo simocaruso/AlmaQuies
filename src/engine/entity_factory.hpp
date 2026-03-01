@@ -2,8 +2,8 @@
 // Created by simone on 14/11/25.
 //
 
-#ifndef FARMANDCONQUER_ENTITY_FACTORY_HPP
-#define FARMANDCONQUER_ENTITY_FACTORY_HPP
+#ifndef ALMAQUIES_ENTITY_FACTORY_HPP
+#define ALMAQUIES_ENTITY_FACTORY_HPP
 #include <string>
 
 #include "entity_loader.hpp"
@@ -27,4 +27,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_ENTITY_FACTORY_HPP
+#endif //ALMAQUIES_ENTITY_FACTORY_HPP

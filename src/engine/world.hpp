@@ -2,8 +2,8 @@
 // Created by simone on 06/11/25.
 //
 
-#ifndef FARMANDCONQUER_WORLD_HPP
-#define FARMANDCONQUER_WORLD_HPP
+#ifndef ALMAQUIES_WORLD_HPP
+#define ALMAQUIES_WORLD_HPP
 
 
 #include "systems/rendering/rendering_system.hpp"
@@ -49,4 +49,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_WORLD_HPP
+#endif //ALMAQUIES_WORLD_HPP

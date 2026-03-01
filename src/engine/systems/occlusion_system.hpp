@@ -2,8 +2,8 @@
 // Created by simone on 24/11/25.
 //
 
-#ifndef FARMANDCONQUER_PLAYER_OCCLUSION_SYSTEM_HPP
-#define FARMANDCONQUER_PLAYER_OCCLUSION_SYSTEM_HPP
+#ifndef ALMAQUIES_PLAYER_OCCLUSION_SYSTEM_HPP
+#define ALMAQUIES_PLAYER_OCCLUSION_SYSTEM_HPP
 #include "system.hpp"
 #include "../../../engine/spatial_grid.hpp"
 #include "../components/render_component.hpp"
@@ -28,4 +28,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_PLAYER_OCCLUSION_SYSTEM_HPP
+#endif //ALMAQUIES_PLAYER_OCCLUSION_SYSTEM_HPP

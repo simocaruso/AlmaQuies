@@ -2,8 +2,8 @@
 // Created by simone on 23/11/25.
 //
 
-#ifndef FARMANDCONQUER_SPATIAL_GRID_SYSTEM_HPP
-#define FARMANDCONQUER_SPATIAL_GRID_SYSTEM_HPP
+#ifndef ALMAQUIES_SPATIAL_GRID_SYSTEM_HPP
+#define ALMAQUIES_SPATIAL_GRID_SYSTEM_HPP
 #include "system.hpp"
 #include "../../../engine/spatial_grid.hpp"
 #include "events/created_collidable_event.hpp"
@@ -30,4 +30,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_SPATIAL_GRID_SYSTEM_HPP
+#endif //ALMAQUIES_SPATIAL_GRID_SYSTEM_HPP

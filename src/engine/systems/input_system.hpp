@@ -2,8 +2,8 @@
 // Created by simone on 07/11/25.
 //
 
-#ifndef FARMANDCONQUER_INPUT_SYSTEM_HPP
-#define FARMANDCONQUER_INPUT_SYSTEM_HPP
+#ifndef ALMAQUIES_INPUT_SYSTEM_HPP
+#define ALMAQUIES_INPUT_SYSTEM_HPP
 
 
 #include "../managers/input_manager.hpp"
@@ -28,4 +28,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_INPUT_SYSTEM_HPP
+#endif //ALMAQUIES_INPUT_SYSTEM_HPP

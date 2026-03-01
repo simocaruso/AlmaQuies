@@ -2,8 +2,8 @@
 // Created by simone on 13/11/25.
 //
 
-#ifndef FARMANDCONQUER_SPATIAL_GRID_HPP
-#define FARMANDCONQUER_SPATIAL_GRID_HPP
+#ifndef ALMAQUIES_SPATIAL_GRID_HPP
+#define ALMAQUIES_SPATIAL_GRID_HPP
 
 #include <unordered_map>
 #include "entt/entt.hpp"
@@ -41,4 +41,4 @@ private
 };
 
 
-#endif //FARMANDCONQUER_SPATIAL_GRID_HPP
+#endif //ALMAQUIES_SPATIAL_GRID_HPP

@@ -1,18 +1,18 @@
 cmake_minimum_required(VERSION 3.26)
-project(FarmAndConquer)
+project(AlmaQuies)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(FarmAndConquer
+add_executable(AlmaQuies
         src/main.cpp
-        src/farm_and_conquer.hpp
+        src/alma_quies.hpp
         src/engine/engine.hpp
         src/engine/engine.cpp
         src/util/util.cpp
         src/util/util.hpp
         src/util/constants.hpp
-        src/farm_and_conquer.cpp
+        src/alma_quies.cpp
         src/util/constants.cpp
         src/engine/systems/system.cpp
         src/engine/systems/system.hpp
@@ -159,13 +159,13 @@ add_library(imgui STATIC
         third_party/imgui/imgui_impl_allegro5.cpp
 )
 
-target_include_directories(FarmAndConquer PRIVATE
+target_include_directories(AlmaQuies PRIVATE
         third_party
 )
 
 
-target_compile_definitions(FarmAndConquer PRIVATE FMT_HEADER_ONLY=1)
-target_link_libraries(FarmAndConquer
+target_compile_definitions(AlmaQuies PRIVATE FMT_HEADER_ONLY=1)
+target_link_libraries(AlmaQuies
         ${allegro-5_LIBRARIES}
         ${allegro_primitives-5_LIBRARIES}
         ${allegro_image-5_LIBRARIES}

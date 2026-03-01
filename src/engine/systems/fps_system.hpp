@@ -2,8 +2,8 @@
 // Created by simone on 04/12/25.
 //
 
-#ifndef FARMANDCONQUER_FPS_SYSTEM_HPP
-#define FARMANDCONQUER_FPS_SYSTEM_HPP
+#ifndef ALMAQUIES_FPS_SYSTEM_HPP
+#define ALMAQUIES_FPS_SYSTEM_HPP
 #include "system.hpp"
 
 struct Fps {
@@ -22,4 +22,4 @@ public:
 };
 
 
-#endif //FARMANDCONQUER_FPS_SYSTEM_HPP
+#endif //ALMAQUIES_FPS_SYSTEM_HPP

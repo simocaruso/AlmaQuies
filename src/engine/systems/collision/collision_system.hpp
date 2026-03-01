@@ -2,8 +2,8 @@
 // Created by simone on 13/11/25.
 //
 
-#ifndef FARMANDCONQUER_COLLISION_SYSTEM_HPP
-#define FARMANDCONQUER_COLLISION_SYSTEM_HPP
+#ifndef ALMAQUIES_COLLISION_SYSTEM_HPP
+#define ALMAQUIES_COLLISION_SYSTEM_HPP
 
 #include "../../../../engine/spatial_grid.hpp"
 #include "../system.hpp"
@@ -21,4 +21,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_COLLISION_SYSTEM_HPP
+#endif //ALMAQUIES_COLLISION_SYSTEM_HPP

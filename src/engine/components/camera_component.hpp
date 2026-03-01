@@ -2,8 +2,8 @@
 // Created by simone on 14/11/25.
 //
 
-#ifndef FARMANDCONQUER_CAMERA_COMPONENT_HPP
-#define FARMANDCONQUER_CAMERA_COMPONENT_HPP
+#ifndef ALMAQUIES_CAMERA_COMPONENT_HPP
+#define ALMAQUIES_CAMERA_COMPONENT_HPP
 
 #include "../../util/constants.hpp"
 #include "allegro5/allegro.h"
@@ -17,4 +17,4 @@ struct CameraComponent {
     float camera_max_zoom = CAMERA_MAX_ZOOM;
 };
 
-#endif //FARMANDCONQUER_CAMERA_COMPONENT_HPP
+#endif //ALMAQUIES_CAMERA_COMPONENT_HPP

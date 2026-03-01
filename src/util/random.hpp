@@ -2,8 +2,8 @@
 // Created by simone on 19/11/25.
 //
 
-#ifndef FARMANDCONQUER_RANDOM_HPP
-#define FARMANDCONQUER_RANDOM_HPP
+#ifndef ALMAQUIES_RANDOM_HPP
+#define ALMAQUIES_RANDOM_HPP
 #include <random>
 
 class Random {
@@ -26,4 +26,4 @@ private:
     std::mt19937 rng_;
 };
 
-#endif //FARMANDCONQUER_RANDOM_HPP
+#endif //ALMAQUIES_RANDOM_HPP

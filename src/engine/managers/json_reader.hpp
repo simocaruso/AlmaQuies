@@ -2,8 +2,8 @@
 // Created by simone on 11/11/25.
 //
 
-#ifndef FARMANDCONQUER_JSON_READER_HPP
-#define FARMANDCONQUER_JSON_READER_HPP
+#ifndef ALMAQUIES_JSON_READER_HPP
+#define ALMAQUIES_JSON_READER_HPP
 
 #include <string>
 #include <json/json.hpp>
@@ -38,4 +38,4 @@ private:
     const nlohmann::json* visit(const std::string &path) const;
 };
 
-#endif //FARMANDCONQUER_JSON_READER_HPP
+#endif //ALMAQUIES_JSON_READER_HPP

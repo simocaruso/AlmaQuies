@@ -2,8 +2,8 @@
 // Created by simone on 17/11/25.
 //
 
-#ifndef FARMANDCONQUER_MAP_RENDERER_HPP
-#define FARMANDCONQUER_MAP_RENDERER_HPP
+#ifndef ALMAQUIES_MAP_RENDERER_HPP
+#define ALMAQUIES_MAP_RENDERER_HPP
 #include "../system.hpp"
 #include "../../map/map.hpp"
 #include "entt/entt.hpp"
@@ -27,4 +27,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_MAP_RENDERER_HPP
+#endif //ALMAQUIES_MAP_RENDERER_HPP

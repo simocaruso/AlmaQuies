@@ -4,7 +4,7 @@
 
 #include "constants.hpp"
 
-const char* GAME_NAME = "Farm And Conquer";
+const char* GAME_NAME = "Alma Quies";
 const float FPS_MILLIS = 1.0f / 60.0f;
 
 const int DISP_H = 720;

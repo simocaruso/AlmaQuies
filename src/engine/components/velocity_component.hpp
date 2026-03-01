@@ -2,8 +2,8 @@
 // Created by simone on 07/11/25.
 //
 
-#ifndef FARMANDCONQUER_VELOCITY_COMPONENT_HPP
-#define FARMANDCONQUER_VELOCITY_COMPONENT_HPP
+#ifndef ALMAQUIES_VELOCITY_COMPONENT_HPP
+#define ALMAQUIES_VELOCITY_COMPONENT_HPP
 
 #include "../../util/vec_2.hpp"
 
@@ -17,4 +17,4 @@ struct VelocityComponent {
     bool active = false;
 };
 
-#endif //FARMANDCONQUER_VELOCITY_COMPONENT_HPP
+#endif //ALMAQUIES_VELOCITY_COMPONENT_HPP

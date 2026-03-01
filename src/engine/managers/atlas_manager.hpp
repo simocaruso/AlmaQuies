@@ -2,8 +2,8 @@
 // Created by simone on 20/11/25.
 //
 
-#ifndef FARMANDCONQUER_ATLAS_MANAGER_HPP
-#define FARMANDCONQUER_ATLAS_MANAGER_HPP
+#ifndef ALMAQUIES_ATLAS_MANAGER_HPP
+#define ALMAQUIES_ATLAS_MANAGER_HPP
 #include <unordered_map>
 #include <allegro5/bitmap.h>
 
@@ -29,4 +29,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_ATLAS_MANAGER_HPP
+#endif //ALMAQUIES_ATLAS_MANAGER_HPP

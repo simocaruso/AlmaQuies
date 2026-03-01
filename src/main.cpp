@@ -4,10 +4,10 @@
 
 
 #include <iostream>
-#include "farm_and_conquer.hpp"
+#include "alma_quies.hpp"
 
 int main() {
-    FarmAndConquer game;
+    AlmaQuies game;
     game.start();
     return 0;
 }

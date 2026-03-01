@@ -2,8 +2,8 @@
 // Created by simone on 13/11/25.
 //
 
-#ifndef FARMANDCONQUER_COLLISION_CHECKER_HPP
-#define FARMANDCONQUER_COLLISION_CHECKER_HPP
+#ifndef ALMAQUIES_COLLISION_CHECKER_HPP
+#define ALMAQUIES_COLLISION_CHECKER_HPP
 
 #include "../../../util/vec_2.hpp"
 #include "../../components/collider_component.hpp"
@@ -34,4 +34,4 @@ private:
 };
 
 
-#endif //FARMANDCONQUER_COLLISION_CHECKER_HPP
+#endif //ALMAQUIES_COLLISION_CHECKER_HPP

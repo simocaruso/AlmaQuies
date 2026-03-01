@@ -2,8 +2,8 @@
 // Created by simone on 13/11/25.
 //
 
-#ifndef FARMANDCONQUER_COLLIDER_COMPONENT_HPP
-#define FARMANDCONQUER_COLLIDER_COMPONENT_HPP
+#ifndef ALMAQUIES_COLLIDER_COMPONENT_HPP
+#define ALMAQUIES_COLLIDER_COMPONENT_HPP
 #include <variant>
 
 
@@ -22,4 +22,4 @@ struct ColliderComponent {
     ColliderData data;
 };
 
-#endif //FARMANDCONQUER_COLLIDER_COMPONENT_HPP
+#endif //ALMAQUIES_COLLIDER_COMPONENT_HPP
