@@ -107,6 +107,8 @@ add_executable(AlmaQuies
         src/engine/components/selected_tag.hpp
         src/engine/systems/player_controller_system.cpp
         src/engine/systems/player_controller_system.hpp
+        src/util/movement_util.cpp
+        src/util/movement_util.hpp
 )
 
 add_custom_target(
