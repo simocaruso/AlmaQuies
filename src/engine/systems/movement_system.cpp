@@ -8,7 +8,7 @@
 #include "../components/velocity_component.hpp"
 #include "../components/transform_component.hpp"
 
-MovementSystem::MovementSystem(entt::registry* registry, entt::dispatcher &dispatcher) : System(registry) {
+MovementSystem::MovementSystem(entt::registry* registry) : System(registry) {
 }
 
 

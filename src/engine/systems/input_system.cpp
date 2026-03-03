@@ -7,9 +7,8 @@
 #include "../components/camera_component.hpp"
 #include "../components/input_state_component.hpp"
 
-InputSystem::InputSystem(entt::registry* registry, InputManager* input_manager,
-                         entt::dispatcher* dispatcher) : System(registry), input_manager_(input_manager),
-                                                         dispatcher_(dispatcher) {
+InputSystem::InputSystem(entt::registry* registry, InputManager* input_manager)
+    : System(registry), input_manager_(input_manager) {
     registry_->ctx().emplace<InputStateComponent>();
 }
 

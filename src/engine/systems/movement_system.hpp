@@ -10,7 +10,7 @@
 
 class MovementSystem : public System {
 public:
-    MovementSystem(entt::registry* registry, entt::dispatcher &dispatcher);
+    MovementSystem(entt::registry* registry);
 
     void update(int elapsed) override;
 
