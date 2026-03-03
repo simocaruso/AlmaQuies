@@ -33,6 +33,10 @@ World::World(Display* display, Renderer* renderer, ResourceManager* resource_man
     map_ = std::make_unique<Map>(MapGenerator::generate(128, 32, registry_.get(), entity_factory_.get()));
     entity_factory_->create_from_file("player", Vec2(100, 100));
     entity_factory_->create_camera();
+    init_systems();
+}
+
+void World::init_systems() {
     add_system<MovementSystem>(MOVEMENT, registry_.get());
     add_system<InputSystem>(INPUT, registry_.get(), input_manager_);
     add_system<CollisionSystem>(COLLISION, physic_spatial_grid_.get(), registry_.get());
@@ -42,7 +46,7 @@ World::World(Display* display, Renderer* renderer, ResourceManager* resource_man
     add_system<SelectionSystem>(SELECTION, registry_.get(), rendering_spatial_grid_.get());
     add_system<OcclusionSystem>(OCCLUSION, registry_.get(), rendering_spatial_grid_.get());
     add_system<PlayerControllerSystem>(PLAYER_CONTROL, registry_.get());
-    add_system<OverlaySystem>(OVERLAY, registry_.get(), display);
+    add_system<OverlaySystem>(OVERLAY, registry_.get(), display_);
     add_system<FpsSystem>(FPS, registry_.get());
     add_system<AnimationSystem>(ANIMATION, registry_.get());
 }

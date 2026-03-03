@@ -17,13 +17,13 @@
 
 class World {
 public:
-    World(Display *display, Renderer *renderer, ResourceManager *resource_manager,
-          FileManager *file_manager, InputManager *input_manager);
+    World(Display* display, Renderer* renderer, ResourceManager* resource_manager,
+          FileManager* file_manager, InputManager* input_manager);
 
     void render();
 
     template<typename T, typename... Args>
-    T *add_system(const SystemType &type, Args &&... args) {
+    T* add_system(const SystemType &type, Args &&... args) {
         auto system = std::make_unique<T>(std::forward<Args>(args)...);
         T* ref = system.get();
         systems_[type] = std::move(system);
@@ -33,11 +33,11 @@ public:
     void update(int elapsed) const;
 
 private:
-    Display *display_;
-    Renderer *renderer_;
-    ResourceManager *resource_manager_;
-    FileManager *file_manager_;
-    InputManager *input_manager_;
+    Display* display_;
+    Renderer* renderer_;
+    ResourceManager* resource_manager_;
+    FileManager* file_manager_;
+    InputManager* input_manager_;
     DisplayTarget display_target_;
     std::unique_ptr<entt::registry> registry_;
     std::unique_ptr<entt::dispatcher> dispatcher_;
@@ -46,6 +46,8 @@ private:
     std::unique_ptr<SpatialGrid> physic_spatial_grid_;
     std::unique_ptr<SpatialGrid> rendering_spatial_grid_;
     std::map<SystemType, std::unique_ptr<System> > systems_;
+
+    void init_systems();
 };
 
 
