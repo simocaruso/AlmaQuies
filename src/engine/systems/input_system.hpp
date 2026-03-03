@@ -12,13 +12,12 @@
 
 class InputSystem : public System {
 public:
-    InputSystem(entt::registry* registry, InputManager* input_manager, entt::dispatcher* dispatcher);
+    InputSystem(entt::registry* registry, InputManager* input_manager);
 
     void update(int elapsed) override;
 
 private:
     InputManager* input_manager_;
-    entt::dispatcher* dispatcher_;
 
     void update_mouse_state() const;
 

@@ -13,6 +13,7 @@
 #include "systems/movement_system.hpp"
 #include "systems/occlusion_system.hpp"
 #include "systems/overlay_system.hpp"
+#include "systems/player_controller_system.hpp"
 #include "systems/selection_system.hpp"
 #include "systems/spatial_grid_system.hpp"
 
@@ -32,14 +33,15 @@ World::World(Display* display, Renderer* renderer, ResourceManager* resource_man
     map_ = std::make_unique<Map>(MapGenerator::generate(128, 32, registry_.get(), entity_factory_.get()));
     entity_factory_->create_from_file("player", Vec2(100, 100));
     entity_factory_->create_camera();
-    add_system<MovementSystem>(MOVEMENT, registry_.get(), *dispatcher_);
-    add_system<InputSystem>(INPUT, registry_.get(), input_manager_, dispatcher_.get());
+    add_system<MovementSystem>(MOVEMENT, registry_.get());
+    add_system<InputSystem>(INPUT, registry_.get(), input_manager_);
     add_system<CollisionSystem>(COLLISION, physic_spatial_grid_.get(), registry_.get());
     add_system<RenderingSystem>(RENDERING, map_.get(), rendering_spatial_grid_.get(), registry_.get(), renderer_,
                                 display_, file_manager_);
-    add_system<CameraSystem>(CAMERA, registry_.get(), *dispatcher_);
+    add_system<CameraSystem>(CAMERA, registry_.get());
     add_system<SelectionSystem>(SELECTION, registry_.get(), rendering_spatial_grid_.get());
     add_system<OcclusionSystem>(OCCLUSION, registry_.get(), rendering_spatial_grid_.get());
+    add_system<PlayerControllerSystem>(PLAYER_CONTROL, registry_.get());
     add_system<OverlaySystem>(OVERLAY, registry_.get(), display);
     add_system<FpsSystem>(FPS, registry_.get());
     add_system<AnimationSystem>(ANIMATION, registry_.get());

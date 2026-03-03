@@ -42,7 +42,6 @@ add_executable(AlmaQuies
         src/engine/managers/input_manager.hpp
         src/engine/systems/input_system.cpp
         src/engine/systems/input_system.hpp
-        src/engine/systems/events/move_command_event.hpp
         src/engine/components/tags/player_tag.hpp
         src/engine/systems/movement_system.cpp
         src/engine/systems/movement_system.hpp
@@ -66,7 +65,6 @@ add_executable(AlmaQuies
         src/engine/systems/camera_system.hpp
         src/engine/entity_factory.cpp
         src/engine/entity_factory.hpp
-        src/engine/systems/events/zoom_command_event.hpp
         src/engine/map/map_tiles_generator.cpp
         src/engine/map/map_tiles_generator.hpp
         src/engine/systems/rendering/map_renderer.cpp
@@ -107,6 +105,8 @@ add_executable(AlmaQuies
         src/engine/systems/selection_system.hpp
         src/engine/components/input_state_component.hpp
         src/engine/components/selected_tag.hpp
+        src/engine/systems/player_controller_system.cpp
+        src/engine/systems/player_controller_system.hpp
 )
 
 add_custom_target(

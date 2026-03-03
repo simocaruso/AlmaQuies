@@ -9,9 +9,10 @@
 
 enum SystemType {
     FPS,
-    OCCLUSION,
     CAMERA,
+    PLAYER_CONTROL,
     MOVEMENT,
+    OCCLUSION,
     SPATIAL_GRID,
     SELECTION,
     COLLISION,
