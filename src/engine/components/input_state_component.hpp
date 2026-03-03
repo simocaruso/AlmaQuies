@@ -5,9 +5,11 @@
 #ifndef ALMAQUIES_INPUT_STATE_COMPONENT_HPP
 #define ALMAQUIES_INPUT_STATE_COMPONENT_HPP
 
+#include "../../util/vec_2.hpp"
+
 struct InputStateComponent {
-    float mouse_x, mouse_y;
-    bool left_click;
+    float mouse_x{}, mouse_y{};
+    bool left_click{};
 
     Vec2 request_player_movement{0, 0};
     Vec2 request_camera_movement{0, 0};

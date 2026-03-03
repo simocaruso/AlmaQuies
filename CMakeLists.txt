@@ -106,6 +106,8 @@ add_executable(AlmaQuies
         src/engine/systems/selection_system.hpp
         src/engine/components/input_state_component.hpp
         src/engine/components/selected_tag.hpp
+        src/engine/systems/player_controller_system.cpp
+        src/engine/systems/player_controller_system.hpp
 )
 
 add_custom_target(
