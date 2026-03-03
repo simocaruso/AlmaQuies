@@ -8,30 +8,47 @@
 #include "../components/tags/player_tag.hpp"
 #include "../components/transform_component.hpp"
 #include "../components/velocity_component.hpp"
-#include "events/zoom_command_event.hpp"
+#include "../components/input_state_component.hpp"
 
-CameraSystem::CameraSystem(entt::registry* registry, entt::dispatcher &dispatcher) : System(registry) {
-    dispatcher.sink<ZoomCommandEvent>().connect<&CameraSystem::on_zoom>(this);
-}
-
-void CameraSystem::on_zoom(ZoomCommandEvent zoom_event) {
-    auto &camera = registry_->get<CameraComponent>(zoom_event.camera);
-    camera.zoom *= 1.0f - zoom_event.zoom_factor * camera.scroll_direction * camera.zoom_sensitivity;
-    if (camera.zoom > camera.camera_max_zoom) {
-        camera.zoom = camera.camera_max_zoom;
-    }
-    if (camera.zoom < camera.camera_min_zoom) {
-        camera.zoom = camera.camera_min_zoom;
-    }
+CameraSystem::CameraSystem(entt::registry* registry) : System(registry) {
 }
 
 void CameraSystem::update(int elapsed) {
     auto camera = registry_->view<CameraComponent>().front();
+    handle_input(camera);
+
     const auto velocity = registry_->get<VelocityComponent>(camera);
     if (!velocity.active) {
         const auto player = registry_->view<PlayerTag>().front();
         auto &camera_pos = registry_->get<TransformComponent>(camera).position;
         const auto player_pos = registry_->get<TransformComponent>(player).position;
         camera_pos = player_pos - Vec2{BUFF_W / 2.0f, BUFF_H / 2.0f};
+    }
+}
+
+void CameraSystem::handle_input(const entt::entity camera) const {
+    handle_movement(camera);
+    handle_zoom(camera);
+}
+
+void CameraSystem::handle_movement(const entt::entity camera) const {
+    auto input = registry_->ctx().get<InputStateComponent>();
+    auto &vel = registry_->get_or_emplace<VelocityComponent>(camera);
+    vel.acceleration = input.request_camera_movement * vel.acceleration_strength;
+    if (vel.acceleration.x != 0.f || vel.acceleration.y != 0.f) {
+        vel.active = true;
+    }
+}
+
+void CameraSystem::handle_zoom(const entt::entity camera) const {
+    const auto input = registry_->ctx().get<InputStateComponent>();
+    auto &camera_component = registry_->get<CameraComponent>(camera);
+    camera_component.zoom *= 1.0f - input.request_camera_zoom *
+            camera_component.scroll_direction * camera_component.zoom_sensitivity;
+    if (camera_component.zoom > camera_component.camera_max_zoom) {
+        camera_component.zoom = camera_component.camera_max_zoom;
+    }
+    if (camera_component.zoom < camera_component.camera_min_zoom) {
+        camera_component.zoom = camera_component.camera_min_zoom;
     }
 }

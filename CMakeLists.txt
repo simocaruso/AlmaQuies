@@ -65,7 +65,6 @@ add_executable(AlmaQuies
         src/engine/systems/camera_system.hpp
         src/engine/entity_factory.cpp
         src/engine/entity_factory.hpp
-        src/engine/systems/events/zoom_command_event.hpp
         src/engine/map/map_tiles_generator.cpp
         src/engine/map/map_tiles_generator.hpp
         src/engine/systems/rendering/map_renderer.cpp

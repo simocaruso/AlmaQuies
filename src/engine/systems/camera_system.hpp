@@ -6,16 +6,19 @@
 #define ALMAQUIES_CAMERA_SYSTEM_HPP
 
 #include "system.hpp"
-#include "events/zoom_command_event.hpp"
-
 
 class CameraSystem : public System {
 public:
-    CameraSystem(entt::registry* registry, entt::dispatcher &dispatcher);
-
-    void on_zoom(ZoomCommandEvent zoom_event);
+    explicit CameraSystem(entt::registry* registry);
 
     void update(int elapsed) override;
+
+private:
+    void handle_input(entt::entity camera) const;
+
+    void handle_movement(entt::entity camera) const;
+
+    void handle_zoom(entt::entity camera) const;
 };
 
 

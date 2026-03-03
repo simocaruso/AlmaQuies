@@ -6,7 +6,6 @@
 
 #include "../components/camera_component.hpp"
 #include "../components/input_state_component.hpp"
-#include "events/zoom_command_event.hpp"
 
 InputSystem::InputSystem(entt::registry* registry, InputManager* input_manager,
                          entt::dispatcher* dispatcher) : System(registry), input_manager_(input_manager),
