@@ -21,8 +21,12 @@ SelectionSystem::SelectionSystem(entt::registry* registry, SpatialGrid* grid)
 
 void SelectionSystem::update(int elapsed) {
     const auto input = registry_->ctx().get<InputStateComponent>();
-    if (input.left_click) {
+
+    if (input.left_click || input.request_player_movement.x != .0f || input.request_player_movement.y != .0f) {
         clean_entities_states();
+    }
+
+    if (input.left_click) {
         select_entity();
     } else {
         maintain_selection();

@@ -21,13 +21,11 @@ void PlayerControllerSystem::update(int elapsed) {
 }
 
 void PlayerControllerSystem::update_movement(const entt::entity player) const {
-    Vec2 direction;
+    Vec2 direction = registry_->ctx().get<InputStateComponent>().request_player_movement;
     if (!registry_->view<SelectedTag>().empty()) {
         const auto pos = registry_->get<TransformComponent>(player).position;
         const auto target = registry_->get<TransformComponent>(registry_->view<SelectedTag>().front()).position;
         direction = MovementUtil::get_direction(pos, target);
-    } else {
-        direction = registry_->ctx().get<InputStateComponent>().request_player_movement;
     }
     move_to(player, direction);
 }
