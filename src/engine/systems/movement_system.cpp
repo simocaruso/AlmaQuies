@@ -19,13 +19,8 @@ void MovementSystem::update(int elapsed) {
         auto &transform = view.get<TransformComponent>(entity);
         auto &vel = view.get<VelocityComponent>(entity);
 
-        if (vel.active)
+        if (vel.active) {
             vel.speed += vel.acceleration * elapsed / 1000;
-
-        if (!vel.active) {
-            float deceleration_amount = 2 * vel.deceleration_strength * elapsed / 1000;
-            vel.speed = vel.speed.normalized() * std::max(0.0f, vel.speed.length() - deceleration_amount);
-        } else {
             if (std::abs(vel.acceleration.x) < 0.0001f) {
                 apply_deceleration_axis(vel.speed.x, vel.deceleration_strength, elapsed);
             }
@@ -33,7 +28,11 @@ void MovementSystem::update(int elapsed) {
             if (std::abs(vel.acceleration.y) < 0.001f) {
                 apply_deceleration_axis(vel.speed.y, vel.deceleration_strength, elapsed);
             }
+        } else {
+            float deceleration_amount = 2 * vel.deceleration_strength * elapsed / 1000;
+            vel.speed = vel.speed.normalized() * std::max(0.0f, vel.speed.length() - deceleration_amount);
         }
+
         if (vel.speed.length() > vel.max_speed)
             vel.speed = vel.speed.normalized() * vel.max_speed;
 
