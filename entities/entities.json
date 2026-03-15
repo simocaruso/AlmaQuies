@@ -40,7 +40,7 @@
     },
     "collider": {
       "shape": "circle",
-      "radius": 14
+      "radius": 13
     }
   },
   "not_walkable_tile": {

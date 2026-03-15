@@ -17,6 +17,8 @@ public:
 
     TileType get_tile_at(const Vec2 &pos) const;
 
+    TileType get_tile_at_grid(int x, int y) const;
+
     int get_width_tiles() const;
 
     int get_height_tiles() const;

@@ -42,6 +42,10 @@ TileType Map::get_tile_at(const Vec2 &pos) const {
     return tiles_[width_tiles_ * y + x];
 }
 
+TileType Map::get_tile_at_grid(const int x, const int y) const {
+    return tiles_[width_tiles_ * y + x];
+}
+
 int Map::get_width_tiles() const {
     return width_tiles_;
 }

@@ -76,6 +76,8 @@ add_executable(AlmaQuies
         src/util/random.hpp
         src/engine/map/map_generator.cpp
         src/engine/map/map_generator.hpp
+        src/engine/map/map_validator.cpp
+        src/engine/map/map_validator.hpp
         src/engine/managers/atlas_manager.cpp
         src/engine/managers/atlas_manager.hpp
         src/engine/managers/atlas_region.hpp

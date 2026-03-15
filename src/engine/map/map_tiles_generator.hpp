@@ -13,7 +13,14 @@ class MapTilesGenerator {
 public:
     MapTilesGenerator(entt::registry* registry, EntityFactory* entity_factory);
 
-    Map generate(int width, int height, int tile_size) const;
+    // Re-seeds the noise generators with a new random seed.
+    static void reseed();
+
+    // Generates tile type data only (no entities spawned).
+    Map generate_tiles(int width, int height) const;
+
+    // Spawns not_walkable_tile entities for all water tiles in the map.
+    void spawn_entities(const Map &map, int tile_size) const;
 
 private:
     static FastNoiseLite forest_noise_;
@@ -22,7 +29,9 @@ private:
     entt::registry* registry_;
     EntityFactory* entity_factory_;
 
-    static void set_up_noise();
+    static void set_up_noise_params();
+
+    void create_not_walkable_tile(int i, int j, int tile_size) const;
 };
 
 
