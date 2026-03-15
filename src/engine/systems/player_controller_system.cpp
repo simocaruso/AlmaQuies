@@ -3,31 +3,29 @@
 //
 
 #include "player_controller_system.hpp"
-
-#include "../../util/movement_util.hpp"
 #include "../components/input_state_component.hpp"
-#include "../components/selected_tag.hpp"
+#include "../components/tags/selected_tag.hpp"
+#include "../components/tags/ai_controlled_tag.hpp"
 #include "../components/velocity_component.hpp"
 #include "../components/state_component.hpp"
-#include "../components/transform_component.hpp"
 #include "../components/tags/player_tag.hpp"
 
-PlayerControllerSystem::PlayerControllerSystem(entt::registry* registry) : System(registry) {
-}
+PlayerControllerSystem::PlayerControllerSystem(entt::registry* registry) : System(registry) {}
 
 void PlayerControllerSystem::update(int elapsed) {
-    auto player = registry_->view<PlayerTag>().front();
-    update_movement(player);
+    const auto player = registry_->view<PlayerTag>().front();
+    update_ai_tag(player);
+    if (!registry_->all_of<AIControlledTag>(player))
+        move_to(player, registry_->ctx().get<InputStateComponent>().request_player_movement);
 }
 
-void PlayerControllerSystem::update_movement(const entt::entity player) const {
-    Vec2 direction = registry_->ctx().get<InputStateComponent>().request_player_movement;
-    if (!registry_->view<SelectedTag>().empty()) {
-        const auto pos = registry_->get<TransformComponent>(player).position;
-        const auto target = registry_->get<TransformComponent>(registry_->view<SelectedTag>().front()).position;
-        direction = MovementUtil::get_direction(pos, target);
+void PlayerControllerSystem::update_ai_tag(const entt::entity player) const {
+    if (registry_->view<SelectedTag>().empty()) {
+        registry_->remove<AIControlledTag>(player);
+    } else {
+        if (!registry_->all_of<AIControlledTag>(player))
+            registry_->emplace<AIControlledTag>(player);
     }
-    move_to(player, direction);
 }
 
 void PlayerControllerSystem::move_to(const entt::entity player, const Vec2 direction) const {

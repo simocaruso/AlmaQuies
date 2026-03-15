@@ -11,6 +11,8 @@ enum SystemType {
     FPS,
     CAMERA,
     PLAYER_CONTROL,
+    AI_CONTROL,
+    STEERING,
     MOVEMENT,
     OCCLUSION,
     SPATIAL_GRID,

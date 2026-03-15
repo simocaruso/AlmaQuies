@@ -10,6 +10,8 @@
 class MovementUtil {
 public:
     static Vec2 get_direction(Vec2 pos, Vec2 target);
+
+    static Vec2 get_direction(const Vec2 &speed);
 };
 
 

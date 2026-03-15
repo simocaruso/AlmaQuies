@@ -16,6 +16,8 @@
 #include "systems/player_controller_system.hpp"
 #include "systems/selection_system.hpp"
 #include "systems/spatial_grid_system.hpp"
+#include "systems/ai_controller_system.hpp"
+#include "systems/steering_system.hpp"
 
 World::World(Display* display, Renderer* renderer, ResourceManager* resource_manager, FileManager* file_manager,
              InputManager* input_manager) : display_(display), renderer_(renderer),
@@ -37,6 +39,8 @@ World::World(Display* display, Renderer* renderer, ResourceManager* resource_man
 }
 
 void World::init_systems() {
+    add_system<AIControllerSystem>(AI_CONTROL, registry_.get());
+    add_system<SteeringSystem>(STEERING, physic_spatial_grid_.get(), registry_.get());
     add_system<MovementSystem>(MOVEMENT, registry_.get());
     add_system<InputSystem>(INPUT, registry_.get(), input_manager_);
     add_system<CollisionSystem>(COLLISION, physic_spatial_grid_.get(), registry_.get());

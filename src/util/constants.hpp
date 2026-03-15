@@ -21,6 +21,12 @@ extern const int BUFF_W;
 
 // Collisions
 extern const int SPATIAL_GRID_CELL_SIZE;
+// 5 rays: 1 long front ray, 2 shorter on each side at 30° and 60°
+inline constexpr int AI_RAY_COUNT = 5;
+extern const float AI_RAY_FRONT_LENGTH;
+extern const float AI_RAY_SIDE_LENGTH;
+extern const float AI_RAY_SIDE_ANGLE_1;
+extern const float AI_RAY_SIDE_ANGLE_2;
 
 // Camera
 extern const int CAMERA_ACCELERATION_STRENGTH;

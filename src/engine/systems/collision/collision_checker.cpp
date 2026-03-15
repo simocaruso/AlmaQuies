@@ -79,3 +79,69 @@ bool CollisionChecker::circle_vs_rect(const Vec2 &pos1, const int radius1,
                                       const Vec2 &pos2, const int width2, const int height2) {
     return rect_vs_circle(pos2, width2, height2, pos1, radius1);
 }
+
+float CollisionChecker::ray_vs_circle(const Ray &ray, const Vec2 &circle_pos, const int radius) {
+    // Quadratic solution: |origin + t*dir - center|^2 = radius^2
+    const Vec2 m = {ray.origin.x - circle_pos.x, ray.origin.y - circle_pos.y};
+    const float b = m.x * ray.direction.x + m.y * ray.direction.y;
+    const float c = m.x * m.x + m.y * m.y - static_cast<float>(radius * radius);
+
+    // Ray starts outside and points away
+    if (c > 0.0f && b > 0.0f) return -1.0f;
+
+    const float discr = b * b - c;
+    if (discr < 0.0f) return -1.0f;
+
+    float t = -b - std::sqrt(discr);
+    if (t < 0.0f) t = 0.0f; // ray origin inside circle
+    if (t > ray.max_length) return -1.0f;
+
+    return t;
+}
+
+float CollisionChecker::ray_vs_rect(const Ray &ray, const Vec2 &rect_pos, const int width, const int height) {
+    // AABB slab method
+    const float half_w = width / 2.0f;
+    const float half_h = height / 2.0f;
+
+    float t_min = 0.0f;
+    float t_max = ray.max_length;
+
+    // X axis
+    if (std::abs(ray.direction.x) < 1e-6f) {
+        if (ray.origin.x < rect_pos.x - half_w || ray.origin.x > rect_pos.x + half_w) return -1.0f;
+    } else {
+        float t1 = (rect_pos.x - half_w - ray.origin.x) / ray.direction.x;
+        float t2 = (rect_pos.x + half_w - ray.origin.x) / ray.direction.x;
+        if (t1 > t2) std::swap(t1, t2);
+        t_min = std::max(t_min, t1);
+        t_max = std::min(t_max, t2);
+        if (t_min > t_max) return -1.0f;
+    }
+
+    // Y axis
+    if (std::abs(ray.direction.y) < 1e-6f) {
+        if (ray.origin.y < rect_pos.y - half_h || ray.origin.y > rect_pos.y + half_h) return -1.0f;
+    } else {
+        float t1 = (rect_pos.y - half_h - ray.origin.y) / ray.direction.y;
+        float t2 = (rect_pos.y + half_h - ray.origin.y) / ray.direction.y;
+        if (t1 > t2) std::swap(t1, t2);
+        t_min = std::max(t_min, t1);
+        t_max = std::min(t_max, t2);
+        if (t_min > t_max) return -1.0f;
+    }
+
+    return t_min;
+}
+
+float CollisionChecker::raycast(const Ray &ray, const Vec2 &pos, const ColliderComponent &collider) {
+    return std::visit([&]<typename T>(T &&shape) -> float {
+        using S = std::decay_t<T>;
+        if constexpr (std::is_same_v<S, CircleCollider>) {
+            return ray_vs_circle(ray, pos, shape.radius);
+        } else if constexpr (std::is_same_v<S, RectCollider>) {
+            return ray_vs_rect(ray, pos, shape.width, shape.height);
+        }
+        return -1.0f;
+    }, collider.data);
+}

@@ -104,11 +104,17 @@ add_executable(AlmaQuies
         src/engine/systems/selection_system.cpp
         src/engine/systems/selection_system.hpp
         src/engine/components/input_state_component.hpp
-        src/engine/components/selected_tag.hpp
+        src/engine/components/tags/selected_tag.hpp
         src/engine/systems/player_controller_system.cpp
         src/engine/systems/player_controller_system.hpp
         src/util/movement_util.cpp
         src/util/movement_util.hpp
+        src/engine/systems/ai_controller_system.cpp
+        src/engine/systems/ai_controller_system.hpp
+        src/engine/systems/steering_system.cpp
+        src/engine/systems/steering_system.hpp
+        src/engine/components/tags/ai_controlled_tag.hpp
+        src/engine/systems/collision/ray.hpp
 )
 
 add_custom_target(

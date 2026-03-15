@@ -11,8 +11,7 @@
 #include "collision/collision_checker.hpp"
 #include "../components/transform_component.hpp"
 #include "../components/render_component.hpp"
-#include "../components/selected_tag.hpp"
-#include "../components/state_component.hpp"
+#include "../components/tags/selected_tag.hpp"
 
 
 SelectionSystem::SelectionSystem(entt::registry* registry, SpatialGrid* grid)

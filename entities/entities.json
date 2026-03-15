@@ -35,12 +35,12 @@
     "render": {
       "offset": {
         "x": 16,
-        "y": 19
+        "y": 20
       }
     },
     "collider": {
       "shape": "circle",
-      "radius": 13
+      "radius": 14
     }
   },
   "not_walkable_tile": {
